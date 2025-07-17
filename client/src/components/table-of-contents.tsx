@@ -49,7 +49,7 @@ export function TableOfContents({ content, className = "" }: TableOfContentsProp
         });
       },
       { 
-        rootMargin: '-20% 0px -35% 0px',
+        rootMargin: '-10% 0px -50% 0px',
         threshold: 0.1
       }
     );
@@ -76,7 +76,7 @@ export function TableOfContents({ content, className = "" }: TableOfContentsProp
 
   return (
     <div className={`sticky top-8 ${className}`}>
-      <div className="bg-card rounded-lg p-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+      <div className="bg-card rounded-lg p-4 max-h-[calc(100vh-4rem)] overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <List className="w-4 h-4" />
