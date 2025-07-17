@@ -3,6 +3,7 @@ title: "ETF 고르는 기준"
 description: "ETF 고르는 기준"
 date: 2023-03-25
 update: 2023-03-25
+category: ETF
 tags:
   - 주식
   - ETF

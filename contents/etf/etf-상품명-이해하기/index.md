@@ -3,6 +3,7 @@ title: "ETF 상품명 이해하기"
 description: "ETF 상품명 이해하기"
 date: 2023-01-24
 update: 2023-01-24
+category: ETF
 tags:
   - etf
   - name
