@@ -15,7 +15,7 @@ interface MarkdownFrontMatter {
 
 function parseMarkdownFile(content: string): { frontMatter: MarkdownFrontMatter; content: string } {
   const frontMatterMatch = content.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
-
+  
   if (!frontMatterMatch) {
     throw new Error('No front matter found in markdown file');
   }
@@ -50,9 +50,9 @@ function parseMarkdownFile(content: string): { frontMatter: MarkdownFrontMatter;
       const colonIndex = trimmed.indexOf(':');
       const key = trimmed.substring(0, colonIndex).trim();
       const value = trimmed.substring(colonIndex + 1).trim();
-
+      
       currentKey = key;
-
+      
       if (value === '') {
         // Might be an array
         inArray = true;
@@ -103,39 +103,32 @@ function extractExcerpt(content: string): string {
   return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
 }
 
-// Function to generate SEO-friendly slug
-function generateSeoSlug(title: string, folderName: string): string {
-    const titleSlug = createSlug(title);
-    return `${titleSlug}-${folderName}`;
-}
-
-
 export async function importMarkdownFiles(storage: IStorage, contentDir: string = 'contents'): Promise<void> {
   try {
     const etfDir = join(contentDir, 'etf');
     const etfStat = await stat(etfDir);
-
+    
     if (!etfStat.isDirectory()) {
       console.log('ETF directory not found');
       return;
     }
 
     const folders = await readdir(etfDir);
-
+    
     for (const folder of folders) {
       const folderPath = join(etfDir, folder);
       const folderStat = await stat(folderPath);
-
+      
       if (folderStat.isDirectory()) {
         const markdownPath = join(folderPath, 'index.md');
-
+        
         try {
           const content = await readFile(markdownPath, 'utf-8');
           const { frontMatter, content: markdownContent } = parseMarkdownFile(content);
-
-          const slug = generateSeoSlug(frontMatter.title, folder);
+          
+          const slug = createSlug(frontMatter.title);
           const excerpt = extractExcerpt(markdownContent);
-
+          
           const blogPost: InsertBlogPost = {
             title: frontMatter.title,
             slug,
@@ -149,10 +142,10 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
             seoDescription: frontMatter.description || excerpt,
             seoKeywords: frontMatter.tags?.join(', ') || ''
           };
-
+          
           await storage.createBlogPost(blogPost);
           console.log(`✓ Imported: ${frontMatter.title}`);
-
+          
         } catch (error) {
           console.error(`Failed to import ${folder}:`, error);
         }
