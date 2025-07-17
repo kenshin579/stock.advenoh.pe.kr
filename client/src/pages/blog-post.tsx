@@ -4,6 +4,7 @@ import { Header } from "@/components/header";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
+import { TableOfContents } from "@/components/table-of-contents";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -156,95 +157,110 @@ export default function BlogPostPage() {
       
       <Header />
       
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <article>
-          {/* Back button */}
-          <Button
-            variant="ghost"
-            className="mb-6"
-            onClick={() => setLocation('/')}
-          >
-            <ArrowLeft className="w-4 h-4 mr-2" />
-            목록으로 돌아가기
-          </Button>
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="lg:grid lg:grid-cols-4 lg:gap-8">
+          {/* Main content */}
+          <div className="lg:col-span-3">
+            <article>
+              {/* Back button */}
+              <Button
+                variant="ghost"
+                className="mb-6"
+                onClick={() => setLocation('/')}
+              >
+                <ArrowLeft className="w-4 h-4 mr-2" />
+                목록으로 돌아가기
+              </Button>
 
-          {/* Post header */}
-          <header className="mb-8">
-            <div className="flex items-center gap-4 mb-4">
-              <Badge className={getCategoryColor(post.category)}>
-                {getCategoryLabel(post.category)}
-              </Badge>
-              {post.tags?.map((tag) => (
-                <Badge key={tag} variant="secondary">
-                  {tag}
-                </Badge>
-              ))}
-            </div>
+              {/* Post header */}
+              <header className="mb-8">
+                <div className="flex items-center gap-4 mb-4">
+                  <Badge className={getCategoryColor(post.category)}>
+                    {getCategoryLabel(post.category)}
+                  </Badge>
+                  {post.tags?.map((tag) => (
+                    <Badge key={tag} variant="secondary">
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
 
-            <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              {post.title}
-            </h1>
+                <h1 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
+                  {post.title}
+                </h1>
 
-            <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
-              <div className="flex items-center gap-2">
-                <User className="w-4 h-4" />
-                <span>투자분석가</span>
+                <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
+                  <div className="flex items-center gap-2">
+                    <User className="w-4 h-4" />
+                    <span>투자분석가</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Calendar className="w-4 h-4" />
+                    <span>{new Date(post.createdAt!).toLocaleDateString('ko-KR')}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-4 h-4" />
+                    <span>{readingTime}분 읽기</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Eye className="w-4 h-4" />
+                    <span>{post.views || 0}회 조회</span>
+                  </div>
+                </div>
+              </header>
+
+              {/* Featured image */}
+              {post.featuredImage && (
+                <div className="mb-8">
+                  <img
+                    src={post.featuredImage}
+                    alt={post.title}
+                    className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  />
+                </div>
+              )}
+
+              {/* Mobile Table of Contents */}
+              <div className="lg:hidden mb-8">
+                <TableOfContents content={post.content} />
               </div>
-              <div className="flex items-center gap-2">
-                <Calendar className="w-4 h-4" />
-                <span>{new Date(post.createdAt!).toLocaleDateString('ko-KR')}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="w-4 h-4" />
-                <span>{readingTime}분 읽기</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Eye className="w-4 h-4" />
-                <span>{post.views || 0}회 조회</span>
-              </div>
-            </div>
-          </header>
 
-          {/* Featured image */}
-          {post.featuredImage && (
-            <div className="mb-8">
-              <img
-                src={post.featuredImage}
-                alt={post.title}
-                className="w-full h-64 md:h-96 object-cover rounded-lg"
-              />
-            </div>
-          )}
+              {/* Post content */}
+              <div className="mb-8">
+                <MarkdownRenderer content={post.content} slug={post.slug} />
+              </div>
 
-          {/* Post content */}
-          <div className="mb-8">
-            <MarkdownRenderer content={post.content} slug={post.slug} />
+              {/* Post footer */}
+              <footer className="border-t pt-8">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={handleLike}
+                      disabled={likeMutation.isPending}
+                      className="flex items-center gap-2"
+                    >
+                      <Heart className="w-4 h-4" />
+                      좋아요 {post.likes || 0}
+                    </Button>
+                  </div>
+                  
+                  <div className="flex items-center gap-4">
+                    <span className="text-sm text-muted-foreground">
+                      마지막 수정: {new Date(post.updatedAt!).toLocaleDateString('ko-KR')}
+                    </span>
+                  </div>
+                </div>
+              </footer>
+            </article>
           </div>
 
-          {/* Post footer */}
-          <footer className="border-t pt-8">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={handleLike}
-                  disabled={likeMutation.isPending}
-                  className="flex items-center gap-2"
-                >
-                  <Heart className="w-4 h-4" />
-                  좋아요 {post.likes || 0}
-                </Button>
-              </div>
-              
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-muted-foreground">
-                  마지막 수정: {new Date(post.updatedAt!).toLocaleDateString('ko-KR')}
-                </span>
-              </div>
-            </div>
-          </footer>
-        </article>
+          {/* Desktop Table of Contents */}
+          <div className="hidden lg:block">
+            <TableOfContents content={post.content} />
+          </div>
+        </div>
       </main>
 
       <Footer />

@@ -15,15 +15,78 @@ export function MarkdownRenderer({ content, className = "", slug }: MarkdownRend
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
-          h1: ({ children }) => (
-            <h1 className="text-3xl font-bold mb-6 mt-8 text-foreground">{children}</h1>
-          ),
-          h2: ({ children }) => (
-            <h2 className="text-2xl font-semibold mb-4 mt-6 text-foreground">{children}</h2>
-          ),
-          h3: ({ children }) => (
-            <h3 className="text-xl font-semibold mb-3 mt-5 text-foreground">{children}</h3>
-          ),
+          h1: ({ children }) => {
+            const id = String(children)
+              .toLowerCase()
+              .replace(/[^\w\s가-힣]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            return (
+              <h1 id={id} className="text-3xl font-bold mb-6 mt-8 text-foreground scroll-mt-8">
+                {children}
+              </h1>
+            );
+          },
+          h2: ({ children }) => {
+            const id = String(children)
+              .toLowerCase()
+              .replace(/[^\w\s가-힣]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            return (
+              <h2 id={id} className="text-2xl font-semibold mb-4 mt-6 text-foreground scroll-mt-8">
+                {children}
+              </h2>
+            );
+          },
+          h3: ({ children }) => {
+            const id = String(children)
+              .toLowerCase()
+              .replace(/[^\w\s가-힣]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            return (
+              <h3 id={id} className="text-xl font-semibold mb-3 mt-5 text-foreground scroll-mt-8">
+                {children}
+              </h3>
+            );
+          },
+          h4: ({ children }) => {
+            const id = String(children)
+              .toLowerCase()
+              .replace(/[^\w\s가-힣]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            return (
+              <h4 id={id} className="text-lg font-semibold mb-2 mt-4 text-foreground scroll-mt-8">
+                {children}
+              </h4>
+            );
+          },
+          h5: ({ children }) => {
+            const id = String(children)
+              .toLowerCase()
+              .replace(/[^\w\s가-힣]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            return (
+              <h5 id={id} className="text-base font-semibold mb-2 mt-3 text-foreground scroll-mt-8">
+                {children}
+              </h5>
+            );
+          },
+          h6: ({ children }) => {
+            const id = String(children)
+              .toLowerCase()
+              .replace(/[^\w\s가-힣]/g, '')
+              .replace(/\s+/g, '-')
+              .trim();
+            return (
+              <h6 id={id} className="text-sm font-semibold mb-2 mt-3 text-foreground scroll-mt-8">
+                {children}
+              </h6>
+            );
+          },
           p: ({ children }) => (
             <p className="mb-4 text-foreground/80 leading-relaxed">{children}</p>
           ),
