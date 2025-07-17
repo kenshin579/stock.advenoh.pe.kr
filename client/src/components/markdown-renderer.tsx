@@ -60,7 +60,7 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
               </SyntaxHighlighter>
             ) : (
               <code className="bg-muted text-muted-foreground px-2 py-1 rounded text-sm">
-                {children}
+                {String(children).replace(/^`|`$/g, '')}
               </code>
             );
           },
