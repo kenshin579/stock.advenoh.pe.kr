@@ -1,5 +1,7 @@
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
+import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
 interface MarkdownRendererProps {
   content: string;
@@ -42,15 +44,24 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
               {children}
             </blockquote>
           ),
-          code: ({ inline, children }) => {
-            return inline ? (
+          code: ({ inline, children, className, ...props }) => {
+            const match = /language-(\w+)/.exec(className || '');
+            const language = match ? match[1] : '';
+            
+            return !inline && match ? (
+              <SyntaxHighlighter
+                style={tomorrow}
+                language={language}
+                PreTag="div"
+                className="mb-4 rounded-lg"
+                {...props}
+              >
+                {String(children).replace(/\n$/, '')}
+              </SyntaxHighlighter>
+            ) : (
               <code className="bg-muted text-muted-foreground px-2 py-1 rounded text-sm">
                 {children}
               </code>
-            ) : (
-              <pre className="bg-muted p-4 rounded-lg overflow-x-auto mb-4">
-                <code className="text-sm">{children}</code>
-              </pre>
             );
           },
           a: ({ href, children }) => (
