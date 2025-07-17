@@ -76,11 +76,7 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">정보</h3>
             <ul className="space-y-2">
-              <li>
-                <Link href="/admin" className="text-gray-400 hover:text-white transition-colors">
-                  관리자
-                </Link>
-              </li>
+
               <li>
                 <a href="/api/rss" className="text-gray-400 hover:text-white transition-colors">
                   RSS
