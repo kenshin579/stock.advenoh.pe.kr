@@ -74,6 +74,15 @@ export function MarkdownRenderer({ content, className = "" }: MarkdownRendererPr
               {children}
             </a>
           ),
+          img: ({ src, alt, title }) => (
+            <img
+              src={src}
+              alt={alt || ''}
+              title={title}
+              className="max-w-full h-auto rounded-lg mb-4 mx-auto"
+              loading="lazy"
+            />
+          ),
           table: ({ children }) => (
             <div className="overflow-x-auto mb-4">
               <table className="min-w-full divide-y divide-border">
