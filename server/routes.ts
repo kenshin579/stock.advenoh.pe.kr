@@ -1,4 +1,5 @@
 import type { Express } from "express";
+import express from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 import { storage } from "./storage";
@@ -162,6 +163,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.status(500).json({ message: "Failed to generate robots.txt" });
     }
   });
+
+  // Serve images from contents directory
+  app.use('/contents', express.static('contents', {
+    setHeaders: (res, path) => {
+      if (path.endsWith('.png') || path.endsWith('.jpg') || path.endsWith('.jpeg') || path.endsWith('.gif') || path.endsWith('.svg')) {
+        res.set('Cache-Control', 'public, max-age=31536000'); // 1 year cache
+      }
+    }
+  }));
 
   const httpServer = createServer(app);
   return httpServer;

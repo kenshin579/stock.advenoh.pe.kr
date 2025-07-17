@@ -218,7 +218,7 @@ export default function BlogPostPage() {
 
           {/* Post content */}
           <div className="mb-8">
-            <MarkdownRenderer content={post.content} />
+            <MarkdownRenderer content={post.content} slug={post.slug} />
           </div>
 
           {/* Post footer */}
