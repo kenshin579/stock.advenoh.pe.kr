@@ -6,8 +6,12 @@ import { insertBlogPostSchema, insertNewsletterSubscriberSchema } from "@shared/
 import { generateRssFeed } from "./services/rss";
 import { generateSitemap } from "./services/sitemap";
 import { generateRobotsTxt } from "./services/robots";
+import { importMarkdownFiles } from "./services/contentImporter";
 
 export async function registerRoutes(app: Express): Promise<Server> {
+  // Import markdown files on startup
+  await importMarkdownFiles(storage);
+  
   // Blog posts routes
   app.get("/api/blog-posts", async (req, res) => {
     try {
