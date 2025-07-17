@@ -76,7 +76,7 @@ export function TableOfContents({ content, className = "" }: TableOfContentsProp
 
   return (
     <div className={`sticky top-8 ${className}`}>
-      <div className="bg-card border border-border rounded-lg p-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
+      <div className="bg-card rounded-lg p-4 max-h-[calc(100vh-6rem)] overflow-y-auto">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-sm font-semibold text-foreground flex items-center gap-2">
             <List className="w-4 h-4" />

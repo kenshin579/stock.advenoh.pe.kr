@@ -258,7 +258,9 @@ export default function BlogPostPage() {
 
           {/* Desktop Table of Contents */}
           <div className="hidden lg:block">
-            <TableOfContents content={post.content} />
+            <div className="pt-[600px]">
+              <TableOfContents content={post.content} />
+            </div>
           </div>
         </div>
       </main>
