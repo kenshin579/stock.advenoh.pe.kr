@@ -10,7 +10,7 @@ interface BlogPostCardProps {
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   const getCategoryColor = (category: string) => {
-    switch (category) {
+    switch (category.toLowerCase()) {
       case "stocks":
         return "bg-primary text-primary-foreground";
       case "etf":
@@ -27,20 +27,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
   };
 
   const getCategoryLabel = (category: string) => {
-    switch (category) {
-      case "stocks":
-        return "주식";
-      case "etf":
-        return "ETF";
-      case "bonds":
-        return "채권";
-      case "funds":
-        return "펀드";
-      case "analysis":
-        return "시장분석";
-      default:
-        return category;
-    }
+    // 마크다운 파일의 category 값을 그대로 사용
+    return category;
   };
 
   return (

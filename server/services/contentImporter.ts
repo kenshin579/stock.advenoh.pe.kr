@@ -8,6 +8,7 @@ interface MarkdownFrontMatter {
   description?: string;
   date: string;
   update?: string;
+  category?: string;
   tags?: string[];
   series?: string;
 }
@@ -133,7 +134,7 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
             slug,
             content: markdownContent,
             excerpt,
-            category: 'etf',
+            category: frontMatter.category || 'etf',
             tags: frontMatter.tags || [],
             featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
             published: true,
