@@ -55,15 +55,20 @@ export function Header() {
                 : location.includes(`category=${item.href.split('category=')[1]}`);
               
               return (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
                   className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
                     isActive ? "text-primary" : ""
                   }`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    window.history.pushState({}, '', item.href);
+                    window.dispatchEvent(new Event('popstate'));
+                  }}
                 >
                   {item.label}
-                </Link>
+                </a>
               );
             })}
           </div>
@@ -126,16 +131,21 @@ export function Header() {
                   : location.includes(`category=${item.href.split('category=')[1]}`);
                 
                 return (
-                  <Link
+                  <a
                     key={item.href}
                     href={item.href}
                     className={`block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
                       isActive ? "text-primary" : ""
                     }`}
-                    onClick={() => setIsMenuOpen(false)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      window.history.pushState({}, '', item.href);
+                      window.dispatchEvent(new Event('popstate'));
+                      setIsMenuOpen(false);
+                    }}
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 );
               })}
               <div className="px-3 py-2 sm:hidden">

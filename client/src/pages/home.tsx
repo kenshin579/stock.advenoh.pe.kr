@@ -23,13 +23,26 @@ export default function Home() {
 
   // Parse URL parameters
   useEffect(() => {
-    const urlParams = new URLSearchParams(location.split('?')[1] || '');
-    const category = urlParams.get('category') || 'all';
-    const search = urlParams.get('search') || '';
+    const updateFromURL = () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const category = urlParams.get('category') || 'all';
+      const search = urlParams.get('search') || '';
+      
+      console.log('URL params:', { category, search, location, windowLocation: window.location.href });
+      
+      setSelectedCategory(category);
+      setSearchTerm(search);
+      setPage(1); // Reset page when filters change
+    };
+
+    updateFromURL();
     
-    setSelectedCategory(category);
-    setSearchTerm(search);
-    setPage(1); // Reset page when filters change
+    // Listen for popstate events to handle navigation
+    window.addEventListener('popstate', updateFromURL);
+    
+    return () => {
+      window.removeEventListener('popstate', updateFromURL);
+    };
   }, [location]);
 
   const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
