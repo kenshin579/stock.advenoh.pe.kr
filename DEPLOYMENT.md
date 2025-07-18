@@ -31,6 +31,7 @@ publicDir = "dist/public"
 ```
 This command:
 1. Builds only the React frontend using Vite → `dist/public/`
+2. Copies the built files to `dist/` for deployment compatibility
 
 ### Static Deployment Limitations
 - **API endpoints** will not work (no server-side functionality)

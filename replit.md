@@ -77,8 +77,17 @@ The application is configured for Replit **Static** deployment:
 - **Production**: Static files served directly (no server-side functionality)
 - **Database**: Not available in static deployment
 - **Deployment Type**: Static - serves only React frontend
-- **Configuration**: `replit.toml` contains deployment settings
+- **Configuration**: Both `replit.toml` and `.replit` contain deployment settings
+- **Build Output**: Files placed in both `dist/public/` and `dist/` for compatibility
 - **Limitations**: API endpoints, database features, and backend functionality not available
+
+## Recent Changes
+
+### July 18, 2025
+- **Deployment Fix**: Updated build-static.sh to copy built files to both `dist/public/` and `dist/` directories
+- **Issue Resolved**: Fixed deployment failure due to mismatched public directory configuration
+- **Root Cause**: Deployment system expected files in `dist/` but Vite was building to `dist/public/`
+- **Solution**: Modified build script to ensure files are available in both expected locations
 
 ### File Structure
 - `/client` - React frontend application
