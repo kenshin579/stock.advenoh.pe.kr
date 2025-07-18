@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useLocation } from "wouter";
 import { Header } from "@/components/header";
@@ -8,16 +8,17 @@ import { BlogPostCard } from "@/components/blog-post-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
-import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BlogPost } from "@shared/schema";
 import { generateBlogStructuredData, getBaseUrl } from "@/lib/seo";
+import { Loader2 } from "lucide-react";
 
 export default function Home() {
   const [location] = useLocation();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
   const [page, setPage] = useState(1);
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
   const postsPerPage = 9;
 
   // Parse URL parameters
@@ -71,9 +72,26 @@ export default function Home() {
   const paginatedPosts = sortedPosts.slice(0, page * postsPerPage);
   const hasMore = sortedPosts && sortedPosts.length > page * postsPerPage;
 
-  const loadMore = () => {
-    setPage(prev => prev + 1);
-  };
+  const loadMore = useCallback(() => {
+    if (isLoadingMore || !hasMore) return;
+    setIsLoadingMore(true);
+    setTimeout(() => {
+      setPage(prev => prev + 1);
+      setIsLoadingMore(false);
+    }, 300);
+  }, [isLoadingMore, hasMore]);
+
+  // Infinite scroll effect
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1000) {
+        loadMore();
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [loadMore]);
 
   const baseUrl = getBaseUrl();
   const structuredData = generateBlogStructuredData(baseUrl);
@@ -145,12 +163,16 @@ export default function Home() {
 
               {hasMore && (
                 <div className="text-center mt-12">
-                  <Button 
-                    onClick={loadMore}
-                    className="btn-primary"
-                  >
-                    더 많은 글 보기
-                  </Button>
+                  {isLoadingMore ? (
+                    <div className="flex items-center justify-center">
+                      <Loader2 className="w-6 h-6 animate-spin" />
+                      <span className="ml-2 text-muted-foreground">더 많은 글을 불러오는 중...</span>
+                    </div>
+                  ) : (
+                    <div className="text-muted-foreground">
+                      아래로 스크롤하여 더 많은 글을 확인하세요
+                    </div>
+                  )}
                 </div>
               )}
             </>
