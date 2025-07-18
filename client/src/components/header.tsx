@@ -50,17 +50,22 @@ export function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
-                  location === item.href ? "text-primary" : ""
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item) => {
+              const isActive = item.href === "/" ? location === "/" || location.split('?')[0] === "/" && !new URLSearchParams(location.split('?')[1] || '').get('category')
+                : location.includes(`category=${item.href.split('category=')[1]}`);
+              
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
+                    isActive ? "text-primary" : ""
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
           </div>
 
           {/* Search & Dark Mode Toggle */}
@@ -116,16 +121,23 @@ export function Header() {
         {isMenuOpen && (
           <div className="md:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-              {navItems.map((item) => (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className="block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </Link>
-              ))}
+              {navItems.map((item) => {
+                const isActive = item.href === "/" ? location === "/" || location.split('?')[0] === "/" && !new URLSearchParams(location.split('?')[1] || '').get('category')
+                  : location.includes(`category=${item.href.split('category=')[1]}`);
+                
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    className={`block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
+                      isActive ? "text-primary" : ""
+                    }`}
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    {item.label}
+                  </Link>
+                );
+              })}
               <div className="px-3 py-2 sm:hidden">
                 <SearchBar />
               </div>
