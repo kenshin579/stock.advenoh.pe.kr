@@ -25,21 +25,12 @@ export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryF
     },
   });
 
-  // Category labels mapping
-  const categoryLabels: { [key: string]: string } = {
-    etf: "ETF",
-    ETF: "ETF",
-    stock: "주식",
-    weekly: "주간분석",
-    etc: "기타"
-  };
-
   // Generate categories dynamically
   const categories = [
     { id: "all", label: "전체" },
     ...(apiCategories?.map(({ category }) => ({
       id: category,
-      label: categoryLabels[category] || category
+      label: category
     })) || [])
   ];
 
