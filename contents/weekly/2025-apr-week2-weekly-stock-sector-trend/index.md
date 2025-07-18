@@ -3,7 +3,7 @@ title: "25년 4월 2째주 주간 주식 정리 - 섹터 및 주식 트랜드"
 description: "25년 4월 2째주 주간 주식 정리 - 섹터 및 주식 트랜드"
 date: 2025-04-06
 update: 2025-04-06
-category: stock
+category: Weekly
 tags:
   - 주간 브리핑
   - 주요 섹터

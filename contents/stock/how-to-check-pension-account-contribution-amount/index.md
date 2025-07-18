@@ -3,7 +3,7 @@ title: "연금계좌 납입금액 확인하는 방법"
 description: "연금계좌 납입금액 확인하는 방법"
 date: 2024-11-30
 update: 2024-11-30
-category: stock
+category: Stock
 tags:
   - 연말정산
   - 세액공제

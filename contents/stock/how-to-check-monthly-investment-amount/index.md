@@ -3,7 +3,7 @@ title: "월별 투자 금액 확인하는 방법"
 description: "월별 투자 금액 확인하는 방법"
 date: 2024-06-08
 update: 2024-08-08
-category: stock
+category: Stock
 tags:
   - 월별손익
   - 구글시트

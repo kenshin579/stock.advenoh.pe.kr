@@ -3,7 +3,7 @@ title: "구글 Adsense 싱가포르 세금 정보 제출방법"
 description: "구글 Adsense 싱가포르 세금 정보 제출방법"
 date: 2024-07-10
 update: 2024-07-10
-category: etc
+category: Etc
 tags:
   - 구글 애드센스
   - adsense

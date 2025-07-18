@@ -3,7 +3,7 @@ title: "유상증자는 주식에 어떤 영향을 주나"
 description: "유상증자는 주식에 어떤 영향을 주나"
 date: 2024-11-28
 update: 2024-11-28
-category: stock
+category: Stock
 tags:
   - 유상증자
   - 조달

@@ -3,7 +3,7 @@ title: "2024년 2분기 워렌 버핏 포트폴리오"
 description: "2024년 2분기 워렌 버핏 포트폴리오"
 date: 2024-08-17
 update: 2024-08-17
-category: stock
+category: Stock
 tags:
   - 포트폴리오
   - 대가의 포트폴리오

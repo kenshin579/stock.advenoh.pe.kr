@@ -3,7 +3,7 @@ title: "3분기 미국 관심 배당주 정리"
 description: "3분기 미국 관심 배당주 정리"
 date: 2024-07-30
 update: 2024-07-30
-category: stock
+category: Stock
 tags:
   - 미국 배당주
   - 배당주

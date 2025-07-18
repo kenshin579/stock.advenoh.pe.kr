@@ -3,7 +3,7 @@ title: "2024년 6월 2주차 - 국내, 미국 주간 주도 섹터 정리"
 description: "2024년 6월 2주차 - 국내, 미국 주간 주도 섹터 정리"
 date: 2024-06-09
 update: 2024-06-09
-category: stock
+category: Weekly
 tags:
   - 주도섹터
   - 주간투자

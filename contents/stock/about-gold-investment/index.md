@@ -3,7 +3,7 @@ title: "금투자에 대해서 알아보자"
 description: "금투자에 대해서 알아보자"
 date: 2024-06-01
 update: 2024-06-01
-category: stock
+category: Stock
 tags:
   - 금현물
   - 금투자

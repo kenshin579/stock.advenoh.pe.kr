@@ -3,7 +3,7 @@ title: "서킷브레이커 vs 사이드카의 차이, 주가지수 폭락 시 �
 description: "서킷브레이커 vs 사이드카의 차이, 주가지수 폭락 시 작동하는 장치"
 date: 2024-08-10
 update: 2024-08-10
-category: stock
+category: Stock
 tags:
   - 서킷브레이커
   - 사이드카

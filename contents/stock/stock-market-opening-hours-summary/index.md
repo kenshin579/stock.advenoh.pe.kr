@@ -3,7 +3,7 @@ title: "주식 시장 개장시간 정리"
 description: "주식 시장 개장시간 정리"
 date: 2023-02-25
 update: 2023-02-25
-category: stock
+category: Stock
 tags:
   - stock
   - opening

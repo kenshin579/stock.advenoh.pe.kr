@@ -3,7 +3,7 @@ title: "금융소득 종합과세 대상자 피하는 방법"
 description: "금융소득 종합과세 대상자 피하는 방법"
 date: 2024-05-15
 update: 2024-05-15
-category: stock
+category: Stock
 tags:
   - 금융소득
   - 금용소득건강보험료

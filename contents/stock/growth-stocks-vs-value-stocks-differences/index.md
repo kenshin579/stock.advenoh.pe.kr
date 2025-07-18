@@ -3,7 +3,7 @@ title: "성장주와 가치주의 차이점"
 description: "성장주와 가치주의 차이점"
 date: 2023-08-15
 update: 2023-08-15
-category: stock
+category: Stock
 tags:
   - 주식
   - ETF

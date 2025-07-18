@@ -3,7 +3,7 @@ title: "공매도란? 대차거래부터 개인투자자 영향까지 완벽 정
 description: "공매도란? 대차거래부터 개인투자자 영향까지 완벽 정리"
 date: 2025-04-09
 update: 2025-04-09
-category: stock
+category: Stock
 tags:
   - 공매도
   - 대차거래

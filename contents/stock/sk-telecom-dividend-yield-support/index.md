@@ -3,7 +3,7 @@ title: "SK텔레콤 주가 배당수익률로 방어선은 어디일까?"
 description: "SK텔레콤 주가 배당수익률로 방어선은 어디일까?"
 date: 2025-07-09
 update: 2025-07-09
-category: stock
+category: Stock
 tags:
   - 배당
   - 방어선

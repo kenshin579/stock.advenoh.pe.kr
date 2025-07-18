@@ -3,7 +3,7 @@ title: "자사주 매입이란"
 description: "자사주 매입이란"
 date: 2024-12-27
 update: 2024-12-27
-category: stock
+category: Stock
 tags:
   - 자사주
   - 자사주 매입

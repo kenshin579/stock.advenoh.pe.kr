@@ -3,7 +3,7 @@ title: "구글 Adsense 미국 세금 정보 입력하는 방법"
 description: "구글 Adsense 미국 세금 정보 입력하는 방법"
 date: 2024-07-07
 update: 2024-07-07
-category: etc
+category: Etc
 tags:
   - 구글 애드센스
   - adsense

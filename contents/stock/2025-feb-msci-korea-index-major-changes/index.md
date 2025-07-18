@@ -3,7 +3,7 @@ title: "25년 2월 MSCI 한국 지수서 주요 변경사항"
 description: "25년 2월 MSCI 한국 지수서 주요 변경사항"
 date: 2025-02-16
 update: 2025-02-16
-category: stock
+category: Stock
 tags:
   - MSCI
   - MSCI Korea

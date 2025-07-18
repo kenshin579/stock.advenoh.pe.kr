@@ -3,7 +3,7 @@ title: "증권 계좌 종류별로 투자 가능한 항목 정리"
 description: "증권 계좌 종류별로 투자 가능한 항목 정리"
 date: 2023-03-18
 update: 2023-03-18
-category: stock
+category: Stock
 tags:
   - 증권
   - 계좌

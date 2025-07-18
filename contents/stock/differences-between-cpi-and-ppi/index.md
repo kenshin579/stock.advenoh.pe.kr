@@ -3,7 +3,7 @@ title: "CPI와 PPI의 차이점"
 description: "CPI와 PPI의 차이점"
 date: 2023-02-19
 update: 2023-02-19
-category: stock
+category: Stock
 tags:
   - cpi
   - ppi

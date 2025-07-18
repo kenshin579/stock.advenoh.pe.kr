@@ -3,7 +3,7 @@ title: "2024년 2분기 주요 일정"
 description: "2024년 2분기 주요 일정"
 date: 2024-03-20
 update: 2024-03-20
-category: stock
+category: Stock
 tags:
   - 2분기
   - 비트코인

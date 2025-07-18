@@ -3,7 +3,7 @@ title: "2024년 ISA 계좌 개편안 총 정리"
 description: "2024년 ISA 계좌 개편안 총 정리"
 date: 2024-03-01
 update: 2024-03-01
-category: stock
+category: Stock
 tags:
   - isa
   - 주식

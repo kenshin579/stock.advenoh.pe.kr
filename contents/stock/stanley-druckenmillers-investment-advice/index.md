@@ -3,7 +3,7 @@ title: "드러캔밀러의 투자 조언"
 description: "드러캔밀러의 투자 조언"
 date: 2024-05-19
 update: 2024-05-19
-category: stock
+category: Stock
 tags:
   - 드러캔밀러
   - 스탠리

@@ -3,7 +3,7 @@ title: "2024년 연말 국내 미국 배당금 정리"
 description: "2024년 연말 미국 해외 배당금 정리"
 date: 2025-01-07
 update: 2025-01-07
-category: stock
+category: Stock
 tags:
   - 배당주
   - 국내 배당금

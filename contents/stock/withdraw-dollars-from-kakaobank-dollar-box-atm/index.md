@@ -3,7 +3,7 @@ title: "카카오뱅크 달러박스 달러 ATM에서 출금하기"
 description: "카카오뱅크 달러박스 달러 ATM에서 출금하기"
 date: 2025-03-02
 update: 2025-03-02
-category: stock
+category: Stock
 tags:
   - 달러박스
   - 카카오뱅크

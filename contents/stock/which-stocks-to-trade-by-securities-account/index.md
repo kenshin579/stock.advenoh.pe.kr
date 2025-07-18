@@ -3,7 +3,7 @@ title: "증권계좌별로 어떤 주식을 매매하면 좋을까?"
 description: "증권계좌별로 어떤 주식을 매매하면 좋을까?"
 date: 2024-02-06
 update: 2024-02-06
-category: stock
+category: Stock
 tags:
   - 주식
   - ETF

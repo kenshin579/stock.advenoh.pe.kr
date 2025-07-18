@@ -3,7 +3,7 @@ title: "트럼프 vs 바이든 수혜주 찾기"
 description: "트럼프 vs 바이든 수혜주 찾기"
 date: 2024-07-22
 update: 2024-07-22
-category: stock
+category: Stock
 tags:
   - 미국 대선
   - 미국 선거

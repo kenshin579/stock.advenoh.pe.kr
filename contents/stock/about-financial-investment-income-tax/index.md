@@ -3,7 +3,7 @@ title: "금융투자소득세(금투세)에 대해서 알아보자"
 description: "금융투자소득세(금투세)에 대해서 알아보자"
 date: 2024-06-02
 update: 2024-06-02
-category: stock
+category: Stock
 tags:
   - 금융투자소득세
   - 금투세

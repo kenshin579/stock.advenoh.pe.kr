@@ -3,7 +3,7 @@ title: "미국 3대 주가 지수"
 description: "미국 3대 주가 지수"
 date: 2023-09-02
 update: 2023-09-02
-category: stock
+category: Stock
 tags:
   - 주식
   - 미국
