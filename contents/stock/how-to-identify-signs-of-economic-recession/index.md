@@ -3,6 +3,7 @@ title: "경기침체 징조는 어떻게 판단하나"
 description: "경기침체 징조는 어떻게 판단하나"
 date: 2024-08-04
 update: 2024-08-04
+category: Stock
 tags:
   - 경기침체
   - 경제침체

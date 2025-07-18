@@ -132,12 +132,14 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
             const slug = createSlug(frontMatter.title);
             const excerpt = extractExcerpt(markdownContent);
             
+            const finalCategory = frontMatter.category || category;
+            
             const blogPost: InsertBlogPost = {
               title: frontMatter.title,
               slug,
               content: markdownContent,
               excerpt,
-              category: frontMatter.category || category,
+              category: finalCategory,
               tags: frontMatter.tags || [],
               featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
               published: true,
@@ -145,6 +147,8 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
               seoDescription: frontMatter.description || excerpt,
               seoKeywords: frontMatter.tags?.join(', ') || ''
             };
+            
+
             
             await storage.createBlogPost(blogPost);
             console.log(`✓ Imported: ${frontMatter.title}`);

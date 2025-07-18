@@ -3,6 +3,7 @@ title: "금리인하 수혜주 : 유망 종목과 투자 전략"
 description: "금리인하 수혜주 : 유망 종목과 투자 전략"
 date: 2024-07-21
 update: 2024-07-21
+category: Stock
 tags:
   - 금리인하
   - 수혜주
