@@ -94,6 +94,23 @@ function extractExcerpt(content: string): string {
   return plainText.length > 150 ? plainText.substring(0, 150) + '...' : plainText;
 }
 
+function extractFirstImageFromMarkdown(content: string): string | null {
+  // Match markdown image syntax: ![alt text](image.png)
+  const imageRegex = /!\[.*?\]\((.*?)\)/;
+  const match = content.match(imageRegex);
+  
+  if (match && match[1]) {
+    const imageSrc = match[1].trim();
+    // Skip if it's a URL (external image)
+    if (imageSrc.startsWith('http')) {
+      return imageSrc;
+    }
+    return imageSrc;
+  }
+  
+  return null;
+}
+
 export async function importMarkdownFiles(storage: IStorage, contentDir: string = 'contents'): Promise<void> {
   try {
     // Get all category directories
@@ -122,8 +139,19 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
             
             const slug = createSlug(folder);
             const excerpt = extractExcerpt(markdownContent);
+            const firstImage = extractFirstImageFromMarkdown(markdownContent);
             
             const finalCategory = frontMatter.category || category;
+            
+            // Build featured image path if found in content
+            let featuredImagePath = null;
+            if (firstImage && !firstImage.startsWith('http')) {
+              // Build full path for relative images
+              featuredImagePath = `/contents/${category}/${folder}/${firstImage}`;
+            } else if (firstImage) {
+              // Use external image URL directly
+              featuredImagePath = firstImage;
+            }
             
             const blogPost: InsertBlogPost & { markdownDate?: string } = {
               title: frontMatter.title,
@@ -132,7 +160,7 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
               excerpt,
               category: finalCategory,
               tags: frontMatter.tags || [],
-              featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+              featuredImage: featuredImagePath,
               published: true,
               seoTitle: `${frontMatter.title} | 투자 인사이트`,
               seoDescription: frontMatter.description || excerpt,
