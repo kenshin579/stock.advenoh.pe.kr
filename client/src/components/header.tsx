@@ -5,19 +5,45 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTheme } from "@/components/theme-provider";
 import { SearchBar } from "@/components/search-bar";
+import { useQuery } from "@tanstack/react-query";
+
+interface Category {
+  category: string;
+  count: number;
+}
 
 export function Header() {
   const [location] = useLocation();
   const { theme, toggleTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  // Fetch categories from API
+  const { data: categories } = useQuery<Category[]>({
+    queryKey: ['/api/categories'],
+    queryFn: async () => {
+      const response = await fetch('/api/categories');
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    },
+  });
+
+  // Category labels mapping
+  const categoryLabels: { [key: string]: string } = {
+    etf: "ETF",
+    stock: "주식",
+    weekly: "주간분석",
+    etc: "기타"
+  };
+
+  // Generate navigation items dynamically
   const navItems = [
-    { href: "/", label: "홈" },
-    { href: "/?category=stocks", label: "주식" },
-    { href: "/?category=etf", label: "ETF" },
-    { href: "/?category=bonds", label: "채권" },
-    { href: "/?category=funds", label: "펀드" },
-    { href: "/?category=analysis", label: "분석" },
+    { href: "/", label: "전체" },
+    ...(categories?.map(({ category }) => ({
+      href: `/?category=${category}`,
+      label: categoryLabels[category] || category
+    })) || [])
   ];
 
   return (

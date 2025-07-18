@@ -105,49 +105,53 @@ function extractExcerpt(content: string): string {
 
 export async function importMarkdownFiles(storage: IStorage, contentDir: string = 'contents'): Promise<void> {
   try {
-    const etfDir = join(contentDir, 'etf');
-    const etfStat = await stat(etfDir);
+    // Get all category directories
+    const categories = await readdir(contentDir);
     
-    if (!etfStat.isDirectory()) {
-      console.log('ETF directory not found');
-      return;
-    }
-
-    const folders = await readdir(etfDir);
-    
-    for (const folder of folders) {
-      const folderPath = join(etfDir, folder);
-      const folderStat = await stat(folderPath);
+    for (const category of categories) {
+      const categoryDir = join(contentDir, category);
+      const categoryStat = await stat(categoryDir);
       
-      if (folderStat.isDirectory()) {
-        const markdownPath = join(folderPath, 'index.md');
+      if (!categoryStat.isDirectory()) {
+        continue;
+      }
+
+      const folders = await readdir(categoryDir);
+      
+      for (const folder of folders) {
+        const folderPath = join(categoryDir, folder);
+        const folderStat = await stat(folderPath);
         
-        try {
-          const content = await readFile(markdownPath, 'utf-8');
-          const { frontMatter, content: markdownContent } = parseMarkdownFile(content);
+        if (folderStat.isDirectory()) {
+          const markdownPath = join(folderPath, 'index.md');
           
-          const slug = createSlug(frontMatter.title);
-          const excerpt = extractExcerpt(markdownContent);
-          
-          const blogPost: InsertBlogPost = {
-            title: frontMatter.title,
-            slug,
-            content: markdownContent,
-            excerpt,
-            category: frontMatter.category || 'etf',
-            tags: frontMatter.tags || [],
-            featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
-            published: true,
-            seoTitle: `${frontMatter.title} | 투자 인사이트`,
-            seoDescription: frontMatter.description || excerpt,
-            seoKeywords: frontMatter.tags?.join(', ') || ''
-          };
-          
-          await storage.createBlogPost(blogPost);
-          console.log(`✓ Imported: ${frontMatter.title}`);
-          
-        } catch (error) {
-          console.error(`Failed to import ${folder}:`, error);
+          try {
+            const content = await readFile(markdownPath, 'utf-8');
+            const { frontMatter, content: markdownContent } = parseMarkdownFile(content);
+            
+            const slug = createSlug(frontMatter.title);
+            const excerpt = extractExcerpt(markdownContent);
+            
+            const blogPost: InsertBlogPost = {
+              title: frontMatter.title,
+              slug,
+              content: markdownContent,
+              excerpt,
+              category: frontMatter.category || category,
+              tags: frontMatter.tags || [],
+              featuredImage: 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600',
+              published: true,
+              seoTitle: `${frontMatter.title} | 투자 인사이트`,
+              seoDescription: frontMatter.description || excerpt,
+              seoKeywords: frontMatter.tags?.join(', ') || ''
+            };
+            
+            await storage.createBlogPost(blogPost);
+            console.log(`✓ Imported: ${frontMatter.title}`);
+            
+          } catch (error) {
+            console.error(`Failed to import ${folder}:`, error);
+          }
         }
       }
     }

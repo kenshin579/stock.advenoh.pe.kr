@@ -39,6 +39,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
+  // Categories routes
+  app.get("/api/categories", async (req, res) => {
+    try {
+      const posts = await storage.getBlogPosts(true);
+      
+      // Count posts by category
+      const categoryCount: { [key: string]: number } = {};
+      posts.forEach(post => {
+        const category = post.category || 'uncategorized';
+        categoryCount[category] = (categoryCount[category] || 0) + 1;
+      });
+      
+      // Sort by post count and take top 5
+      const sortedCategories = Object.entries(categoryCount)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 5)
+        .map(([category, count]) => ({ category, count }));
+      
+      res.json(sortedCategories);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch categories" });
+    }
+  });
+
   app.get("/api/blog-posts/:slug", async (req, res) => {
     try {
       const { slug } = req.params;
