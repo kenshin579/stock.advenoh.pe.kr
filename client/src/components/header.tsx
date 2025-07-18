@@ -57,19 +57,19 @@ export function Header() {
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+              className="relative w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
             >
               <span className="sr-only">다크 모드 토글</span>
-              <div className="relative w-6 h-6 overflow-hidden">
+              <div className="relative w-5 h-5 overflow-hidden flex items-center justify-center">
                 <Sun
-                  className={`absolute inset-0 w-6 h-6 text-yellow-500 transition-all duration-300 transform ${
+                  className={`absolute w-5 h-5 text-yellow-500 transition-all duration-300 transform ${
                     theme === "dark" 
                       ? "translate-y-8 rotate-90 opacity-0" 
                       : "translate-y-0 rotate-0 opacity-100"
                   }`}
                 />
                 <Moon
-                  className={`absolute inset-0 w-6 h-6 text-blue-600 transition-all duration-300 transform ${
+                  className={`absolute w-5 h-5 text-blue-600 transition-all duration-300 transform ${
                     theme === "dark" 
                       ? "translate-y-0 rotate-0 opacity-100" 
                       : "-translate-y-8 -rotate-90 opacity-0"
