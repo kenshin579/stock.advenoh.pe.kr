@@ -3,7 +3,7 @@ title: "CMA의 종류"
 description: "CMA의 종류"
 date: 2023-02-19
 update: 2023-02-19
-category: stock
+category: Stock
 tags:
   - cma
   - cash

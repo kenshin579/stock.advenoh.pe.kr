@@ -3,7 +3,7 @@ title: "3분기 국내 배당주 정리"
 description: "3분기 국내 배당주 정리"
 date: 2024-07-28
 update: 2024-07-28
-category: stock
+category: Stock
 tags:
   - 배당주
   - 3분기

@@ -3,7 +3,7 @@ title: "구글 Adsense 에 결제 추가하는 방법"
 description: "구글 Adsense 에 결제 추가하는 방법"
 date: 2024-07-05
 update: 2024-07-05
-category: etc
+category: Etc
 tags:
   - 구글
   - Adsense

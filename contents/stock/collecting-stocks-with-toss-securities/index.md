@@ -3,7 +3,7 @@ title: "토스 증권에서 주식 모으기"
 description: "토스 증권에서 주식 모으기"
 date: 2024-10-17
 update: 2024-10-17
-category: stock
+category: Stock
 tags:
   - 토스증권
   - 토스

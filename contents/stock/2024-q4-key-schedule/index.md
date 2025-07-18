@@ -3,7 +3,7 @@ title: "2024년 4분기 주요 이벤트"
 description: "2024년 4분기 주요 이벤트"
 date: 2024-06-30
 update: 2024-06-30
-category: stock
+category: Stock
 tags:
   - 4분기
   - 주요일정

@@ -3,7 +3,7 @@ title: "TDF에 대해서 알아보자"
 description: "TDF에 대해서 알아보자"
 date: 2024-09-29
 update: 2024-09-29
-category: stock
+category: Stock
 tags:
   - TDF
   - Target Date Fund

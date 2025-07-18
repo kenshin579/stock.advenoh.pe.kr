@@ -3,7 +3,7 @@ title: "인터넷으로 내용증명 작성하기"
 description: "인터넷으로 내용증명 작성하기"
 date: 2024-03-17
 update: 2024-03-17
-category: etc
+category: Etc
 tags:
   - 내용증명
   - 우체국

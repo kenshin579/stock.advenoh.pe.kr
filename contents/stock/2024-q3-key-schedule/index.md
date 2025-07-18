@@ -3,7 +3,7 @@ title: "2024년 3분기 주요 일정"
 description: "2024년 3분기 주요 일정"
 date: 2024-06-30
 update: 2024-06-30
-category: stock
+category: Stock
 tags:
   - 3분기
   - 비트코인

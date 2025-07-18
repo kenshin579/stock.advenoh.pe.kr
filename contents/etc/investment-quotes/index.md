@@ -3,7 +3,7 @@ title: "투자 명언"
 description: "투자 명언"
 date: 2024-08-24
 update: 2024-08-24
-category: etc
+category: Etc
 tags:
   - 투자
   - 명언

@@ -3,7 +3,7 @@ title: "만기매칭형 ETF란"
 description: "만기매칭형 ETF란"
 date: 2024-11-07
 update: 2024-11-07
-category: etf
+category: ETF
 tags:
   - 주식
   - ETF

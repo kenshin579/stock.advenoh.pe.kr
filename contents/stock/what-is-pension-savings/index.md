@@ -3,7 +3,7 @@ title: "연금저축이란?"
 description: "연금저축이란?"
 date: 2023-03-26
 update: 2023-03-26
-category: stock
+category: Stock
 tags:
   - 연금저축
   - 연금

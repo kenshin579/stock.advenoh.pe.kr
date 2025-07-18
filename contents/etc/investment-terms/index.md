@@ -3,7 +3,7 @@ title: "투자 용어 (Investment Terms)"
 description: "투자 용어 (Investment Terms)"
 date: 2023-10-15
 update: 2024-08-13
-category: etc
+category: Etc
 tags:
   - 투자
   - 용어

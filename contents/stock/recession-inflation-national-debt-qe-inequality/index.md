@@ -3,7 +3,7 @@ title: "침체, 인플레이션, 국가부채, 양적완화, 빈부격차 상관
 description: "침체, 인플레이션, 국가부채, 양적완화, 빈부격차 상관 관계"
 date: 2024-08-15
 update: 2024-08-15
-category: stock
+category: Stock
 tags:
   - 침체
   - 인플레이션

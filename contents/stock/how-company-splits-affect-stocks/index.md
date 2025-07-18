@@ -3,7 +3,7 @@ title: "기업의 분할은 주식에 어떤 영향을 주나?"
 description: "기업의 분할은 주식에 어떤 영향을 주나?"
 date: 2025-01-11
 update: 2025-01-11
-category: stock
+category: Stock
 tags:
   - 기업분할
   - 인적분할

@@ -3,7 +3,7 @@ title: "차트에서 매매내역 표시하는 방법"
 description: "차트에서 매매내역 표시하는 방법"
 date: 2024-06-02
 update: 2025-01-15
-category: stock
+category: Stock
 tags:
   - 차트
   - 매매내역

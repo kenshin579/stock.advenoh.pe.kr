@@ -3,7 +3,7 @@ title: "해외주식 양도소득세 신고 대행 서비스 신청 방법 완�
 description: "해외주식 양도소득세 신고 대행 서비스 신청 방법 완벽 정리!"
 date: 2025-04-01
 update: 2025-04-01
-category: stock
+category: Stock
 tags:
   - 양도소득세
   - 해외주식

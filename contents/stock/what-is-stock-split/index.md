@@ -3,7 +3,7 @@ title: "액면분할이란"
 description: "액면분할이란"
 date: 2024-12-30
 update: 2024-12-30
-category: stock
+category: Stock
 tags:
   - 액면분할
   - 역액면분할

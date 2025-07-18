@@ -2,7 +2,7 @@
 title: "주식 세금 종류"
 description: "주식 세금 종류"
 date: 2024-01-28
-category: stock
+category: Stock
 update: 2024-01-28
 tags:
   - 주식

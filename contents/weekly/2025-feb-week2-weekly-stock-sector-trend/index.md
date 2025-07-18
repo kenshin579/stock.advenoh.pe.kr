@@ -3,7 +3,7 @@ title: "25년 2월 2째주 주간 주식 정리 - 섹터 및 주식 트렌드"
 description: "25년 2월 2째주 주간 주식 정리 - 섹터 및 주식 트렌드"
 date: 2025-02-16
 update: 2025-02-16
-category: stock
+category: Weekly
 tags:
   - 주간 브리핑
   - 주요 섹터

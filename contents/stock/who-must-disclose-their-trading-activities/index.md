@@ -3,7 +3,7 @@ title: "매매사실을 꼭 공시해야하는 투자자들은 누구인가"
 description: "매매사실을 꼭 공시해야하는 투자자들은 누구인가"
 date: 2024-12-01
 update: 2024-12-01
-category: stock
+category: Stock
 tags:
   - 내부자
   - 매매내역

@@ -3,7 +3,7 @@ title: "ISA 만기, 연장할까 해지할까? 꼭 알아야 할 선택 가이�
 description: "ISA 만기, 연장할까 해지할까? 꼭 알아야 할 선택 가이드"
 date: 2025-05-05
 update: 2025-05-05
-category: stock
+category: Stock
 tags:
   - ISA 만기 연장
   - ISA 만기연장

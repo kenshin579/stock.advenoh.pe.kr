@@ -3,7 +3,7 @@ title: "2024년 2분기 빌 아크만 포트폴리오"
 description: "2024년 2분기 빌 아크만 포트폴리오"
 date: 2024-10-03
 update: 2024-10-03
-category: stock
+category: Stock
 tags:
   - 포트폴리오
   - 대가의 포트폴리오

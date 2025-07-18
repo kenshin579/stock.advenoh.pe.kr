@@ -3,7 +3,7 @@ title: "주식 대가들의 포트폴리오 확인하는 방법"
 description: "주식 대가들의 포트폴리오 확인하는 방법"
 date: 2024-08-17
 update: 2024-08-17
-category: stock
+category: Stock
 tags:
   - 포트폴리오
   - 대가의 포트폴리오

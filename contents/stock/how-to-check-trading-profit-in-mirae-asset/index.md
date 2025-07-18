@@ -3,7 +3,7 @@ title: "미래에셋에서 매매수익률 확인하는 방법"
 description: "미래에셋에서 매매수익률 확인하는 방법"
 date: 2024-06-01
 update: 2024-06-01
-category: stock
+category: Stock
 tags:
   - 매매수익률
   - 수익률

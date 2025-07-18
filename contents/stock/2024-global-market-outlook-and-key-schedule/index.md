@@ -3,7 +3,7 @@ title: "2024년 글로벌 시장 전망 및 주요 일정"
 description: "2024년 글로벌 시장 전망 및 주요 일정"
 date: 2023-12-20
 update: 2023-12-20
-category: stock
+category: Stock
 tags:
   - 주식전망
   - 신년전망

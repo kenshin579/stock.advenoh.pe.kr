@@ -3,7 +3,7 @@ title: "복수 거래소 시대 NXT 도입에 따른 변화"
 description: "복수 거래소 시대 NXT 도입에 따른 변화"
 date: 2025-03-03
 update: 2025-03-03
-category: stock
+category: Stock
 tags:
   - NXT
   - 넥스트레이드

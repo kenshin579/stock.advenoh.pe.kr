@@ -3,7 +3,7 @@ title: "주식 고수가 되는 HTS 활용법! 필수 화면 & 사용 패턴 정
 description: "주식 고수가 되는 HTS 활용법! 필수 화면 & 사용 패턴 정리"
 date: 2025-03-13
 update: 2025-03-13
-category: stock
+category: Stock
 tags:
   - HTS
   - 주식 고수

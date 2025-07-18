@@ -3,7 +3,7 @@ title: "금리, 환율, 채권, 주가 서로간의 상관관계"
 description: "금리, 환율, 채권, 주가 서로간의 상관관계"
 date: 2023-02-05
 update: 2023-02-05
-category: stock
+category: Stock
 tags:
   - 소무몽키
   - 몽키

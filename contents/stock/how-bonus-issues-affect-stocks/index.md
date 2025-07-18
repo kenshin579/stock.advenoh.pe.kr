@@ -3,7 +3,7 @@ title: "무상증자는 주식에 어떤 영향을 미치나"
 description: "무상증자는 주식에 어떤 영향을 미치나"
 date: 2024-11-30
 update: 2024-11-30
-category: stock
+category: Stock
 tags:
   - 무상증자
   - 유상증자

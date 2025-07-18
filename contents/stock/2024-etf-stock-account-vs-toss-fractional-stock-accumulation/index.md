@@ -3,7 +3,7 @@ title: "2024년 ETF 주식 계좌 vs 토스 소수점 주식 모으기 결과 �
 description: "2024년 ETF 주식 계좌 vs 토스 소수점 주식 모으기 결과 공개"
 date: 2025-01-04
 update: 2025-01-04
-category: stock
+category: Stock
 tags:
   - 토스 주식모으기
   - Toss

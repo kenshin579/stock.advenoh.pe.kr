@@ -3,7 +3,7 @@ title: "달러 환전시 증권사 vs 은행권 어디가 좋을까요"
 description: "달러 환전시 증권사 vs 은행권 어디가 좋을까요"
 date: 2024-05-30
 update: 2024-05-30
-category: stock
+category: Stock
 tags:
   - 주식
   - 달러

@@ -3,7 +3,7 @@ title: "연금저축에서 MMF 단기 상품 매매하는 방법"
 description: "연금저축에서 MMF 단기 상품 매매하는 방법"
 date: 2024-08-10
 update: 2024-08-10
-category: stock
+category: Stock
 tags:
   - MMF
   - Money Market Fund

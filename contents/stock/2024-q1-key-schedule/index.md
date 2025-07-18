@@ -3,7 +3,7 @@ title: "2024년 1분기 주요 일정"
 description: "2024년 1분기 주요 일정"
 date: 2023-12-25
 update: 2023-12-25
-category: stock
+category: Stock
 tags:
   - 1분기
   - 주요일정

@@ -3,7 +3,7 @@ title: "자산 운용사 약어 모음"
 description: "자산 운용사 약어 모음"
 date: 2022-12-31
 update: 2022-12-31
-category: etc
+category: Etc
 tags:
   - investment
   - manager

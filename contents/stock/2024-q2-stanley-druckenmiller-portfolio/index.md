@@ -3,7 +3,7 @@ title: "2024년 2분기 스탠리 드러켄밀러 포트폴리오"
 description: "2024년 2분기 스탠리 드러켄밀러 포트폴리오"
 date: 2024-09-08
 update: 2024-09-08
-category: stock
+category: Stock
 tags:
   - 포트폴리오
   - 대가의 포트폴리오

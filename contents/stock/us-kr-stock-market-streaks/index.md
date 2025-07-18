@@ -3,7 +3,7 @@ title: "미국 한국 주식시장 연속 상승과 하락은 몇 주까지 가�
 description: "미국 한국 주식시장 연속 상승과 하락은 몇 주까지 가능할까"
 date: 2025-05-24
 update: 2025-05-24
-category: stock
+category: Stock
 tags:
   - 연속상승하락
   - 미국주식

@@ -3,7 +3,7 @@ title: "주식으로 2주마다 월세 받는 방법"
 description: "주식으로 2주마다 월세 받는 방법"
 date: 2024-06-16
 update: 2024-06-16
-category: stock
+category: Stock
 tags:
   - 리츠
   - 리츠ETF

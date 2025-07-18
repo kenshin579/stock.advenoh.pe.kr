@@ -3,7 +3,7 @@ title: "Gatsby 블로그 구글 검색에 더 많이 노출하는 방법"
 description: "Gatsby 블로그 구글 검색에 더 많이 노출하는 방법"
 date: 2024-07-20
 update: 2024-07-20
-category: etc
+category: Etc
 tags:
   - 블로그
   - 구글 검색

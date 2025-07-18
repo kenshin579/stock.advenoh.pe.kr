@@ -3,7 +3,7 @@ title: "기대수익률에 따른 투자"
 description: "기대수익률에 따른 투자"
 date: 2024-06-23
 update: 2024-06-23
-category: stock
+category: Stock
 tags:
   - 기대수익률
   - ETF
