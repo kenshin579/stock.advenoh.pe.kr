@@ -75,17 +75,8 @@ function parseMarkdownFile(content: string): { frontMatter: MarkdownFrontMatter;
   };
 }
 
-function createSlug(title: string): string {
-  return title
-    .toLowerCase()
-    .replace(/[가-힣]/g, (char) => {
-      // Keep Korean characters but normalize spaces
-      return char;
-    })
-    .replace(/[^a-z0-9가-힣\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-')
-    .trim();
+function createSlug(folderName: string): string {
+  return folderName; // Use folder name as slug directly
 }
 
 function extractExcerpt(content: string): string {
@@ -129,7 +120,7 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
             const content = await readFile(markdownPath, 'utf-8');
             const { frontMatter, content: markdownContent } = parseMarkdownFile(content);
             
-            const slug = createSlug(frontMatter.title);
+            const slug = createSlug(folder);
             const excerpt = extractExcerpt(markdownContent);
             
             const finalCategory = frontMatter.category || category;
