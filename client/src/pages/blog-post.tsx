@@ -154,9 +154,9 @@ export default function BlogPostPage() {
         canonicalUrl={`${baseUrl}/blog/${post.slug}`}
         structuredData={structuredData}
       />
-      
+
       <Header />
-      
+
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <div className="lg:grid lg:grid-cols-4 lg:gap-8">
           {/* Main content */}
@@ -192,7 +192,7 @@ export default function BlogPostPage() {
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <User className="w-4 h-4" />
-                    <span>투자분석가</span>
+                    <span>Frank</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <Calendar className="w-4 h-4" />
@@ -245,7 +245,7 @@ export default function BlogPostPage() {
                       좋아요 {post.likes || 0}
                     </Button>
                   </div>
-                  
+
                   <div className="flex items-center gap-4">
                     <span className="text-sm text-muted-foreground">
                       마지막 수정: {new Date(post.updatedAt!).toLocaleDateString('ko-KR')}

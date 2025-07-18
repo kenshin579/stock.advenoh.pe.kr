@@ -125,7 +125,7 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
             
             const finalCategory = frontMatter.category || category;
             
-            const blogPost: InsertBlogPost = {
+            const blogPost: InsertBlogPost & { markdownDate?: string } = {
               title: frontMatter.title,
               slug,
               content: markdownContent,
@@ -136,7 +136,8 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
               published: true,
               seoTitle: `${frontMatter.title} | 투자 인사이트`,
               seoDescription: frontMatter.description || excerpt,
-              seoKeywords: frontMatter.tags?.join(', ') || ''
+              seoKeywords: frontMatter.tags?.join(', ') || '',
+              markdownDate: frontMatter.date
             };
             
 

@@ -81,7 +81,7 @@ export class MemStorage implements IStorage {
       id,
       views: 0,
       likes: 0,
-      createdAt: now,
+      createdAt: (insertPost as any).markdownDate ? new Date((insertPost as any).markdownDate) : now,
       updatedAt: now,
       published: insertPost.published ?? false,
       tags: insertPost.tags ?? [],
