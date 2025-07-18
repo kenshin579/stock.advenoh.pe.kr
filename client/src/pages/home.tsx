@@ -61,8 +61,15 @@ export default function Home() {
     window.history.pushState({}, '', url);
   };
 
-  const paginatedPosts = posts?.slice(0, page * postsPerPage) || [];
-  const hasMore = posts && posts.length > page * postsPerPage;
+  // Sort posts by date in descending order (newest first)
+  const sortedPosts = posts?.sort((a, b) => {
+    const dateA = new Date(a.createdAt || a.date || 0);
+    const dateB = new Date(b.createdAt || b.date || 0);
+    return dateB.getTime() - dateA.getTime();
+  }) || [];
+
+  const paginatedPosts = sortedPosts.slice(0, page * postsPerPage);
+  const hasMore = sortedPosts && sortedPosts.length > page * postsPerPage;
 
   const loadMore = () => {
     setPage(prev => prev + 1);
@@ -100,7 +107,7 @@ export default function Home() {
             </h2>
             {searchTerm && (
               <p className="text-muted-foreground">
-                {posts?.length || 0}개의 글을 찾았습니다
+                {sortedPosts?.length || 0}개의 글을 찾았습니다
               </p>
             )}
           </div>
@@ -122,7 +129,7 @@ export default function Home() {
                 글을 불러오는 중 오류가 발생했습니다.
               </p>
             </div>
-          ) : !posts || posts.length === 0 ? (
+          ) : !sortedPosts || sortedPosts.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground text-lg">
                 {searchTerm ? '검색 결과가 없습니다.' : '아직 게시된 글이 없습니다.'}
