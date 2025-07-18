@@ -1,19 +1,46 @@
 import { Button } from "@/components/ui/button";
 import { useLocation } from "wouter";
+import { useQuery } from "@tanstack/react-query";
 
 interface CategoryFilterProps {
   selectedCategory: string;
   onCategoryChange: (category: string) => void;
 }
 
+interface Category {
+  category: string;
+  count: number;
+}
+
 export function CategoryFilter({ selectedCategory, onCategoryChange }: CategoryFilterProps) {
+  // Fetch categories from API
+  const { data: apiCategories } = useQuery<Category[]>({
+    queryKey: ['/api/categories'],
+    queryFn: async () => {
+      const response = await fetch('/api/categories');
+      if (!response.ok) {
+        throw new Error('Failed to fetch categories');
+      }
+      return response.json();
+    },
+  });
+
+  // Category labels mapping
+  const categoryLabels: { [key: string]: string } = {
+    etf: "ETF",
+    ETF: "ETF",
+    stock: "주식",
+    weekly: "주간분석",
+    etc: "기타"
+  };
+
+  // Generate categories dynamically
   const categories = [
     { id: "all", label: "전체" },
-    { id: "stocks", label: "주식" },
-    { id: "etf", label: "ETF" },
-    { id: "bonds", label: "채권" },
-    { id: "funds", label: "펀드" },
-    { id: "analysis", label: "시장분석" },
+    ...(apiCategories?.map(({ category }) => ({
+      id: category,
+      label: categoryLabels[category] || category
+    })) || [])
   ];
 
   return (
