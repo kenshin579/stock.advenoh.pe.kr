@@ -33,8 +33,6 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
   const getCategoryLabel = (category: string) => {
     // 마크다운 파일의 category 값을 그대로 사용
     return category;
-  };용
-    return category;
   };
 
   return (

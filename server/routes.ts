@@ -201,30 +201,3 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
   return httpServer;
 }
-// Get all blog posts
-  app.get('/api/blog-posts', async (req, res) => {
-    try {
-      const { category, search, limit, offset } = req.query;
-      const posts = await storage.getBlogPosts({ 
-        category: category as string, 
-        search: search as string,
-        limit: limit ? parseInt(limit as string) : undefined,
-        offset: offset ? parseInt(offset as string) : undefined
-      });
-      res.json(posts);
-    } catch (error) {
-      console.error('Error fetching blog posts:', error);
-      res.status(500).json({ error: 'Failed to fetch blog posts' });
-    }
-  });
-
-  // Get categories with counts
-  app.get('/api/categories', async (req, res) => {
-    try {
-      const categories = await storage.getCategories();
-      res.json(categories);
-    } catch (error) {
-      console.error('Error fetching categories:', error);
-      res.status(500).json({ error: 'Failed to fetch categories' });
-    }
-  });
