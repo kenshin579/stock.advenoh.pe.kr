@@ -11,18 +11,22 @@ interface BlogPostCardProps {
 export function BlogPostCard({ post }: BlogPostCardProps) {
   const getCategoryColor = (category: string) => {
     switch (category.toLowerCase()) {
-      case "stocks":
-        return "bg-primary text-primary-foreground";
+      case "stock":
+        return "bg-blue-500 text-white";
       case "etf":
-        return "bg-success text-success-foreground";
+        return "bg-green-500 text-white";
       case "bonds":
         return "bg-purple-500 text-white";
       case "funds":
         return "bg-orange-500 text-white";
       case "analysis":
-        return "bg-info text-info-foreground";
-      default:
+        return "bg-red-500 text-white";
+      case "etc":
         return "bg-gray-500 text-white";
+      case "weekly":
+        return "bg-indigo-500 text-white";
+      default:
+        return "bg-slate-500 text-white";
     }
   };
 
