@@ -1,7 +1,17 @@
 import { Link } from "wouter";
 import { ChartLine, Twitter, Linkedin, Youtube, Instagram, ExternalLink } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+
+interface Category {
+  category: string;
+  count: number;
+}
 
 export function Footer() {
+  const { data: categories = [] } = useQuery<Category[]>({
+    queryKey: ['/api/categories'],
+    staleTime: 5 * 60 * 1000, // 5 minutes
+  });
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -48,46 +58,16 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">카테고리</h3>
             <ul className="space-y-2">
-              <li>
-                <Link 
-                  href="/?category=stocks" 
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  주식
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/?category=etf" 
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  ETF
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/?category=bonds" 
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  채권
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/?category=funds" 
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  펀드
-                </Link>
-              </li>
-              <li>
-                <Link 
-                  href="/?category=analysis" 
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  시장분석
-                </Link>
-              </li>
+              {categories.map(({ category, count }) => (
+                <li key={category}>
+                  <Link 
+                    href={`/?category=${category}`} 
+                    className="text-gray-400 hover:text-white transition-colors"
+                  >
+                    {category} ({count})
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
