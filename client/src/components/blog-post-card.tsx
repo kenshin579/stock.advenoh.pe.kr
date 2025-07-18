@@ -3,6 +3,7 @@ import { Calendar, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@shared/schema";
+import { getCoverImage } from "@/lib/image-utils";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -35,16 +36,24 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     return category;
   };
 
+  // Get cover image using the utility function
+  const coverImage = getCoverImage(post);
+
   return (
     <Card className="card-hover overflow-hidden">
       <div className="relative">
-        {post.featuredImage && (
-          <img
-            src={post.featuredImage}
-            alt={post.title}
-            className="w-full h-48 object-cover"
-          />
-        )}
+        <img
+          src={coverImage}
+          alt={post.title}
+          className="w-full h-48 object-cover"
+          onError={(e) => {
+            // Fallback to default image if cover image fails to load
+            const target = e.target as HTMLImageElement;
+            if (target.src !== getCoverImage({ ...post, featuredImage: undefined, content: '' })) {
+              target.src = getCoverImage({ ...post, featuredImage: undefined, content: '' });
+            }
+          }}
+        />
         <div className="absolute top-4 left-4">
           <Badge className={getCategoryColor(post.category)}>
             {getCategoryLabel(post.category)}
