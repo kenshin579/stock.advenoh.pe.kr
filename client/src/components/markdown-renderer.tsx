@@ -7,9 +7,10 @@ interface MarkdownRendererProps {
   content: string;
   className?: string;
   slug?: string; // Blog post slug for image path resolution
+  category?: string; // Blog post category for better path resolution
 }
 
-export function MarkdownRenderer({ content, className = "", slug }: MarkdownRendererProps) {
+export function MarkdownRenderer({ content, className = "", slug, category }: MarkdownRendererProps) {
   return (
     <div className={`markdown-content ${className}`}>
       <ReactMarkdown
@@ -146,16 +147,27 @@ export function MarkdownRenderer({ content, className = "", slug }: MarkdownRend
             
             // If it's a relative path and we have a slug, construct the full path
             if (!src.startsWith('/') && !src.startsWith('http') && slug) {
-              // Map slug to content directory structure
-              const slugToDirectoryMap: { [key: string]: string } = {
-                'etf-상장폐지가-되면-어떻게-되나': 'etf-delisting-what-happens',
-                'etf-고르는-기준': 'etf-selection-criteria',
-                'etf-상품명-이해하기': 'understanding-etf-product-names',
-                // Add more mappings as needed
-              };
+              // Use category to determine the correct directory
+              let categoryDir = 'stock'; // default
+              if (category) {
+                switch (category.toLowerCase()) {
+                  case 'etf':
+                    categoryDir = 'etf';
+                    break;
+                  case 'weekly':
+                    categoryDir = 'weekly';
+                    break;
+                  case 'etc':
+                    categoryDir = 'etc';
+                    break;
+                  case 'stock':
+                  default:
+                    categoryDir = 'stock';
+                    break;
+                }
+              }
               
-              const directoryName = slugToDirectoryMap[slug] || slug;
-              imageSrc = `/contents/etf/${directoryName}/${src}`;
+              imageSrc = `/contents/${categoryDir}/${slug}/${src}`;
             } else if (!src.startsWith('/') && !src.startsWith('http')) {
               imageSrc = `/contents/${src}`;
             }
@@ -171,6 +183,31 @@ export function MarkdownRenderer({ content, className = "", slug }: MarkdownRend
                   onError={(e) => {
                     // Handle image loading errors gracefully
                     const target = e.target as HTMLImageElement;
+                    
+                    // Try alternative paths if the first one fails
+                    if (slug && !src.startsWith('/') && !src.startsWith('http')) {
+                      const currentSrc = target.src;
+                      
+                      // Build alternative paths, prioritizing other categories
+                      const categories = ['stock', 'etf', 'weekly', 'etc'];
+                      const currentCategory = category?.toLowerCase() || 'stock';
+                      const otherCategories = categories.filter(cat => cat !== currentCategory);
+                      
+                      const alternatives = [
+                        ...otherCategories.map(cat => `/contents/${cat}/${slug}/${src}`),
+                        `/contents/${src}`,
+                      ];
+                      
+                      for (const altPath of alternatives) {
+                        const fullAltPath = new URL(altPath, window.location.origin).href;
+                        if (currentSrc !== fullAltPath) {
+                          target.src = altPath;
+                          return;
+                        }
+                      }
+                    }
+                    
+                    // If all alternatives fail, show error message
                     target.style.display = 'none';
                     const errorDiv = document.createElement('div');
                     errorDiv.className = 'flex items-center justify-center h-32 bg-muted rounded-lg border border-border/20 text-muted-foreground text-sm';
