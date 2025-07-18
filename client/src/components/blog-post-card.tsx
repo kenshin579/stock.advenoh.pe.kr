@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Eye, Heart, Calendar, User } from "lucide-react";
+import { Calendar, User } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { BlogPost } from "@shared/schema";
@@ -63,16 +63,6 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           <div className="flex items-center space-x-2">
             <Calendar className="w-4 h-4" />
             <span>{new Date(post.createdAt!).toLocaleDateString('ko-KR')}</span>
-          </div>
-          <div className="flex items-center space-x-3">
-            <span className="flex items-center space-x-1">
-              <Eye className="w-4 h-4" />
-              <span>{post.views || 0}</span>
-            </span>
-            <span className="flex items-center space-x-1">
-              <Heart className="w-4 h-4" />
-              <span>{post.likes || 0}</span>
-            </span>
           </div>
         </div>
       </CardContent>
