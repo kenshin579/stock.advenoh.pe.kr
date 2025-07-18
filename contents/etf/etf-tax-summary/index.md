@@ -3,7 +3,7 @@ title: "ETF 세금 총정리"
 description: "ETF 세금 총정리"
 date: 2024-08-18
 update: 2024-08-18
-category: etf
+category: ETF
 tags:
   - ETF
   - ETF 세금

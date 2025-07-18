@@ -3,7 +3,7 @@ title: "IRP에서 안전자산 ETF는 어떤 것들이 있나"
 description: "IRP에서 안전자산 ETF는 어떤 것들이 있나"
 date: 2024-02-26
 update: 2024-02-26
-category: etf
+category: ETF
 tags:
   - IRP
   - 안전자산

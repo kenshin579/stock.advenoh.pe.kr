@@ -3,7 +3,7 @@ title: "주식/ETF 종목 매매 타이밍 전략 정리"
 description: "주식/ETF 종목 매매 타이밍 전략 정리"
 date: 2023-03-18
 update: 2023-03-18
-category: etf
+category: ETF
 tags:
   - 주식
   - ETF

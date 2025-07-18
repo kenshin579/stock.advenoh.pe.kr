@@ -3,7 +3,7 @@ title: "나만의 ETF 적립식 투자"
 description: "나만의 ETF 적립식 투자"
 date: 2024-04-27
 update: 2024-04-27
-category: etf
+category: ETF
 tags:
   - ETF
   - averaging

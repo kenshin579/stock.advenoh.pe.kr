@@ -3,7 +3,7 @@ title: "국내 미국다우존스 ETF중에서 어떤 것을 선택하면 좋을
 description: "국내 미국다우존스 ETF중에서 어떤 것을 선택하면 좋을까?"
 date: 2024-05-04
 update: 2024-05-04
-category: etf
+category: ETF
 tags:
   - ETF
   - 국내
