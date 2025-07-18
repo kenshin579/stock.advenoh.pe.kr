@@ -101,11 +101,6 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="/robots.txt" className="text-gray-400 hover:text-white transition-colors">
-                  Robots.txt
-                </a>
-              </li>
-              <li>
                 <a href="/api/sitemap.xml" className="text-gray-400 hover:text-white transition-colors">
                   사이트맵
                 </a>
