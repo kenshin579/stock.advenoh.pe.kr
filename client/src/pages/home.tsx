@@ -28,7 +28,7 @@ export default function Home() {
       const category = urlParams.get('category') || 'all';
       const search = urlParams.get('search') || '';
       
-      console.log('URL params:', { category, search, location, windowLocation: window.location.href });
+
       
       setSelectedCategory(category);
       setSearchTerm(search);

@@ -15,7 +15,9 @@ export function SearchBar({ className = "", placeholder = "검색..." }: SearchB
 
   const handleSearch = () => {
     if (searchTerm.trim()) {
-      setLocation(`/?search=${encodeURIComponent(searchTerm.trim())}`);
+      const searchUrl = `/?search=${encodeURIComponent(searchTerm.trim())}`;
+      window.history.pushState({}, '', searchUrl);
+      window.dispatchEvent(new Event('popstate'));
     }
   };
 
