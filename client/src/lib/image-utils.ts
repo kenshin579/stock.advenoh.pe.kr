@@ -71,30 +71,6 @@ export function getCoverImage(post: { featuredImage?: string; content: string; c
  * @returns The default cover image URL
  */
 export function getDefaultCoverImage(category: string): string {
-  // Create a simple SVG default image based on category
-  const categoryColors = {
-    stock: '#3B82F6',    // blue
-    etf: '#10B981',      // green
-    bonds: '#8B5CF6',    // purple
-    funds: '#F59E0B',    // orange
-    analysis: '#EF4444', // red
-    etc: '#6B7280',      // gray
-    weekly: '#6366F1',   // indigo
-  };
-  
-  const color = categoryColors[category?.toLowerCase() as keyof typeof categoryColors] || categoryColors.stock;
-  const categoryLabel = category || 'Stock';
-  
-  // Create SVG data URL
-  const svg = `
-    <svg width="400" height="200" xmlns="http://www.w3.org/2000/svg">
-      <rect width="400" height="200" fill="${color}" opacity="0.1"/>
-      <rect x="50" y="50" width="300" height="100" fill="${color}" opacity="0.2" rx="10"/>
-      <text x="200" y="110" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="${color}">
-        ${categoryLabel}
-      </text>
-    </svg>
-  `;
-  
-  return `data:image/svg+xml;base64,${btoa(svg)}`;
+  // Use the original investment-related stock chart image as default
+  return 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&h=600';
 }
