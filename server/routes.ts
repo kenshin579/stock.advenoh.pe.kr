@@ -13,17 +13,17 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Clear existing blog posts and import markdown files on startup
   (storage as any).clearBlogPosts();
   await importMarkdownFiles(storage);
-  
+
   // Blog posts routes
   app.get("/api/blog-posts", async (req, res) => {
     try {
       const { published, category, search } = req.query;
       let posts = await storage.getBlogPosts(published === 'true' ? true : undefined);
-      
+
       if (category && category !== 'all') {
         posts = posts.filter(post => post.category === category);
       }
-      
+
       if (search) {
         const searchTerm = search.toString().toLowerCase();
         posts = posts.filter(post => 
@@ -33,7 +33,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
           post.tags?.some(tag => tag.toLowerCase().includes(searchTerm))
         );
       }
-      
+
       res.json(posts);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch blog posts" });
@@ -44,20 +44,20 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/categories", async (req, res) => {
     try {
       const posts = await storage.getBlogPosts(true);
-      
+
       // Count posts by category
       const categoryCount: { [key: string]: number } = {};
       posts.forEach(post => {
         const category = post.category || 'uncategorized';
         categoryCount[category] = (categoryCount[category] || 0) + 1;
       });
-      
+
       // Sort by post count and take top 5
       const sortedCategories = Object.entries(categoryCount)
         .sort((a, b) => b[1] - a[1])
         .slice(0, 5)
         .map(([category, count]) => ({ category, count }));
-      
+
       res.json(sortedCategories);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch categories" });
@@ -68,14 +68,14 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const { slug } = req.params;
       const post = await storage.getBlogPost(slug);
-      
+
       if (!post) {
         return res.status(404).json({ message: "Blog post not found" });
       }
-      
+
       // Increment views
       await storage.incrementViews(post.id);
-      
+
       res.json(post);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch blog post" });
@@ -201,3 +201,30 @@ export async function registerRoutes(app: Express): Promise<Server> {
   const httpServer = createServer(app);
   return httpServer;
 }
+// Get all blog posts
+  app.get('/api/blog-posts', async (req, res) => {
+    try {
+      const { category, search, limit, offset } = req.query;
+      const posts = await storage.getBlogPosts({ 
+        category: category as string, 
+        search: search as string,
+        limit: limit ? parseInt(limit as string) : undefined,
+        offset: offset ? parseInt(offset as string) : undefined
+      });
+      res.json(posts);
+    } catch (error) {
+      console.error('Error fetching blog posts:', error);
+      res.status(500).json({ error: 'Failed to fetch blog posts' });
+    }
+  });
+
+  // Get categories with counts
+  app.get('/api/categories', async (req, res) => {
+    try {
+      const categories = await storage.getCategories();
+      res.json(categories);
+    } catch (error) {
+      console.error('Error fetching categories:', error);
+      res.status(500).json({ error: 'Failed to fetch categories' });
+    }
+  });

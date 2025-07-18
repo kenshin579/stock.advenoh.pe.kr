@@ -4,7 +4,7 @@ export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
-  
+
   getBlogPosts(published?: boolean): Promise<BlogPost[]>;
   getBlogPost(slug: string): Promise<BlogPost | undefined>;
   getBlogPostById(id: number): Promise<BlogPost | undefined>;
@@ -13,7 +13,7 @@ export interface IStorage {
   deleteBlogPost(id: number): Promise<void>;
   incrementViews(id: number): Promise<void>;
   incrementLikes(id: number): Promise<void>;
-  
+
   getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
   addNewsletterSubscriber(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber>;
   removeNewsletterSubscriber(email: string): Promise<void>;
@@ -36,7 +36,7 @@ export class MemStorage implements IStorage {
     this.subscriberIdCounter = 1;
   }
 
-  
+
 
   async getUser(id: number): Promise<User | undefined> {
     return this.users.get(id);
@@ -99,13 +99,13 @@ export class MemStorage implements IStorage {
     if (!existingPost) {
       throw new Error('Blog post not found');
     }
-    
+
     const updatedPost: BlogPost = {
       ...existingPost,
       ...updatePost,
       updatedAt: new Date(),
     };
-    
+
     this.blogPosts.set(id, updatedPost);
     return updatedPost;
   }

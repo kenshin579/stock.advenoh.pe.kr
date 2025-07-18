@@ -60,37 +60,23 @@ export default function BlogPostPage() {
   };
 
   const getCategoryColor = (category: string) => {
-    switch (category) {
-      case "stocks":
-        return "bg-primary text-primary-foreground";
+    switch (category.toLowerCase()) {
+      case "stock":
+        return "bg-blue-500 text-white";
       case "etf":
-        return "bg-success text-success-foreground";
-      case "bonds":
-        return "bg-purple-500 text-white";
-      case "funds":
-        return "bg-orange-500 text-white";
-      case "analysis":
-        return "bg-info text-info-foreground";
-      default:
+        return "bg-green-500 text-white";
+      case "weekly":
+        return "bg-indigo-500 text-white";
+      case "etc":
         return "bg-gray-500 text-white";
+      default:
+        return "bg-slate-500 text-white";
     }
   };
 
   const getCategoryLabel = (category: string) => {
-    switch (category) {
-      case "stocks":
-        return "주식";
-      case "etf":
-        return "ETF";
-      case "bonds":
-        return "채권";
-      case "funds":
-        return "펀드";
-      case "analysis":
-        return "시장분석";
-      default:
-        return category;
-    }
+    // 마크다운 파일의 category 값을 그대로 사용
+    return category;
   };
 
   if (isLoading) {
