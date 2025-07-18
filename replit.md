@@ -71,13 +71,14 @@ The application uses three main tables:
 
 ## Deployment Strategy
 
-The application is configured for Replit **Autoscale** deployment:
+The application is configured for Replit **Static** deployment:
 - **Development**: `npm run dev` starts both frontend and backend
-- **Build**: `npm run build` creates optimized production build
-- **Production**: `npm start` runs the production server
-- **Database**: Uses environment variable `DATABASE_URL` for connection
-- **Deployment Type**: Autoscale (not Static) - required for full-stack Express app
+- **Build**: `./build-static.sh` creates static frontend build
+- **Production**: Static files served directly (no server-side functionality)
+- **Database**: Not available in static deployment
+- **Deployment Type**: Static - serves only React frontend
 - **Configuration**: `replit.toml` contains deployment settings
+- **Limitations**: API endpoints, database features, and backend functionality not available
 
 ### File Structure
 - `/client` - React frontend application

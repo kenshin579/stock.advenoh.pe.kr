@@ -1,44 +1,43 @@
 # Deployment Configuration
 
 ## Overview
-This application is a full-stack web application with Express.js backend and React frontend. It requires **Autoscale** deployment rather than static deployment.
+This application has been configured for **Static** deployment, serving only the React frontend. The Express.js backend features are not available in static deployment.
 
 ## Deployment Type
-- **Deployment Target**: Autoscale (not Static)
-- **Reason**: This is a full-stack application with an Express.js server that serves both API endpoints and static files
+- **Deployment Target**: Static
+- **Note**: This configuration serves only the frontend React application. API endpoints will not work in static deployment.
 
 ## Build Process
 The build process creates:
-1. **Frontend Build**: Static assets in `dist/public/` directory
-2. **Backend Build**: Server bundle as `dist/index.js`
+1. **Frontend Build**: Static assets in `dist/public/` directory only
 
 ## Deployment Configuration
 
 ### Files
 - `replit.toml` - Contains deployment configuration
-- `package.json` - Contains build and start scripts
+- `build-static.sh` - Static build script
 
 ### Configuration
 ```toml
 [deployment]
-deploymentTarget = "autoscale"
-build = ["npm", "run", "build"]
-run = ["npm", "start"]
+deploymentTarget = "static"
+build = ["./build-static.sh"]
+publicDir = "dist/public"
 ```
 
 ### Build Command
 ```bash
-npm run build
+./build-static.sh
 ```
 This command:
-1. Builds the React frontend using Vite → `dist/public/`
-2. Builds the Express server using ESBuild → `dist/index.js`
+1. Builds only the React frontend using Vite → `dist/public/`
 
-### Start Command
-```bash
-npm start
-```
-This runs `NODE_ENV=production node dist/index.js`
+### Static Deployment Limitations
+- **API endpoints** will not work (no server-side functionality)
+- **Database features** will not work
+- **Newsletter subscription** will not work
+- **Blog post creation/editing** will not work
+- Only the frontend React application will be served
 
 ## Deployment Structure
 ```
