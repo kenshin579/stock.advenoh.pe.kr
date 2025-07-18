@@ -44,10 +44,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const posts = await storage.getBlogPosts(true);
       
-      // Count posts by category
+      // Count posts by category and normalize similar categories
       const categoryCount: { [key: string]: number } = {};
       posts.forEach(post => {
-        const category = post.category || 'uncategorized';
+        let category = post.category || 'uncategorized';
+        
+        // Normalize ETF/etf to lowercase
+        if (category.toLowerCase() === 'etf') {
+          category = 'etf';
+        }
+        
         categoryCount[category] = (categoryCount[category] || 0) + 1;
       });
       

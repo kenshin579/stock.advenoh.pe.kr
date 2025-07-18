@@ -32,6 +32,7 @@ export function Header() {
   // Category labels mapping
   const categoryLabels: { [key: string]: string } = {
     etf: "ETF",
+    ETF: "ETF",
     stock: "주식",
     weekly: "주간분석",
     etc: "기타"
