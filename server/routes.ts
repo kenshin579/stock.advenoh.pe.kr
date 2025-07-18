@@ -10,7 +10,8 @@ import { generateRobotsTxt } from "./services/robots";
 import { importMarkdownFiles } from "./services/contentImporter";
 
 export async function registerRoutes(app: Express): Promise<Server> {
-  // Import markdown files on startup
+  // Clear existing blog posts and import markdown files on startup
+  (storage as any).clearBlogPosts();
   await importMarkdownFiles(storage);
   
   // Blog posts routes
@@ -44,16 +45,10 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const posts = await storage.getBlogPosts(true);
       
-      // Count posts by category and normalize similar categories
+      // Count posts by category
       const categoryCount: { [key: string]: number } = {};
       posts.forEach(post => {
-        let category = post.category || 'uncategorized';
-        
-        // Normalize ETF/etf to lowercase
-        if (category.toLowerCase() === 'etf') {
-          category = 'etf';
-        }
-        
+        const category = post.category || 'uncategorized';
         categoryCount[category] = (categoryCount[category] || 0) + 1;
       });
       

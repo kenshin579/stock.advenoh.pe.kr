@@ -152,6 +152,11 @@ export class MemStorage implements IStorage {
       this.newsletterSubscribers.delete(subscriber.id);
     }
   }
+
+  clearBlogPosts(): void {
+    this.blogPosts.clear();
+    this.blogPostIdCounter = 1;
+  }
 }
 
 export const storage = new MemStorage();
