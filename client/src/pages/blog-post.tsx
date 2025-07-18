@@ -14,6 +14,7 @@ import { generateStructuredData, getBaseUrl } from "@/lib/seo";
 import { estimateReadingTime } from "@/lib/markdown";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
+import { getCoverImage } from "@/lib/image-utils";
 
 export default function BlogPostPage() {
   const { slug } = useParams();
@@ -196,15 +197,20 @@ export default function BlogPostPage() {
               </header>
 
               {/* Featured image */}
-              {post.featuredImage && (
-                <div className="mb-8">
-                  <img
-                    src={post.featuredImage}
-                    alt={post.title}
-                    className="w-full h-64 md:h-96 object-cover rounded-lg"
-                  />
-                </div>
-              )}
+              <div className="mb-8">
+                <img
+                  src={getCoverImage(post)}
+                  alt={post.title}
+                  className="w-full h-64 md:h-96 object-cover rounded-lg"
+                  onError={(e) => {
+                    // Fallback to default image if cover image fails to load
+                    const target = e.target as HTMLImageElement;
+                    if (target.src !== getCoverImage({ ...post, featuredImage: undefined, content: '' })) {
+                      target.src = getCoverImage({ ...post, featuredImage: undefined, content: '' });
+                    }
+                  }}
+                />
+              </div>
 
               {/* Mobile Table of Contents */}
               <div className="lg:hidden mb-8">
