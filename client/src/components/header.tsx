@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, Menu, X, ChartLine } from "lucide-react";
+import { Search, Menu, X, ChartLine, Sun, Moon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTheme } from "@/components/theme-provider";
@@ -57,14 +57,25 @@ export function Header() {
               variant="ghost"
               size="sm"
               onClick={toggleTheme}
-              className="relative inline-flex items-center h-6 rounded-full w-11 bg-gray-200 dark:bg-gray-600 transition-colors"
+              className="relative p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
             >
               <span className="sr-only">다크 모드 토글</span>
-              <span
-                className={`inline-block w-4 h-4 transform bg-white dark:bg-gray-300 rounded-full transition-transform ${
-                  theme === "dark" ? "translate-x-6" : "translate-x-1"
-                }`}
-              />
+              <div className="relative w-6 h-6 overflow-hidden">
+                <Sun
+                  className={`absolute inset-0 w-6 h-6 text-yellow-500 transition-all duration-300 transform ${
+                    theme === "dark" 
+                      ? "translate-y-8 rotate-90 opacity-0" 
+                      : "translate-y-0 rotate-0 opacity-100"
+                  }`}
+                />
+                <Moon
+                  className={`absolute inset-0 w-6 h-6 text-blue-600 transition-all duration-300 transform ${
+                    theme === "dark" 
+                      ? "translate-y-0 rotate-0 opacity-100" 
+                      : "-translate-y-8 -rotate-90 opacity-0"
+                  }`}
+                />
+              </div>
             </Button>
 
             {/* Mobile Menu Button */}
