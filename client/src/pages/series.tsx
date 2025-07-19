@@ -3,6 +3,8 @@ import { Link } from "wouter";
 import { BookOpen, Calendar, FileText } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 interface SeriesInfo {
   name: string;
@@ -30,43 +32,53 @@ export default function SeriesPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 dark:bg-gray-600 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mb-8"></div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {[...Array(6)].map((_, i) => (
-                <div key={i} className="h-48 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
-              ))}
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="py-12">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-300 dark:bg-gray-600 rounded w-1/4 mb-4"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mb-8"></div>
+              <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                {[...Array(6)].map((_, i) => (
+                  <div key={i} className="h-48 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              시리즈를 불러올 수 없습니다
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400">
-              잠시 후 다시 시도해주세요.
-            </p>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="py-12">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-3xl font-bold text-foreground mb-4">
+                시리즈를 불러올 수 없습니다
+              </h1>
+              <p className="text-muted-foreground">
+                잠시 후 다시 시도해주세요.
+              </p>
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="py-12">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header */}
         <div className="mb-12">
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
             시리즈
@@ -95,10 +107,12 @@ export default function SeriesPage() {
                           <FileText className="w-3 h-3" />
                           {seriesItem.count}개 게시물
                         </Badge>
-                        <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
-                          <Calendar className="w-3 h-3" />
-                          {new Date(seriesItem.latestDate).toLocaleDateString('ko-KR')}
-                        </div>
+                        {seriesItem.latestDate && !isNaN(new Date(seriesItem.latestDate).getTime()) && (
+                          <div className="flex items-center gap-1 text-sm text-gray-500 dark:text-gray-400">
+                            <Calendar className="w-3 h-3" />
+                            {new Date(seriesItem.latestDate).toLocaleDateString('ko-KR')}
+                          </div>
+                        )}
                       </div>
                       
                       {/* Preview of latest posts */}
@@ -132,7 +146,9 @@ export default function SeriesPage() {
             </p>
           </div>
         )}
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,8 @@ import { Calendar, User, Tag, Clock, ArrowLeft, BookOpen } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Header } from "@/components/header";
+import { Footer } from "@/components/footer";
 
 interface BlogPost {
   title: string;
@@ -34,41 +36,49 @@ export default function SeriesDetailPage() {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="animate-pulse">
-            <div className="h-8 bg-gray-300 dark:bg-gray-600 rounded w-1/4 mb-4"></div>
-            <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mb-8"></div>
-            <div className="space-y-6">
-              {[...Array(5)].map((_, i) => (
-                <div key={i} className="h-32 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
-              ))}
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="py-12">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="animate-pulse">
+              <div className="h-8 bg-gray-300 dark:bg-gray-600 rounded w-1/4 mb-4"></div>
+              <div className="h-4 bg-gray-300 dark:bg-gray-600 rounded w-1/2 mb-8"></div>
+              <div className="space-y-6">
+                {[...Array(5)].map((_, i) => (
+                  <div key={i} className="h-32 bg-gray-300 dark:bg-gray-600 rounded-lg"></div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
 
   if (error || !posts) {
     return (
-      <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
-              시리즈를 찾을 수 없습니다
-            </h1>
-            <p className="text-gray-600 dark:text-gray-400 mb-8">
-              요청하신 시리즈가 존재하지 않거나 삭제되었습니다.
-            </p>
-            <Link href="/series">
-              <Button>
-                <ArrowLeft className="w-4 h-4 mr-2" />
-                시리즈 목록으로 돌아가기
-              </Button>
-            </Link>
+      <div className="min-h-screen bg-background">
+        <Header />
+        <div className="py-12">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center">
+              <h1 className="text-3xl font-bold text-foreground mb-4">
+                시리즈를 찾을 수 없습니다
+              </h1>
+              <p className="text-muted-foreground mb-8">
+                요청하신 시리즈가 존재하지 않거나 삭제되었습니다.
+              </p>
+              <Link href="/series">
+                <Button>
+                  <ArrowLeft className="w-4 h-4 mr-2" />
+                  시리즈 목록으로 돌아가기
+                </Button>
+              </Link>
+            </div>
           </div>
         </div>
+        <Footer />
       </div>
     );
   }
@@ -77,8 +87,10 @@ export default function SeriesDetailPage() {
   const sortedPosts = [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return (
-    <div className="min-h-screen bg-white dark:bg-gray-900 py-12">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-background">
+      <Header />
+      <div className="py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Back Button */}
         <div className="mb-6">
           <Link href="/series">
@@ -118,10 +130,12 @@ export default function SeriesDetailPage() {
                       </CardTitle>
                     </Link>
                     <div className="flex items-center gap-4 mt-2 text-sm text-gray-500 dark:text-gray-400">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="w-3 h-3" />
-                        {new Date(post.date).toLocaleDateString('ko-KR')}
-                      </div>
+                      {post.date && !isNaN(new Date(post.date).getTime()) && (
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {new Date(post.date).toLocaleDateString('ko-KR')}
+                        </div>
+                      )}
                       {post.readTime && (
                         <div className="flex items-center gap-1">
                           <Clock className="w-3 h-3" />
@@ -173,7 +187,9 @@ export default function SeriesDetailPage() {
             </Button>
           </Link>
         </div>
+        </div>
       </div>
+      <Footer />
     </div>
   );
 }
