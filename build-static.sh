@@ -6,13 +6,13 @@
 echo "Generating static blog data..."
 npx tsx server/scripts/generateStaticData.ts
 
+# Copy API data to client's public directory so Vite includes it in the build
+echo "Copying API data to client public directory..."
+mkdir -p client/public/api
+cp -r public/api/* client/public/api/
+
 echo "Building frontend for static deployment..."
 npx vite build
-
-# Copy API data to build output
-echo "Copying API data to build output..."
-cp -r public/api/ dist/public/
-cp -r public/api/ dist/
 
 # Also copy files to dist/ for deployment compatibility
 echo "Copying files to dist/ for deployment..."

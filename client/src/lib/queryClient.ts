@@ -22,95 +22,49 @@ async function fetchStaticData(path: string, params?: URLSearchParams) {
   console.log(`Fetching static data for path: ${path}`);
   
   if (path === '/api/blog-posts') {
-    // Try different possible locations for static files
-    const possibleUrls = [
-      '/api/blog-posts.json',
-      './api/blog-posts.json',
-      `${window.location.origin}/api/blog-posts.json`
-    ];
+    const response = await fetch('/api/blog-posts.json');
+    if (!response.ok) throw new Error(`Failed to fetch posts: ${response.status}`);
+    let posts = await response.json();
+    console.log(`Successfully fetched ${posts.length} posts from static files`);
     
-    for (const url of possibleUrls) {
-      try {
-        console.log(`Trying to fetch from: ${url}`);
-        const response = await fetch(url);
-        if (response.ok) {
-          let posts = await response.json();
-          console.log(`Successfully fetched ${posts.length} posts from ${url}`);
-          
-          // Apply filters if present
-          if (params) {
-            const category = params.get('category');
-            const search = params.get('search');
-            
-            if (category && category !== 'all') {
-              posts = posts.filter((post: any) => post.category === category);
-            }
-            
-            if (search) {
-              const searchLower = search.toLowerCase();
-              posts = posts.filter((post: any) => 
-                post.title.toLowerCase().includes(searchLower) ||
-                post.content.toLowerCase().includes(searchLower) ||
-                (post.excerpt && post.excerpt.toLowerCase().includes(searchLower)) ||
-                (post.tags && post.tags.some((tag: string) => tag.toLowerCase().includes(searchLower)))
-              );
-            }
-          }
-          
-          return posts;
-        }
-      } catch (error) {
-        console.log(`Failed to fetch from ${url}:`, error);
+    // Apply filters if present
+    if (params) {
+      const category = params.get('category');
+      const search = params.get('search');
+      
+      if (category && category !== 'all') {
+        posts = posts.filter((post: any) => post.category === category);
+      }
+      
+      if (search) {
+        const searchLower = search.toLowerCase();
+        posts = posts.filter((post: any) => 
+          post.title.toLowerCase().includes(searchLower) ||
+          post.content.toLowerCase().includes(searchLower) ||
+          (post.excerpt && post.excerpt.toLowerCase().includes(searchLower)) ||
+          (post.tags && post.tags.some((tag: string) => tag.toLowerCase().includes(searchLower)))
+        );
       }
     }
-    throw new Error('Failed to fetch posts from any static location');
+    
+    return posts;
   }
   
   if (path === '/api/categories') {
-    const possibleUrls = [
-      '/api/categories.json',
-      './api/categories.json',
-      `${window.location.origin}/api/categories.json`
-    ];
-    
-    for (const url of possibleUrls) {
-      try {
-        console.log(`Trying to fetch categories from: ${url}`);
-        const response = await fetch(url);
-        if (response.ok) {
-          const categories = await response.json();
-          console.log(`Successfully fetched categories from ${url}`);
-          return categories;
-        }
-      } catch (error) {
-        console.log(`Failed to fetch categories from ${url}:`, error);
-      }
-    }
-    throw new Error('Failed to fetch categories from any static location');
+    const response = await fetch('/api/categories.json');
+    if (!response.ok) throw new Error(`Failed to fetch categories: ${response.status}`);
+    const categories = await response.json();
+    console.log(`Successfully fetched categories from static files`);
+    return categories;
   }
   
   if (path.startsWith('/api/blog-posts/')) {
     const slug = path.replace('/api/blog-posts/', '');
-    const possibleUrls = [
-      `/api/blog-posts/${slug}.json`,
-      `./api/blog-posts/${slug}.json`,
-      `${window.location.origin}/api/blog-posts/${slug}.json`
-    ];
-    
-    for (const url of possibleUrls) {
-      try {
-        console.log(`Trying to fetch post from: ${url}`);
-        const response = await fetch(url);
-        if (response.ok) {
-          const post = await response.json();
-          console.log(`Successfully fetched post from ${url}`);
-          return post;
-        }
-      } catch (error) {
-        console.log(`Failed to fetch post from ${url}:`, error);
-      }
-    }
-    throw new Error(`Post not found: ${slug}`);
+    const response = await fetch(`/api/blog-posts/${slug}.json`);
+    if (!response.ok) throw new Error(`Post not found: ${slug} (${response.status})`);
+    const post = await response.json();
+    console.log(`Successfully fetched post ${slug} from static files`);
+    return post;
   }
   
   throw new Error(`Static route not supported: ${path}`);
