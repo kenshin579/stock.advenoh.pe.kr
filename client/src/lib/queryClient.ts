@@ -2,6 +2,11 @@ import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
 // Detect if we're in static deployment mode
 const isStaticDeployment = () => {
+  // In development mode, always use the API
+  if (import.meta.env.DEV) return false;
+  
+  // In production, check if we have backend access
+  // If VITE_API_BASE_URL is not set and we're in production, use static files
   return import.meta.env.PROD && !import.meta.env.VITE_API_BASE_URL;
 };
 
