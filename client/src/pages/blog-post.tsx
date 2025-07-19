@@ -9,13 +9,14 @@ import { SeriesNavigation } from "@/components/series-navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
-import { Eye, Heart, Calendar, Clock, User, ArrowLeft } from "lucide-react";
+import { Eye, Heart, Calendar, Clock, ArrowLeft } from "lucide-react";
 import { BlogPost } from "@shared/schema";
 import { generateStructuredData, getBaseUrl } from "@/lib/seo";
 import { estimateReadingTime } from "@/lib/markdown";
 import { apiRequest } from "@/lib/queryClient";
 import { useToast } from "@/hooks/use-toast";
 import { getCoverImage } from "@/lib/image-utils";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 export default function BlogPostPage() {
   const { slug } = useParams();
@@ -179,7 +180,10 @@ export default function BlogPostPage() {
 
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
-                    <User className="w-4 h-4" />
+                    <Avatar className="w-6 h-6">
+                      <AvatarImage src="/profile.jpeg" alt="Frank" />
+                      <AvatarFallback>F</AvatarFallback>
+                    </Avatar>
                     <span>Frank</span>
                   </div>
                   <div className="flex items-center gap-2">

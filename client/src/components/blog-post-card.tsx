@@ -1,7 +1,8 @@
 import { Link } from "wouter";
-import { Calendar, User } from "lucide-react";
+import { Calendar } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { BlogPost } from "@shared/schema";
 import { getCoverImage } from "@/lib/image-utils";
 
@@ -73,6 +74,13 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           {post.excerpt}
         </p>
         <div className="flex items-center justify-between text-sm text-muted-foreground">
+          <div className="flex items-center space-x-2">
+            <Avatar className="w-6 h-6">
+              <AvatarImage src="/profile.jpeg" alt="Frank" />
+              <AvatarFallback>F</AvatarFallback>
+            </Avatar>
+            <span>Frank</span>
+          </div>
           <div className="flex items-center space-x-2">
             <Calendar className="w-4 h-4" />
             <span>{new Date(post.createdAt!).toLocaleDateString('ko-KR')}</span>
