@@ -160,6 +160,7 @@ export async function importMarkdownFiles(storage: IStorage, contentDir: string 
               excerpt,
               category: finalCategory,
               tags: frontMatter.tags || [],
+              series: frontMatter.series,
               featuredImage: featuredImagePath,
               published: true,
               seoTitle: `${frontMatter.title} | 투자 인사이트`,

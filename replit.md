@@ -84,6 +84,14 @@ The application is configured for Replit **Static** deployment:
 ## Recent Changes
 
 ### July 19, 2025
+- **Series Feature Complete**: Implemented comprehensive series functionality for blog content organization
+- **Series Navigation**: Added series icon in header next to dark mode toggle, linking to series overview page
+- **Series Pages**: Created main series listing page (/series) and individual series detail pages (/series/[name])
+- **Series Integration**: Added series field to blog post schema and content importer
+- **Series in Posts**: Implemented series navigation component within blog posts showing related articles
+- **Series API**: Added /api/series endpoint with filtering support for blog posts by series
+- **Static Series Data**: Generated 6 series from markdown content with proper static deployment support
+- **Series Types**: Successfully imported series including "2025년 주간 주식 정리" (11 posts), "ETF 투자 기초가이드" (6 posts), "주식 대가들의 포트폴리오" (4 posts), and others
 - **Static Deployment Fix**: Implemented complete static site generation system for deployment
 - **Issue Resolved**: Fixed "글을 불러오는 중 오류가 발생했습니다" error in deployed version
 - **Root Cause**: Static deployment had no backend API access, causing empty content
