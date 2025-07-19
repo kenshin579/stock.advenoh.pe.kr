@@ -87,23 +87,34 @@ export const getQueryFn: <T>(options: {
   async ({ queryKey }) => {
     const url = queryKey.join("/") as string;
     
-    // Use static data in deployment mode
-    if (isStaticDeployment()) {
-      const urlObj = new URL(url, window.location.origin);
-      return await fetchStaticData(urlObj.pathname, urlObj.searchParams);
-    }
-    
-    // Use regular API in development mode
-    const res = await fetch(url, {
-      credentials: "include",
-    });
+    // Try API first, fallback to static data if it fails (especially in production)
+    try {
+      const res = await fetch(url, {
+        credentials: "include",
+      });
 
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
-      return null;
-    }
+      if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+        return null;
+      }
 
-    await throwIfResNotOk(res);
-    return await res.json();
+      await throwIfResNotOk(res);
+      return await res.json();
+    } catch (error) {
+      // If API fails and we're in production, try static files
+      if (import.meta.env.PROD) {
+        console.log(`API failed, trying static files for ${url}:`, error);
+        try {
+          const urlObj = new URL(url, window.location.origin);
+          return await fetchStaticData(urlObj.pathname, urlObj.searchParams);
+        } catch (staticError) {
+          console.error(`Static data also failed for ${url}:`, staticError);
+          throw error; // Throw original API error
+        }
+      }
+      
+      // In development, just throw the original error
+      throw error;
+    }
   };
 
 export const queryClient = new QueryClient({
