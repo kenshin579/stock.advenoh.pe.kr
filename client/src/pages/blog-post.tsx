@@ -6,6 +6,7 @@ import { SEOHead } from "@/components/seo-head";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { TableOfContents } from "@/components/table-of-contents";
 import { SeriesNavigation } from "@/components/series-navigation";
+import profileImage from "@assets/profile.jpeg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -181,7 +182,7 @@ export default function BlogPostPage() {
                 <div className="flex flex-wrap items-center gap-6 text-sm text-muted-foreground">
                   <div className="flex items-center gap-2">
                     <Avatar className="w-6 h-6">
-                      <AvatarImage src="/profile.jpeg" alt="Frank" />
+                      <AvatarImage src={profileImage} alt="Frank" />
                       <AvatarFallback>F</AvatarFallback>
                     </Avatar>
                     <span>Frank</span>
