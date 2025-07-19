@@ -83,6 +83,16 @@ The application is configured for Replit **Static** deployment:
 
 ## Recent Changes
 
+### July 19, 2025
+- **Static Deployment Fix**: Implemented complete static site generation system for deployment
+- **Issue Resolved**: Fixed "글을 불러오는 중 오류가 발생했습니다" error in deployed version
+- **Root Cause**: Static deployment had no backend API access, causing empty content
+- **Static Data Generation**: Created build-time script that generates JSON files from markdown content
+- **Smart Query Client**: Updated frontend to auto-detect deployment mode and use static JSON files
+- **Search & Filtering**: Fixed header menu category filtering and search functionality navigation
+- **Cover Images**: Removed cover images from blog post detail pages, updated default to real investment photo
+- **Navigation System**: Fixed wouter routing issues with proper URL parameter handling
+
 ### July 18, 2025
 - **Deployment Fix**: Updated build-static.sh to copy built files to both `dist/public/` and `dist/` directories
 - **Issue Resolved**: Fixed deployment failure due to mismatched public directory configuration

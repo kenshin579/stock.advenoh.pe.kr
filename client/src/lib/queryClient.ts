@@ -1,10 +1,61 @@
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 
+// Detect if we're in static deployment mode
+const isStaticDeployment = () => {
+  return import.meta.env.PROD && !import.meta.env.VITE_API_BASE_URL;
+};
+
 async function throwIfResNotOk(res: Response) {
   if (!res.ok) {
     const text = (await res.text()) || res.statusText;
     throw new Error(`${res.status}: ${text}`);
   }
+}
+
+// Static data fetcher for deployment
+async function fetchStaticData(path: string, params?: URLSearchParams) {
+  if (path === '/api/blog-posts') {
+    const response = await fetch('/api/blog-posts.json');
+    if (!response.ok) throw new Error('Failed to fetch posts');
+    let posts = await response.json();
+    
+    // Apply filters if present
+    if (params) {
+      const category = params.get('category');
+      const search = params.get('search');
+      
+      if (category && category !== 'all') {
+        posts = posts.filter((post: any) => post.category === category);
+      }
+      
+      if (search) {
+        const searchLower = search.toLowerCase();
+        posts = posts.filter((post: any) => 
+          post.title.toLowerCase().includes(searchLower) ||
+          post.content.toLowerCase().includes(searchLower) ||
+          (post.excerpt && post.excerpt.toLowerCase().includes(searchLower)) ||
+          (post.tags && post.tags.some((tag: string) => tag.toLowerCase().includes(searchLower)))
+        );
+      }
+    }
+    
+    return posts;
+  }
+  
+  if (path === '/api/categories') {
+    const response = await fetch('/api/categories.json');
+    if (!response.ok) throw new Error('Failed to fetch categories');
+    return response.json();
+  }
+  
+  if (path.startsWith('/api/blog-posts/')) {
+    const slug = path.replace('/api/blog-posts/', '');
+    const response = await fetch(`/api/blog-posts/${slug}.json`);
+    if (!response.ok) throw new Error('Post not found');
+    return response.json();
+  }
+  
+  throw new Error(`Static route not supported: ${path}`);
 }
 
 export async function apiRequest(
@@ -29,7 +80,16 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    const res = await fetch(queryKey.join("/") as string, {
+    const url = queryKey.join("/") as string;
+    
+    // Use static data in deployment mode
+    if (isStaticDeployment()) {
+      const urlObj = new URL(url, window.location.origin);
+      return await fetchStaticData(urlObj.pathname, urlObj.searchParams);
+    }
+    
+    // Use regular API in development mode
+    const res = await fetch(url, {
       credentials: "include",
     });
 
