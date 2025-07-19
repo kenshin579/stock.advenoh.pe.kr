@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/components/theme-provider";
 import NotFound from "@/pages/not-found";
 import Home from "@/pages/home";
 import BlogPost from "@/pages/blog-post";
+import SeriesPage from "@/pages/series";
+import SeriesDetailPage from "@/pages/series-detail";
 
 
 function Router() {
@@ -14,6 +16,8 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/blog/:slug" component={BlogPost} />
+      <Route path="/series" component={SeriesPage} />
+      <Route path="/series/:seriesName" component={SeriesDetailPage} />
 
       <Route component={NotFound} />
     </Switch>

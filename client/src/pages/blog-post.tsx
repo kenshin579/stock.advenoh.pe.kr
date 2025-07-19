@@ -5,6 +5,7 @@ import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { TableOfContents } from "@/components/table-of-contents";
+import { SeriesNavigation } from "@/components/series-navigation";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -158,6 +159,11 @@ export default function BlogPostPage() {
                 <ArrowLeft className="w-4 h-4 mr-2" />
                 목록으로 돌아가기
               </Button>
+
+              {/* Series Navigation */}
+              {post.series && (
+                <SeriesNavigation seriesName={post.series} currentSlug={post.slug} />
+              )}
 
               {/* Post header */}
               <header className="mb-8">

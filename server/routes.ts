@@ -17,11 +17,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
   // Blog posts routes
   app.get("/api/blog-posts", async (req, res) => {
     try {
-      const { published, category, search } = req.query;
+      const { published, category, search, series } = req.query;
       let posts = await storage.getBlogPosts(published === 'true' ? true : undefined);
 
       if (category && category !== 'all') {
         posts = posts.filter(post => post.category === category);
+      }
+
+      if (series) {
+        posts = posts.filter(post => post.series === series);
       }
 
       if (search) {
@@ -61,6 +65,44 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json(sortedCategories);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch categories" });
+    }
+  });
+
+  // Series routes
+  app.get("/api/series", async (req, res) => {
+    try {
+      const posts = await storage.getBlogPosts(true);
+      
+      // Filter posts that have series
+      const seriesPosts = posts.filter(post => post.series);
+      
+      // Group posts by series
+      const seriesMap = new Map();
+      seriesPosts.forEach(post => {
+        if (!seriesMap.has(post.series)) {
+          seriesMap.set(post.series, []);
+        }
+        seriesMap.get(post.series).push({
+          title: post.title,
+          slug: post.slug,
+          date: post.createdAt
+        });
+      });
+      
+      // Create series info array
+      const series = Array.from(seriesMap.entries()).map(([seriesName, seriesPosts]) => {
+        const sortedPosts = seriesPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        return {
+          name: seriesName,
+          count: seriesPosts.length,
+          latestDate: sortedPosts[0].date,
+          posts: sortedPosts
+        };
+      });
+
+      res.json(series);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch series" });
     }
   });
 

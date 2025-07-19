@@ -21,6 +21,7 @@
     "gatsby-plugin-advanced-sitemap",
     "gatsby-plugin-robots-txt"
   ],
+  "series": null,
   "featuredImage": "/contents/etc/gatsby-blog-google-seo-tips/image-20240720212332310.png",
   "published": true,
   "seoTitle": "Gatsby 블로그 구글 검색에 더 많이 노출하는 방법 | 투자 인사이트",

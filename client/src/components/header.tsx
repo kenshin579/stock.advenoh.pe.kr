@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Search, Menu, X, ChartLine, Sun, Moon } from "lucide-react";
+import { Search, Menu, X, ChartLine, Sun, Moon, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useTheme } from "@/components/theme-provider";
@@ -73,12 +73,24 @@ export function Header() {
             })}
           </div>
 
-          {/* Search & Dark Mode Toggle */}
+          {/* Search, Series & Dark Mode Toggle */}
           <div className="flex items-center space-x-4">
             {/* Search */}
             <div className="hidden sm:block">
               <SearchBar />
             </div>
+
+            {/* Series Button */}
+            <Link href="/series">
+              <Button
+                variant="ghost"
+                size="sm"
+                className="relative w-10 h-10 rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors flex items-center justify-center"
+              >
+                <span className="sr-only">시리즈</span>
+                <BookOpen className="w-5 h-5 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors" />
+              </Button>
+            </Link>
 
             {/* Dark Mode Toggle */}
             <Button

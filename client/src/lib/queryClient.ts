@@ -42,9 +42,14 @@ async function fetchStaticData(path: string, params?: URLSearchParams) {
           if (params) {
             const category = params.get('category');
             const search = params.get('search');
+            const series = params.get('series');
             
             if (category && category !== 'all') {
               posts = posts.filter((post: any) => post.category === category);
+            }
+            
+            if (series) {
+              posts = posts.filter((post: any) => post.series === series);
             }
             
             if (search) {
@@ -92,6 +97,32 @@ async function fetchStaticData(path: string, params?: URLSearchParams) {
       }
     }
     throw new Error('Failed to fetch categories from any location');
+  }
+
+  if (path === '/api/series') {
+    // Try multiple possible locations for series JSON
+    const possibleUrls = [
+      '/api/series.json',
+      './api/series.json',
+      '/series.json',
+      './series.json'
+    ];
+    
+    for (const url of possibleUrls) {
+      try {
+        console.log(`Trying to fetch series from: ${url}`);
+        const response = await fetch(url);
+        if (response.ok) {
+          const series = await response.json();
+          console.log(`Successfully fetched series from ${url}`);
+          return series;
+        }
+        console.log(`Failed to fetch from ${url}: ${response.status}`);
+      } catch (error) {
+        console.log(`Error fetching from ${url}:`, error);
+      }
+    }
+    throw new Error('Failed to fetch series from any location');
   }
   
   if (path.startsWith('/api/blog-posts/')) {

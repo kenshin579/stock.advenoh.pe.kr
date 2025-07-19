@@ -157,6 +157,7 @@ async function importAllContent(contentDir: string = 'contents'): Promise<any[]>
               excerpt,
               category: finalCategory,
               tags: frontMatter.tags || [],
+              series: frontMatter.series || null,
               featuredImage: featuredImagePath,
               published: true,
               seoTitle: `${frontMatter.title} | 투자 인사이트`,
@@ -214,6 +215,36 @@ async function generateStaticData() {
       path.join(apiDir, 'categories.json'),
       JSON.stringify(categories, null, 2)
     );
+
+    // Generate series JSON
+    const seriesPosts = posts.filter(post => post.series);
+    const seriesMap = new Map();
+    
+    seriesPosts.forEach(post => {
+      if (!seriesMap.has(post.series)) {
+        seriesMap.set(post.series, []);
+      }
+      seriesMap.get(post.series).push({
+        title: post.title,
+        slug: post.slug,
+        date: post.date
+      });
+    });
+    
+    const series = Array.from(seriesMap.entries()).map(([seriesName, seriesPosts]) => {
+      const sortedPosts = seriesPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+      return {
+        name: seriesName,
+        count: seriesPosts.length,
+        latestDate: sortedPosts[0].date,
+        posts: sortedPosts
+      };
+    });
+    
+    await fs.writeFile(
+      path.join(apiDir, 'series.json'),
+      JSON.stringify(series, null, 2)
+    );
     
     // Generate individual post files
     const postsDir = path.join(apiDir, 'blog-posts');
@@ -228,6 +259,7 @@ async function generateStaticData() {
     
     console.log(`Generated static data for ${posts.length} posts`);
     console.log(`Generated ${categories.length} categories`);
+    console.log(`Generated ${series.length} series`);
     
   } catch (error) {
     console.error('Error generating static data:', error);

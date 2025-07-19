@@ -15,6 +15,7 @@
       "자산 운용사",
       "약어"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "자산 운용사 약어 모음 | 투자 인사이트",
@@ -49,6 +50,7 @@
       "gatsby-plugin-advanced-sitemap",
       "gatsby-plugin-robots-txt"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/gatsby-blog-google-seo-tips/image-20240720212332310.png",
     "published": true,
     "seoTitle": "Gatsby 블로그 구글 검색에 더 많이 노출하는 방법 | 투자 인사이트",
@@ -82,6 +84,7 @@
       "Shinhan Bank",
       "Shinhan"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/google-adsense-add-payment-method/image-20240705204223014.png",
     "published": true,
     "seoTitle": "구글 Adsense 에 결제 추가하는 방법 | 투자 인사이트",
@@ -110,6 +113,7 @@
       "거주자증명서",
       "홈택스"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/google-adsense-residency-certificate-application/image-20240709222220486.png",
     "published": true,
     "seoTitle": "구글 Adsense에 필요한 거주자증명서 발급 신청하는 방법 | 투자 인사이트",
@@ -138,6 +142,7 @@
       "거주자증명서",
       "홈택스"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/google-adsense-singapore-tax-submission/image-20240710224400092.png",
     "published": true,
     "seoTitle": "구글 Adsense 싱가포르 세금 정보 제출방법 | 투자 인사이트",
@@ -164,6 +169,7 @@
       "애드센스",
       "블로그 부업"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/google-adsense-us-tax-info-entry/image-20240707083903316.png",
     "published": true,
     "seoTitle": "구글 Adsense 미국 세금 정보 입력하는 방법 | 투자 인사이트",
@@ -187,6 +193,7 @@
       "주식",
       "명언 모음"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "투자 명언 | 투자 인사이트",
@@ -215,6 +222,7 @@
       "vocabulary",
       "stock"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/investment-terms/short_stock_selling__img_06.png",
     "published": true,
     "seoTitle": "투자 용어 (Investment Terms) | 투자 인사이트",
@@ -240,6 +248,7 @@
       "역전세",
       "HUG"
     ],
+    "series": null,
     "featuredImage": "/contents/etc/write-content-certification-online/image-20240317175515342.png",
     "published": true,
     "seoTitle": "인터넷으로 내용증명 작성하기 | 투자 인사이트",
@@ -266,6 +275,7 @@
       "투자 포트폴리오",
       "적립식 포트폴리오"
     ],
+    "series": "2024년 투자 연말 총정리",
     "featuredImage": "/contents/etf/2024-etf-regular-investing-summary/image-20250108090406417.png",
     "published": true,
     "seoTitle": "2024년 ETF 적립식 투자 연말 총정리 | 투자 인사이트",
@@ -296,6 +306,7 @@
       "미국배당",
       "금융투자협회"
     ],
+    "series": null,
     "featuredImage": "/contents/etf/best-korea-us-dowjones-etf/image-20240504153358012.png",
     "published": true,
     "seoTitle": "국내 미국다우존스 ETF중에서 어떤 것을 선택하면 좋을까? | 투자 인사이트",
@@ -325,6 +336,7 @@
       "환율상승",
       "장기투자"
     ],
+    "series": "ETF 투자 기초가이드",
     "featuredImage": "/contents/etf/etf-currency-hedge-vs-unhedge/image-20240824232318481.png",
     "published": true,
     "seoTitle": "금리인하시 환노출, 환헤지 어느 ETF 상품이 더 유리할까? | 투자 인사이트",
@@ -350,6 +362,7 @@
       "박곰희",
       "박곰희TV"
     ],
+    "series": "ETF 투자 기초가이드",
     "featuredImage": "/contents/etf/etf-delisting-what-happens/image-20240616172856929.png",
     "published": true,
     "seoTitle": "ETF 상장폐지가 되면 어떻게 되나? | 투자 인사이트",
@@ -378,6 +391,7 @@
       "추적오차",
       "운용보수"
     ],
+    "series": "ETF 투자 기초가이드",
     "featuredImage": null,
     "published": true,
     "seoTitle": "ETF 고르는 기준 | 투자 인사이트",
@@ -409,6 +423,7 @@
       "배당소득세",
       "분배금"
     ],
+    "series": "ETF 투자 기초가이드",
     "featuredImage": "/contents/etf/etf-tax-summary/image-20240818151137075.png",
     "published": true,
     "seoTitle": "ETF 세금 총정리 | 투자 인사이트",
@@ -444,6 +459,7 @@
       "싱글스탁 채권혼합형",
       "장기채권형"
     ],
+    "series": null,
     "featuredImage": "/contents/etf/irp-safe-asset-etf-list/account.png",
     "published": true,
     "seoTitle": "IRP에서 안전자산 ETF는 어떤 것들이 있나 | 투자 인사이트",
@@ -469,6 +485,7 @@
       "채권",
       "채권투자"
     ],
+    "series": "ETF 투자 기초가이드",
     "featuredImage": "/contents/etf/maturity-matching-etf/image-20241107202301622.png",
     "published": true,
     "seoTitle": "만기매칭형 ETF란 | 투자 인사이트",
@@ -501,6 +518,7 @@
       "연말정산",
       "세금공제"
     ],
+    "series": null,
     "featuredImage": "/contents/etf/my-etf-regular-investing/image-20240501002351176.png",
     "published": true,
     "seoTitle": "나만의 ETF 적립식 투자 | 투자 인사이트",
@@ -529,6 +547,7 @@
       "Bull",
       "Bear"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "주식/ETF 종목 매매 타이밍 전략 정리 | 투자 인사이트",
@@ -562,6 +581,7 @@
       "종합채권",
       "채권"
     ],
+    "series": "ETF 투자 기초가이드",
     "featuredImage": null,
     "published": true,
     "seoTitle": "ETF 상품명 이해하기 | 투자 인사이트",
@@ -592,6 +612,7 @@
       "투자회고",
       "연말회고"
     ],
+    "series": "2024년 투자 연말 총정리",
     "featuredImage": "/contents/stock/2024-etf-stock-account-vs-toss-fractional-stock-accumulation/image-20250104113738382.png",
     "published": true,
     "seoTitle": "2024년 ETF 주식 계좌 vs 토스 소수점 주식 모으기 결과 공개 | 투자 인사이트",
@@ -618,6 +639,7 @@
       "주요일정",
       "실적일정"
     ],
+    "series": "2024년 글로벌 시장 전망 및 주요 일정",
     "featuredImage": "/contents/stock/2024-global-market-outlook-and-key-schedule/image-20240609180522040.png",
     "published": true,
     "seoTitle": "2024년 글로벌 시장 전망 및 주요 일정 | 투자 인사이트",
@@ -647,6 +669,7 @@
       "금투세",
       "금종세자"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/2024-isa-account-reform-plan-summary/change.png",
     "published": true,
     "seoTitle": "2024년 ISA 계좌 개편안 총 정리 | 투자 인사이트",
@@ -671,6 +694,7 @@
       "글로벌시장",
       "시장전망"
     ],
+    "series": "2024년 글로벌 시장 전망 및 주요 일정",
     "featuredImage": null,
     "published": true,
     "seoTitle": "2024년 1분기 주요 일정 | 투자 인사이트",
@@ -700,6 +724,7 @@
       "아크만 포트폴리오",
       "Pershing Square Capital Management"
     ],
+    "series": "주식 대가들의 포트폴리오",
     "featuredImage": "/contents/stock/2024-q2-bill-ackman-portfolio/image-20241003153644541.png",
     "published": true,
     "seoTitle": "2024년 2분기 빌 아크만 포트폴리오 | 투자 인사이트",
@@ -726,6 +751,7 @@
       "글로벌시장",
       "시장전망"
     ],
+    "series": "2024년 글로벌 시장 전망 및 주요 일정",
     "featuredImage": null,
     "published": true,
     "seoTitle": "2024년 2분기 주요 일정 | 투자 인사이트",
@@ -754,6 +780,7 @@
       "Druckenmiller",
       "드런켄밀러 포트폴리오"
     ],
+    "series": "주식 대가들의 포트폴리오",
     "featuredImage": "/contents/stock/2024-q2-stanley-druckenmiller-portfolio/image-20240908055732948.png",
     "published": true,
     "seoTitle": "2024년 2분기 스탠리 드러켄밀러 포트폴리오 | 투자 인사이트",
@@ -785,6 +812,7 @@
       "AAPL",
       "버핏 포트폴리오"
     ],
+    "series": "주식 대가들의 포트폴리오",
     "featuredImage": "/contents/stock/2024-q2-warren-buffett-portfolio/image-20240817152546519.png",
     "published": true,
     "seoTitle": "2024년 2분기 워렌 버핏 포트폴리오 | 투자 인사이트",
@@ -811,6 +839,7 @@
       "글로벌시장",
       "시장전망"
     ],
+    "series": "2024년 글로벌 시장 전망 및 주요 일정",
     "featuredImage": null,
     "published": true,
     "seoTitle": "2024년 3분기 주요 일정 | 투자 인사이트",
@@ -835,6 +864,7 @@
       "글로벌시장",
       "시장전망"
     ],
+    "series": "2024년 글로벌 시장 전망 및 주요 일정",
     "featuredImage": null,
     "published": true,
     "seoTitle": "2024년 4분기 주요 이벤트 | 투자 인사이트",
@@ -862,6 +892,7 @@
       "투자회고",
       "연말회고"
     ],
+    "series": "2024년 투자 연말 총정리",
     "featuredImage": "/contents/stock/2024-year-end-domestic-us-dividend-summary/image-20250107212707084.png",
     "published": true,
     "seoTitle": "2024년 연말 국내 미국 배당금 정리 | 투자 인사이트",
@@ -888,6 +919,7 @@
       "모건스탠리",
       "MS"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/2025-feb-msci-korea-index-major-changes/image-20250216211713484.png",
     "published": true,
     "seoTitle": "25년 2월 MSCI 한국 지수서 주요 변경사항 | 투자 인사이트",
@@ -919,6 +951,7 @@
       "박곰희",
       "박곰희TV"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/about-financial-investment-income-tax/image-20240602154015999.png",
     "published": true,
     "seoTitle": "금융투자소득세(금투세)에 대해서 알아보자 | 투자 인사이트",
@@ -947,6 +980,7 @@
       "GLD",
       "IAU"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/about-gold-investment/image-20240601171626869.png",
     "published": true,
     "seoTitle": "금투자에 대해서 알아보자 | 투자 인사이트",
@@ -974,6 +1008,7 @@
       "은퇴",
       "타깃데이트펀드"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/about-target-date-funds/image-20240929171449072.png",
     "published": true,
     "seoTitle": "TDF에 대해서 알아보자 | 투자 인사이트",
@@ -1006,6 +1041,7 @@
       "코드닥",
       "나스닥"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/circuit-breaker-vs-sidecar-difference-stock-index-crash-mechanisms/image-20240810174401394.png",
     "published": true,
     "seoTitle": "서킷브레이커 vs 사이드카의 차이, 주가지수 폭락 시 작동하는 장치 | 투자 인사이트",
@@ -1031,6 +1067,7 @@
       "적립식 투자",
       "소수점 투자"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/collecting-stocks-with-toss-securities/image-20241017003431645.png",
     "published": true,
     "seoTitle": "토스 증권에서 주식 모으기 | 투자 인사이트",
@@ -1060,6 +1097,7 @@
       "상관관계",
       "채권"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/correlation-between-interest-rates-exchange-rates-bonds-and-stock-prices/image-20230205145740373.png",
     "published": true,
     "seoTitle": "금리, 환율, 채권, 주가 서로간의 상관관계 | 투자 인사이트",
@@ -1089,6 +1127,7 @@
       "경제지표",
       "economy"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/differences-between-cpi-and-ppi/image-20230219140840409.png",
     "published": true,
     "seoTitle": "CPI와 PPI의 차이점 | 투자 인사이트",
@@ -1119,6 +1158,7 @@
       "DOW",
       "NASDAQ"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "미국 3대 주가 지수 | 투자 인사이트",
@@ -1145,6 +1185,7 @@
       "미국 주식",
       "정책"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/finding-beneficiary-stocks-trump-vs-biden/image-20240724002244551.png",
     "published": true,
     "seoTitle": "트럼프 vs 바이든 수혜주 찾기 | 투자 인사이트",
@@ -1169,6 +1210,7 @@
       "신고대행 서비스",
       "세금"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/foreign-stock-capital-gains-tax-filing-guide/image-20250401232735877.png",
     "published": true,
     "seoTitle": "해외주식 양도소득세 신고 대행 서비스 신청 방법 완벽 정리! | 투자 인사이트",
@@ -1206,6 +1248,7 @@
       "VTV",
       "VOE"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/growth-stocks-vs-value-stocks-differences/image-20230815164033478.png",
     "published": true,
     "seoTitle": "성장주와 가치주의 차이점 | 투자 인사이트",
@@ -1230,6 +1273,7 @@
       "권리락",
       "이지바이오"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-bonus-issues-affect-stocks/image-20241130153513688.png",
     "published": true,
     "seoTitle": "무상증자는 주식에 어떤 영향을 미치나 | 투자 인사이트",
@@ -1257,6 +1301,7 @@
       "한화갤러리아",
       "지주사"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-company-splits-affect-stocks/image-20250111234310106.png",
     "published": true,
     "seoTitle": "기업의 분할은 주식에 어떤 영향을 주나? | 투자 인사이트",
@@ -1287,6 +1332,7 @@
       "유증권리",
       "주린이"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-does-rights-offering-affect-stocks/image-20241128215021224.png",
     "published": true,
     "seoTitle": "유상증자는 주식에 어떤 영향을 주나 | 투자 인사이트",
@@ -1322,6 +1368,7 @@
       "IRP",
       "연금저축"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-avoid-comprehensive-taxation-on-financial-income/image-20240515161316831.png",
     "published": true,
     "seoTitle": "금융소득 종합과세 대상자 피하는 방법 | 투자 인사이트",
@@ -1352,6 +1399,7 @@
       "\"9438\"",
       "HTS"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-check-monthly-investment-amount/image-20240808190219954.png",
     "published": true,
     "seoTitle": "월별 투자 금액 확인하는 방법 | 투자 인사이트",
@@ -1379,6 +1427,7 @@
       "미래에셋증권",
       "자동이체"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-check-pension-account-contribution-amount/image-20241130143832966.png",
     "published": true,
     "seoTitle": "연금계좌 납입금액 확인하는 방법 | 투자 인사이트",
@@ -1409,6 +1458,7 @@
       "Gurufocus",
       "WhaleWisdom"
     ],
+    "series": "주식 대가들의 포트폴리오",
     "featuredImage": "/contents/stock/how-to-check-stock-masters-portfolio/image-20240817164838316.png",
     "published": true,
     "seoTitle": "주식 대가들의 포트폴리오 확인하는 방법 | 투자 인사이트",
@@ -1437,6 +1487,7 @@
       "주식매매일지",
       "손익금액"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-check-trading-profit-in-mirae-asset/image-20240601170119600.png",
     "published": true,
     "seoTitle": "미래에셋에서 매매수익률 확인하는 방법 | 투자 인사이트",
@@ -1470,6 +1521,7 @@
       "\"329200\"",
       "\"476800\""
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-get-monthly-rent-every-2-weeks-with-stocks/image-20240616155125176.png",
     "published": true,
     "seoTitle": "주식으로 2주마다 월세 받는 방법 | 투자 인사이트",
@@ -1504,6 +1556,7 @@
       "Non-Farm Payrolls",
       "제조업 구매관리자지수"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-identify-signs-of-economic-recession/image-20240804172910047.png",
     "published": true,
     "seoTitle": "경기침체 징조는 어떻게 판단하나 | 투자 인사이트",
@@ -1538,6 +1591,7 @@
       "MiraeAsset",
       "MiraeAssetSecurities"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-show-trade-history-on-chart/image-20240602163508288.png",
     "published": true,
     "seoTitle": "차트에서 매매내역 표시하는 방법 | 투자 인사이트",
@@ -1567,6 +1621,7 @@
       "단기 금융상품",
       "단기상품"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/how-to-trade-mmf-short-term-products-in-pension-savings/image-20240810230406691.png",
     "published": true,
     "seoTitle": "연금저축에서 MMF 단기 상품 매매하는 방법 | 투자 인사이트",
@@ -1596,6 +1651,7 @@
       "미래에셋증권",
       "Desktop 활용"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/hts-usage-patterns-for-stock-masters/image-20250313234049005.png",
     "published": true,
     "seoTitle": "주식 고수가 되는 HTS 활용법! 필수 화면 & 사용 패턴 정리 | 투자 인사이트",
@@ -1626,6 +1682,7 @@
       "소수몽키",
       "미국주식"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/interest-rate-cut-beneficiary-stocks-and-investment-strategies/image-20240721113122957.png",
     "published": true,
     "seoTitle": "금리인하 수혜주 : 유망 종목과 투자 전략 | 투자 인사이트",
@@ -1655,6 +1712,7 @@
       "배당주",
       "회사채"
     ],
+    "series": null,
     "featuredImage": "https://img.youtube.com/vi/J_ZIXpMo-B8/0.jpg",
     "published": true,
     "seoTitle": "기대수익률에 따른 투자 | 투자 인사이트",
@@ -1680,6 +1738,7 @@
       "etf",
       "채권"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "증권 계좌 종류별로 투자 가능한 항목 정리 | 투자 인사이트",
@@ -1706,6 +1765,7 @@
       "ISA 해지가계산",
       "ISA 계약조회"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/isa-maturity-extension-or-termination-guide/image-20250505213937100.png",
     "published": true,
     "seoTitle": "ISA 만기, 연장할까 해지할까? 꼭 알아야 할 선택 가이드 | 투자 인사이트",
@@ -1738,6 +1798,7 @@
       "중간가 호가",
       "스톱지정가 호가"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/multi-exchange-era-changes-with-nxt-introduction/image-20250303134445935.png",
     "published": true,
     "seoTitle": "복수 거래소 시대 NXT 도입에 따른 변화 | 투자 인사이트",
@@ -1779,6 +1840,7 @@
       "금리인하",
       "하반기"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/q3-domestic-dividend-stocks-summary/image-20240728163412213.png",
     "published": true,
     "seoTitle": "3분기 국내 배당주 정리 | 투자 인사이트",
@@ -1811,6 +1873,7 @@
       "배당 ETF",
       "하반기"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/q3-us-dividend-stocks-of-interest/image-20240731001205299.png",
     "published": true,
     "seoTitle": "3분기 미국 관심 배당주 정리 | 투자 인사이트",
@@ -1845,6 +1908,7 @@
       "실업률",
       "금리인하"
     ],
+    "series": null,
     "featuredImage": "https://img.youtube.com/vi/YRFZ5Y9Bc7k/0.jpg",
     "published": true,
     "seoTitle": "침체, 인플레이션, 국가부채, 양적완화, 빈부격차 상관 관계 | 투자 인사이트",
@@ -1869,6 +1933,7 @@
       "공매도 재개",
       "공매도 금지"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/short-selling-complete-guide/image-20250409002019089.png",
     "published": true,
     "seoTitle": "공매도란? 대차거래부터 개인투자자 영향까지 완벽 정리 | 투자 인사이트",
@@ -1898,6 +1963,7 @@
       "분할매수",
       "통신주"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/sk-telecom-dividend-yield-support/image-20250709130913840.png",
     "published": true,
     "seoTitle": "SK텔레콤 주가 배당수익률로 방어선은 어디일까? | 투자 인사이트",
@@ -1923,6 +1989,7 @@
       "Stanley",
       "Druckenmiller"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/stanley-druckenmillers-investment-advice/image-20240519191634665.png",
     "published": true,
     "seoTitle": "드러캔밀러의 투자 조언 | 투자 인사이트",
@@ -1955,6 +2022,7 @@
       "aftermarket",
       "미국"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "주식 시장 개장시간 정리 | 투자 인사이트",
@@ -1987,6 +2055,7 @@
       "miraeasset",
       "mirae"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/types-of-cma/image-20230318144438415.png",
     "published": true,
     "seoTitle": "CMA의 종류 | 투자 인사이트",
@@ -2013,6 +2082,7 @@
       "금융투자소득세",
       "tax"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "주식 세금 종류 | 투자 인사이트",
@@ -2040,6 +2110,7 @@
       "주식시장분석",
       "투자전략"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "미국 한국 주식시장 연속 상승과 하락은 몇 주까지 가능할까 | 투자 인사이트",
@@ -2069,6 +2140,7 @@
       "MMF",
       "TDF"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "연금저축이란? | 투자 인사이트",
@@ -2100,6 +2172,7 @@
       "신탁계약해지결과보고서",
       "주식소각결정"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/what-is-share-buyback/image-20241227152851515.png",
     "published": true,
     "seoTitle": "자사주 매입이란 | 투자 인사이트",
@@ -2128,6 +2201,7 @@
       "토스 주식모으기",
       "소수점 투자"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/what-is-stock-split/image-20241230180928983.png",
     "published": true,
     "seoTitle": "액면분할이란 | 투자 인사이트",
@@ -2162,6 +2236,7 @@
       "bank",
       "miraeasset"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/where-is-better-for-dollar-exchange-securities-vs-banks/image-20240530235723174.png",
     "published": true,
     "seoTitle": "달러 환전시 증권사 vs 은행권 어디가 좋을까요 | 투자 인사이트",
@@ -2191,6 +2266,7 @@
       "박곰희",
       "박곰희TV"
     ],
+    "series": null,
     "featuredImage": null,
     "published": true,
     "seoTitle": "증권계좌별로 어떤 주식을 매매하면 좋을까? | 투자 인사이트",
@@ -2218,6 +2294,7 @@
       "DART",
       "최대주주"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/who-must-disclose-their-trading-activities/image-20241201225407366.png",
     "published": true,
     "seoTitle": "매매사실을 꼭 공시해야하는 투자자들은 누구인가 | 투자 인사이트",
@@ -2245,6 +2322,7 @@
       "달러 환전",
       "신한은행 제휴"
     ],
+    "series": null,
     "featuredImage": "/contents/stock/withdraw-dollars-from-kakaobank-dollar-box-atm/image-20250302201417929.png",
     "published": true,
     "seoTitle": "카카오뱅크 달러박스 달러 ATM에서 출금하기 | 투자 인사이트",
@@ -2271,6 +2349,7 @@
       "해외투자",
       "ETF투자"
     ],
+    "series": "2024년 2분기 국내, 미국 주간 주도 섹터 정리",
     "featuredImage": "/contents/weekly/2024-june-week2-korea-us-weekly-leading-sector-summary/image-20240609165613250.png",
     "published": true,
     "seoTitle": "2024년 6월 2주차 - 국내, 미국 주간 주도 섹터 정리 | 투자 인사이트",
@@ -2295,6 +2374,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-apr-week1-weekly-stock-sector-trend/image-20250331191333014.png",
     "published": true,
     "seoTitle": "25년 4월 1째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2319,6 +2399,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-apr-week2-weekly-stock-sector-trend/image-20250407101257881.png",
     "published": true,
     "seoTitle": "25년 4월 2째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2344,6 +2425,7 @@
       "구글 시트",
       "주식 주간 정리"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-apr-week3-weekly-stock-sector-trend/image-20250414230939224.png",
     "published": true,
     "seoTitle": "25년 4월 3째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2368,6 +2450,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-feb-week2-weekly-stock-sector-trend/image-20250216213200479.png",
     "published": true,
     "seoTitle": "25년 2월 2째주 주간 주식 정리 - 섹터 및 주식 트렌드 | 투자 인사이트",
@@ -2392,6 +2475,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-mar-week1-weekly-stock-sector-trend/image-20250303144406567.png",
     "published": true,
     "seoTitle": "25년 3월 1째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2416,6 +2500,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-mar-week2-weekly-stock-sector-trend/image-20250309164605684.png",
     "published": true,
     "seoTitle": "25년 3월 2째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2440,6 +2525,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-mar-week3-weekly-stock-sector-trend/image-20250316162510023.png",
     "published": true,
     "seoTitle": "25년 3월 3째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2464,6 +2550,7 @@
       "ETF",
       "구글 시트"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-mar-week4-weekly-stock-sector-trend/image-20250324204721466.png",
     "published": true,
     "seoTitle": "25년 3월 4째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2491,6 +2578,7 @@
       "5월 1째주",
       "증시 동량"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-may-week1-weekly-stock-sector-trend/image-20250505162439397.png",
     "published": true,
     "seoTitle": "25년 5월 1째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2518,6 +2606,7 @@
       "5월 2째주",
       "증시 동량"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-may-week2-weekly-stock-sector-trend/image-20250414230939224.png",
     "published": true,
     "seoTitle": "25년 5월 2째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
@@ -2546,6 +2635,7 @@
       "5월 5주차",
       "증시 동량"
     ],
+    "series": "2025년 주간 주식 정리",
     "featuredImage": "/contents/weekly/2025-may-week5-weekly-stock-sector-trend/image-20250525154619693.png",
     "published": true,
     "seoTitle": "25년 5월 5째주 주간 주식 정리 - 섹터 및 주식 트랜드 | 투자 인사이트",
