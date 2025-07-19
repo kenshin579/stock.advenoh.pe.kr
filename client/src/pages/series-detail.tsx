@@ -101,7 +101,7 @@ export default function SeriesDetailPage() {
             {seriesName}
           </h1>
           <p className="text-gray-600 dark:text-gray-400">
-            {posts.length}개 게시물 • 최근 업데이트: {new Date(sortedPosts[0]?.date).toLocaleDateString('ko-KR')}
+            {posts.length}개 게시물
           </p>
         </div>
 

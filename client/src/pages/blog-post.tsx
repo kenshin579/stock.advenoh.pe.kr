@@ -160,11 +160,6 @@ export default function BlogPostPage() {
                 목록으로 돌아가기
               </Button>
 
-              {/* Series Navigation */}
-              {post.series && (
-                <SeriesNavigation seriesName={post.series} currentSlug={post.slug} />
-              )}
-
               {/* Post header */}
               <header className="mb-8">
                 <div className="flex items-center gap-4 mb-4">
@@ -202,7 +197,12 @@ export default function BlogPostPage() {
                 </div>
               </header>
 
-
+              {/* Series Navigation */}
+              {post.series && (
+                <div className="mb-8">
+                  <SeriesNavigation seriesName={post.series} currentSlug={post.slug} />
+                </div>
+              )}
 
               {/* Mobile Table of Contents */}
               <div className="lg:hidden mb-8">
