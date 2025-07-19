@@ -14,7 +14,11 @@ cp -r public/api/* client/public/api/
 echo "Building frontend for static deployment..."
 npx vite build
 
-# Also copy files to dist/ for deployment compatibility
+# Copy API files directly to dist/ as well (some deployment systems use dist/ as root)
+echo "Copying API data to dist/ root for deployment compatibility..."
+cp -r client/public/api/ dist/api/
+
+# Also copy all files to dist/ for deployment compatibility
 echo "Copying files to dist/ for deployment..."
 cp -r dist/public/* dist/
 
