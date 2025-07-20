@@ -94,17 +94,7 @@ export default function Home() {
     }, 300);
   }, [isLoadingMore, hasMore]);
 
-  // Infinite scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.innerHeight + document.documentElement.scrollTop >= document.documentElement.offsetHeight - 1000) {
-        loadMore();
-      }
-    };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [loadMore]);
 
   const baseUrl = getBaseUrl();
   const structuredData = generateBlogStructuredData(baseUrl);
@@ -176,16 +166,20 @@ export default function Home() {
 
               {hasMore && (
                 <div className="text-center mt-12">
-                  {isLoadingMore ? (
-                    <div className="flex items-center justify-center">
-                      <Loader2 className="w-6 h-6 animate-spin" />
-                      <span className="ml-2 text-muted-foreground">더 많은 글을 불러오는 중...</span>
-                    </div>
-                  ) : (
-                    <div className="text-muted-foreground">
-                      아래로 스크롤하여 더 많은 글을 확인하세요
-                    </div>
-                  )}
+                  <button
+                    onClick={loadMore}
+                    disabled={isLoadingMore}
+                    className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 font-medium shadow-md hover:shadow-lg"
+                  >
+                    {isLoadingMore ? (
+                      <div className="flex items-center">
+                        <Loader2 className="w-5 h-5 animate-spin mr-2" />
+                        더 많은 글을 불러오는 중...
+                      </div>
+                    ) : (
+                      '더 보기'
+                    )}
+                  </button>
                 </div>
               )}
             </>
