@@ -1,4 +1,4 @@
 [deployment]
-deploymentTarget = "static"
-build = ["./build-static.sh"]
-publicDir = "dist/public"
+deploymentTarget = "autoscale"
+run = "npm run start"
+build = ["npm", "run", "build"]
