@@ -199,6 +199,10 @@ export default function BlogPostPage() {
                     <Eye className="w-4 h-4" />
                     <span>{post.views || 0}회 조회</span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    <Heart className="w-4 h-4" />
+                    <span>{post.likes || 0}개 좋아요</span>
+                  </div>
                 </div>
               </header>
 
