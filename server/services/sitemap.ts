@@ -1,7 +1,7 @@
 import { BlogPost } from "@shared/schema";
 
 export function generateSitemap(posts: BlogPost[]): string {
-  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'localhost:5000';
+  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'stock.advenoh.pe.kr';
   const siteUrl = `https://${baseUrl}`;
   
   const staticPages = [
