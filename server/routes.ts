@@ -188,11 +188,15 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const { id } = req.params;
       const validatedData = insertCommentSchema.parse({
         ...req.body,
-        postId: parseInt(id)
+        postId: parseInt(id),
+        // Auto-approve comments in development environment
+        approved: process.env.NODE_ENV !== 'production'
       });
       const comment = await storage.addComment(validatedData);
       res.status(201).json({ 
-        message: "Comment submitted successfully and is pending approval",
+        message: process.env.NODE_ENV !== 'production' 
+          ? "Comment submitted successfully" 
+          : "Comment submitted successfully and is pending approval",
         comment 
       });
     } catch (error) {
