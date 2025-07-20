@@ -39,7 +39,8 @@ export default function BlogPostPage() {
 
   const likeMutation = useMutation({
     mutationFn: async (postId: number) => {
-      return apiRequest("POST", `/api/blog-posts/${postId}/like`, {});
+      const response = await apiRequest("POST", `/api/blog-posts/${postId}/like`, {});
+      return response.json();
     },
     onSuccess: (data, postId) => {
       // Update the specific post cache with new like count
@@ -58,7 +59,8 @@ export default function BlogPostPage() {
         description: "이 글이 마음에 드시는군요!",
       });
     },
-    onError: () => {
+    onError: (error) => {
+      console.error("Like error:", error);
       toast({
         title: "오류 발생",
         description: "좋아요 처리 중 오류가 발생했습니다.",
