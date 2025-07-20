@@ -41,8 +41,18 @@ export default function BlogPostPage() {
     mutationFn: async (postId: number) => {
       return apiRequest("POST", `/api/blog-posts/${postId}/like`, {});
     },
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['/api/blog-posts', slug] });
+    onSuccess: (data, postId) => {
+      // Update the specific post cache with new like count
+      queryClient.setQueryData(['/api/blog-posts', slug], (oldPost: BlogPost | undefined) => {
+        if (oldPost) {
+          return { ...oldPost, likes: data.likes };
+        }
+        return oldPost;
+      });
+      
+      // Also invalidate related queries
+      queryClient.invalidateQueries({ queryKey: ['/api/blog-posts'] });
+      
       toast({
         title: "좋아요!",
         description: "이 글이 마음에 드시는군요!",
