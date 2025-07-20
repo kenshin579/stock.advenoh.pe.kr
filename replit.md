@@ -83,6 +83,12 @@ The application is configured for Replit **Static** deployment:
 
 ## Recent Changes
 
+### July 20, 2025
+- **SEO Domain Configuration**: Updated RSS, sitemap, and robots.txt generation to use production domain
+- **Production Domain Support**: RSS feed, sitemap.xml, and robots.txt now use `REPLIT_DOMAINS` environment variable for production deployment
+- **Fallback Domain**: Set fallback domain to `stock.advenoh.pe.kr` for cases where `REPLIT_DOMAINS` is not configured
+- **Series in Sitemap**: Added `/series` page to sitemap for better SEO coverage of series functionality
+
 ### July 19, 2025
 - **Series Feature Complete**: Implemented comprehensive series functionality for blog content organization
 - **Series Navigation**: Added series icon in header next to dark mode toggle, linking to series overview page

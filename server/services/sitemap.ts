@@ -1,12 +1,13 @@
 import { BlogPost } from "@shared/schema";
 
 export function generateSitemap(posts: BlogPost[]): string {
-  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'localhost:5000';
+  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'stock.advenoh.pe.kr';
   const siteUrl = `https://${baseUrl}`;
   
   const staticPages = [
     { url: siteUrl, changefreq: 'daily', priority: '1.0' },
     { url: `${siteUrl}/admin`, changefreq: 'weekly', priority: '0.5' },
+    { url: `${siteUrl}/series`, changefreq: 'weekly', priority: '0.7' },
   ];
   
   const postUrls = posts.map(post => ({
