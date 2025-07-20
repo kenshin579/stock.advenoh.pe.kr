@@ -1,5 +1,5 @@
 export function generateRobotsTxt(): string {
-  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'localhost:5000';
+  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'stock.advenoh.pe.kr';
   const siteUrl = `https://${baseUrl}`;
   
   return `User-agent: *
