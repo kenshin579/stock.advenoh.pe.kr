@@ -67,6 +67,7 @@ export const insertNewsletterSubscriberSchema = createInsertSchema(newsletterSub
 export const insertCommentSchema = createInsertSchema(comments).omit({
   id: true,
   createdAt: true,
+  approved: true,
 });
 
 export type InsertUser = z.infer<typeof insertUserSchema>;
