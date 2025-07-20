@@ -39,12 +39,24 @@ export default function BlogPostPage() {
 
   const likeMutation = useMutation({
     mutationFn: async (postId: number) => {
-      const response = await apiRequest("POST", `/api/blog-posts/${postId}/like`, {});
-      return response.json();
+      console.log("🔴 Starting like mutation for post ID:", postId);
+      try {
+        const response = await apiRequest("POST", `/api/blog-posts/${postId}/like`, {});
+        console.log("🔴 API request successful, response:", response);
+        const jsonData = await response.json();
+        console.log("🔴 Parsed JSON data:", jsonData);
+        return jsonData;
+      } catch (error) {
+        console.error("🔴 Error in mutationFn:", error);
+        throw error;
+      }
     },
     onSuccess: (data, postId) => {
+      console.log("🔴 Mutation success! Data:", data, "Post ID:", postId);
+      
       // Update the specific post cache with new like count
       queryClient.setQueryData(['/api/blog-posts', slug], (oldPost: BlogPost | undefined) => {
+        console.log("🔴 Updating cache, oldPost:", oldPost, "new likes:", data.likes);
         if (oldPost) {
           return { ...oldPost, likes: data.likes };
         }
@@ -60,7 +72,7 @@ export default function BlogPostPage() {
       });
     },
     onError: (error) => {
-      console.error("Like error:", error);
+      console.error("🔴 Mutation error:", error);
       toast({
         title: "오류 발생",
         description: "좋아요 처리 중 오류가 발생했습니다.",
@@ -70,8 +82,13 @@ export default function BlogPostPage() {
   });
 
   const handleLike = () => {
+    console.log("🔴 Like button clicked!");
     if (post) {
+      console.log("🔴 Post exists, ID:", post.id);
+      console.log("🔴 Calling likeMutation.mutate...");
       likeMutation.mutate(post.id);
+    } else {
+      console.log("🔴 No post available for like");
     }
   };
 
