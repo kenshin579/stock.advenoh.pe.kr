@@ -35,16 +35,6 @@ export const newsletterSubscribers = pgTable("newsletter_subscribers", {
   active: boolean("active").default(true),
 });
 
-export const comments = pgTable("comments", {
-  id: serial("id").primaryKey(),
-  postId: integer("post_id").notNull().references(() => blogPosts.id, { onDelete: "cascade" }),
-  authorName: text("author_name").notNull(),
-  authorEmail: text("author_email").notNull(),
-  content: text("content").notNull(),
-  createdAt: timestamp("created_at").defaultNow(),
-  approved: boolean("approved").default(false),
-});
-
 export const insertUserSchema = createInsertSchema(users).pick({
   username: true,
   password: true,
@@ -64,12 +54,6 @@ export const insertNewsletterSubscriberSchema = createInsertSchema(newsletterSub
   active: true,
 });
 
-export const insertCommentSchema = createInsertSchema(comments).omit({
-  id: true,
-  createdAt: true,
-  approved: true,
-});
-
 export type InsertUser = z.infer<typeof insertUserSchema>;
 export type User = typeof users.$inferSelect;
 
@@ -78,6 +62,3 @@ export type BlogPost = typeof blogPosts.$inferSelect;
 
 export type InsertNewsletterSubscriber = z.infer<typeof insertNewsletterSubscriberSchema>;
 export type NewsletterSubscriber = typeof newsletterSubscribers.$inferSelect;
-
-export type InsertComment = z.infer<typeof insertCommentSchema>;
-export type Comment = typeof comments.$inferSelect;

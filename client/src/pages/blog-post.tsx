@@ -6,7 +6,6 @@ import { SEOHead } from "@/components/seo-head";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { TableOfContents } from "@/components/table-of-contents";
 import { SeriesNavigation } from "@/components/series-navigation";
-import CommentsSection from "@/components/comments-section";
 import profileImage from "@assets/profile.jpeg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -258,9 +257,6 @@ export default function BlogPostPage() {
                   </div>
                 </div>
               </footer>
-              
-              {/* Comments Section */}
-              <CommentsSection postId={post.id} />
             </article>
           </div>
 

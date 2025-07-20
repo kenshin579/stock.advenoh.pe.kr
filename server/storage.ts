@@ -1,4 +1,4 @@
-import { users, blogPosts, newsletterSubscribers, comments, type User, type InsertUser, type BlogPost, type InsertBlogPost, type NewsletterSubscriber, type InsertNewsletterSubscriber, type Comment, type InsertComment } from "@shared/schema";
+import { users, blogPosts, newsletterSubscribers, type User, type InsertUser, type BlogPost, type InsertBlogPost, type NewsletterSubscriber, type InsertNewsletterSubscriber } from "@shared/schema";
 
 export interface IStorage {
   getUser(id: number): Promise<User | undefined>;
@@ -17,32 +17,23 @@ export interface IStorage {
   getNewsletterSubscribers(): Promise<NewsletterSubscriber[]>;
   addNewsletterSubscriber(subscriber: InsertNewsletterSubscriber): Promise<NewsletterSubscriber>;
   removeNewsletterSubscriber(email: string): Promise<void>;
-
-  getComments(postId: number): Promise<Comment[]>;
-  addComment(comment: InsertComment): Promise<Comment>;
-  approveComment(id: number): Promise<void>;
-  deleteComment(id: number): Promise<void>;
 }
 
 export class MemStorage implements IStorage {
   private users: Map<number, User>;
   private blogPosts: Map<number, BlogPost>;
   private newsletterSubscribers: Map<number, NewsletterSubscriber>;
-  private comments: Map<number, Comment>;
   private userIdCounter: number;
   private blogPostIdCounter: number;
   private subscriberIdCounter: number;
-  private commentIdCounter: number;
 
   constructor() {
     this.users = new Map();
     this.blogPosts = new Map();
     this.newsletterSubscribers = new Map();
-    this.comments = new Map();
     this.userIdCounter = 1;
     this.blogPostIdCounter = 1;
     this.subscriberIdCounter = 1;
-    this.commentIdCounter = 1;
   }
 
 
@@ -94,7 +85,6 @@ export class MemStorage implements IStorage {
       updatedAt: now,
       published: insertPost.published ?? false,
       tags: insertPost.tags ?? [],
-      series: insertPost.series ?? null,
       featuredImage: insertPost.featuredImage ?? null,
       seoTitle: insertPost.seoTitle ?? null,
       seoDescription: insertPost.seoDescription ?? null,
@@ -161,36 +151,6 @@ export class MemStorage implements IStorage {
     if (subscriber) {
       this.newsletterSubscribers.delete(subscriber.id);
     }
-  }
-
-  async getComments(postId: number): Promise<Comment[]> {
-    return Array.from(this.comments.values())
-      .filter(comment => comment.postId === postId && comment.approved)
-      .sort((a, b) => new Date(b.createdAt!).getTime() - new Date(a.createdAt!).getTime());
-  }
-
-  async addComment(insertComment: InsertComment): Promise<Comment> {
-    const id = this.commentIdCounter++;
-    const comment: Comment = {
-      ...insertComment,
-      id,
-      createdAt: new Date(),
-      approved: false, // Comments need approval by default
-    };
-    this.comments.set(id, comment);
-    return comment;
-  }
-
-  async approveComment(id: number): Promise<void> {
-    const comment = this.comments.get(id);
-    if (comment) {
-      comment.approved = true;
-      this.comments.set(id, comment);
-    }
-  }
-
-  async deleteComment(id: number): Promise<void> {
-    this.comments.delete(id);
   }
 
   clearBlogPosts(): void {
