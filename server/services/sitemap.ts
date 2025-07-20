@@ -1,7 +1,10 @@
 import { BlogPost } from "@shared/schema";
 
 export function generateSitemap(posts: BlogPost[]): string {
-  const baseUrl = process.env.REPLIT_DOMAINS?.split(',')[0] || 'stock.advenoh.pe.kr';
+  // Prioritize custom domain over replit.app domain
+  const domains = process.env.REPLIT_DOMAINS?.split(',') || [];
+  const customDomain = domains.find(domain => !domain.includes('.replit.app'));
+  const baseUrl = customDomain || 'stock.advenoh.pe.kr';
   const siteUrl = `https://${baseUrl}`;
   
   const staticPages = [

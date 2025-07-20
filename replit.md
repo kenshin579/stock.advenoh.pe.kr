@@ -85,7 +85,9 @@ The application is configured for Replit **Static** deployment:
 
 ### July 20, 2025
 - **SEO Domain Configuration**: Updated RSS, sitemap, and robots.txt generation to use production domain
-- **Production Domain Support**: RSS feed, sitemap.xml, and robots.txt now use `REPLIT_DOMAINS` environment variable for production deployment
+- **Custom Domain Priority**: Fixed domain selection to prioritize custom linked domains over `.replit.app` domains
+- **Production Domain Support**: RSS feed, sitemap.xml, and robots.txt now automatically use `stock.advenoh.pe.kr` in production
+- **Smart Domain Detection**: System filters out `.replit.app` domains from `REPLIT_DOMAINS` to find custom domains
 - **Fallback Domain**: Set fallback domain to `stock.advenoh.pe.kr` for cases where `REPLIT_DOMAINS` is not configured
 - **Series in Sitemap**: Added `/series` page to sitemap for better SEO coverage of series functionality
 
