@@ -1,5 +1,5 @@
 import { Link } from "wouter";
-import { Calendar } from "lucide-react";
+import { Calendar, Heart, Eye } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
@@ -74,7 +74,9 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         <p className="text-muted-foreground mb-4 line-clamp-3">
           {post.excerpt}
         </p>
-        <div className="flex items-center justify-between text-sm text-muted-foreground">
+        
+        {/* Author and date info */}
+        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
           <div className="flex items-center space-x-2">
             <Avatar className="w-6 h-6">
               <AvatarImage src={profileImage} alt="Frank" />
@@ -86,6 +88,26 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
             <Calendar className="w-4 h-4" />
             <span>{new Date(post.createdAt!).toLocaleDateString('ko-KR')}</span>
           </div>
+        </div>
+
+        {/* Engagement metrics */}
+        <div className="flex items-center justify-between text-sm text-muted-foreground border-t pt-3">
+          <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-1">
+              <Heart className="w-4 h-4" />
+              <span>{post.likes || 0}</span>
+            </div>
+            <div className="flex items-center space-x-1">
+              <Eye className="w-4 h-4" />
+              <span>{post.views || 0}</span>
+            </div>
+          </div>
+          <Link
+            href={`/blog/${post.slug}`}
+            className="text-primary hover:text-primary/80 transition-colors font-medium"
+          >
+            자세히 보기 →
+          </Link>
         </div>
       </CardContent>
     </Card>
