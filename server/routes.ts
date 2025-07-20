@@ -3,7 +3,7 @@ import express from "express";
 import { createServer, type Server } from "http";
 import { z } from "zod";
 import { storage } from "./storage";
-import { insertBlogPostSchema, insertNewsletterSubscriberSchema } from "@shared/schema";
+import { insertBlogPostSchema, insertNewsletterSubscriberSchema, insertCommentSchema } from "@shared/schema";
 import { generateRssFeed } from "./services/rss";
 import { generateSitemap } from "./services/sitemap";
 import { generateRobotsTxt } from "./services/robots";
@@ -169,6 +169,57 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.json({ likes: post?.likes || 0 });
     } catch (error) {
       res.status(500).json({ message: "Failed to like blog post" });
+    }
+  });
+
+  // Comments routes
+  app.get("/api/blog-posts/:id/comments", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const comments = await storage.getComments(parseInt(id));
+      res.json(comments);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch comments" });
+    }
+  });
+
+  app.post("/api/blog-posts/:id/comments", async (req, res) => {
+    try {
+      const { id } = req.params;
+      const validatedData = insertCommentSchema.parse({
+        ...req.body,
+        postId: parseInt(id)
+      });
+      const comment = await storage.addComment(validatedData);
+      res.status(201).json({ 
+        message: "Comment submitted successfully and is pending approval",
+        comment 
+      });
+    } catch (error) {
+      if (error instanceof z.ZodError) {
+        return res.status(400).json({ message: "Invalid comment data", errors: error.errors });
+      }
+      res.status(500).json({ message: "Failed to submit comment" });
+    }
+  });
+
+  app.put("/api/comments/:id/approve", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.approveComment(parseInt(id));
+      res.json({ message: "Comment approved successfully" });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to approve comment" });
+    }
+  });
+
+  app.delete("/api/comments/:id", async (req, res) => {
+    try {
+      const { id } = req.params;
+      await storage.deleteComment(parseInt(id));
+      res.status(204).send();
+    } catch (error) {
+      res.status(500).json({ message: "Failed to delete comment" });
     }
   });
 
