@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { BlogPost } from "@shared/schema";
 import { getCoverImage } from "@/lib/image-utils";
+import profileImage from "@assets/profile.jpeg";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -76,7 +77,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         <div className="flex items-center justify-between text-sm text-muted-foreground">
           <div className="flex items-center space-x-2">
             <Avatar className="w-6 h-6">
-              <AvatarImage src="/profile.jpeg" alt="Frank" />
+              <AvatarImage src={profileImage} alt="Frank" />
               <AvatarFallback>F</AvatarFallback>
             </Avatar>
             <span>Frank</span>
