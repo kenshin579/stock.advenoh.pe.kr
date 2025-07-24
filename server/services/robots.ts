@@ -9,7 +9,7 @@ export function generateRobotsTxt(): string {
 Allow: /
 Disallow: /admin/
 
-Sitemap: ${siteUrl}/api/sitemap.xml
+Sitemap: ${siteUrl}/sitemap.xml
 
 # Investment Insights Blog
 # Professional financial blog about stocks, ETFs, bonds, and funds`;

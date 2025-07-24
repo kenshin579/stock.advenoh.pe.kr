@@ -197,7 +197,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // RSS feed
-  app.get("/api/rss", async (req, res) => {
+  app.get("/rss.xml", async (req, res) => {
     try {
       const posts = await storage.getBlogPosts(true);
       const rss = generateRssFeed(posts);
@@ -209,7 +209,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
   });
 
   // Sitemap
-  app.get("/api/sitemap.xml", async (req, res) => {
+  app.get("/sitemap.xml", async (req, res) => {
     try {
       const posts = await storage.getBlogPosts(true);
       const sitemap = generateSitemap(posts);

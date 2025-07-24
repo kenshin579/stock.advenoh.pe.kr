@@ -76,12 +76,12 @@ export function Footer() {
             <ul className="space-y-2">
 
               <li>
-                <a href="/api/rss" className="text-gray-400 hover:text-white transition-colors">
+                <a href="/rss.xml" className="text-gray-400 hover:text-white transition-colors">
                   RSS
                 </a>
               </li>
               <li>
-                <a href="/api/sitemap.xml" className="text-gray-400 hover:text-white transition-colors">
+                <a href="/sitemap.xml" className="text-gray-400 hover:text-white transition-colors">
                   사이트맵
                 </a>
               </li>
