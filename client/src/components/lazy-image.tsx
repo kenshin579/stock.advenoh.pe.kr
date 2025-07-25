@@ -144,11 +144,7 @@ export function LazyImage({
       {/* Placeholder */}
       {!isLoaded && !hasError && placeholder === 'blur' && (
         <div 
-          className="absolute inset-0 bg-gradient-to-br from-gray-200 to-gray-300 dark:from-gray-700 dark:to-gray-800 animate-pulse"
-          style={{
-            backgroundImage: 'linear-gradient(45deg, transparent 25%, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.1) 50%, transparent 50%, transparent 75%, rgba(255,255,255,0.1) 75%)',
-            backgroundSize: '20px 20px'
-          }}
+          className="absolute inset-0 bg-gray-100 dark:bg-gray-800"
         />
       )}
 

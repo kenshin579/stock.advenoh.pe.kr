@@ -192,8 +192,39 @@ export function validateImageAccessibility(img: HTMLImageElement): {
   };
 }
 
-// Get default cover image path
-export function getCoverImage(category?: string): string {
-  // Return default investment-related cover image
+// Get cover image for blog post
+export function getCoverImage(post?: { featuredImage?: string | null; category?: string; content?: string }): string {
+  // Use featured image if available
+  if (post?.featuredImage) {
+    return post.featuredImage;
+  }
+  
+  // Extract first image from content if available
+  if (post?.content) {
+    const images = extractImagesFromMarkdown(post.content);
+    if (images.length > 0) {
+      return images[0].src;
+    }
+  }
+  
+  // Return category-specific default image or general default
+  if (post?.category) {
+    switch (post.category.toLowerCase()) {
+      case 'stock':
+        return '/attached_assets/profile.jpeg';
+      case 'etf':
+        return '/attached_assets/profile.jpeg';
+      case 'bonds':
+        return '/attached_assets/profile.jpeg';
+      case 'funds':
+        return '/attached_assets/profile.jpeg';
+      case 'weekly':
+        return '/attached_assets/profile.jpeg';
+      default:
+        return '/attached_assets/profile.jpeg';
+    }
+  }
+  
+  // Fallback to default investment image
   return '/attached_assets/profile.jpeg';
 }
