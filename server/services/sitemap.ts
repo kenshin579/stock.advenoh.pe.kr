@@ -7,18 +7,27 @@ export function generateSitemap(posts: BlogPost[]): string {
   const baseUrl = customDomain || 'stock.advenoh.pe.kr';
   const siteUrl = `https://${baseUrl}`;
   
+  // Calculate date threshold for recent posts (last 30 days)
+  const thirtyDaysAgo = new Date();
+  thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+  
   const staticPages = [
     { url: siteUrl, changefreq: 'daily', priority: '1.0' },
-    { url: `${siteUrl}/admin`, changefreq: 'weekly', priority: '0.5' },
+    { url: `${siteUrl}/admin`, changefreq: 'monthly', priority: '0.5' },
     { url: `${siteUrl}/series`, changefreq: 'weekly', priority: '0.7' },
   ];
   
-  const postUrls = posts.map(post => ({
-    url: `${siteUrl}/blog/${post.slug}`,
-    changefreq: 'weekly',
-    priority: '0.8',
-    lastmod: new Date(post.updatedAt!).toISOString().split('T')[0]
-  }));
+  const postUrls = posts.map(post => {
+    const postDate = new Date(post.createdAt || post.updatedAt || 0);
+    const isRecent = postDate > thirtyDaysAgo;
+    
+    return {
+      url: `${siteUrl}/blog/${post.slug}`,
+      changefreq: 'weekly',
+      priority: isRecent ? '0.9' : '0.8', // Higher priority for recent posts
+      lastmod: new Date(post.updatedAt!).toISOString().split('T')[0]
+    };
+  });
   
   const allUrls = [...staticPages, ...postUrls];
   
@@ -27,7 +36,7 @@ export function generateSitemap(posts: BlogPost[]): string {
       <loc>${page.url}</loc>
       <changefreq>${page.changefreq}</changefreq>
       <priority>${page.priority}</priority>
-      ${page.lastmod ? `<lastmod>${page.lastmod}</lastmod>` : ''}
+      ${'lastmod' in page && page.lastmod ? `<lastmod>${page.lastmod}</lastmod>` : ''}
     </url>
   `).join('');
 

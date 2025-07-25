@@ -10,6 +10,31 @@ interface SEOHeadProps {
   ogUrl?: string;
   canonicalUrl?: string;
   structuredData?: object;
+  author?: string;
+  robots?: string;
+}
+
+// Helper function to truncate description to optimal length
+function truncateDescription(text: string, maxLength: number = 160): string {
+  if (text.length <= maxLength) return text;
+  
+  // Try to cut at the last complete sentence within limit
+  const truncated = text.substring(0, maxLength);
+  const lastPeriod = truncated.lastIndexOf('.');
+  const lastSpace = truncated.lastIndexOf(' ');
+  
+  // If we find a period within reasonable distance, cut there
+  if (lastPeriod > maxLength - 30) {
+    return text.substring(0, lastPeriod + 1);
+  }
+  
+  // Otherwise cut at last space and add ellipsis
+  if (lastSpace > 0) {
+    return text.substring(0, lastSpace) + '...';
+  }
+  
+  // Fallback: hard cut with ellipsis
+  return truncated + '...';
 }
 
 export function SEOHead({
@@ -22,6 +47,8 @@ export function SEOHead({
   ogUrl,
   canonicalUrl,
   structuredData,
+  author = "투자분석가",
+  robots = "index, follow",
 }: SEOHeadProps) {
   useEffect(() => {
     // Set document title
@@ -45,15 +72,22 @@ export function SEOHead({
       meta.setAttribute("content", content);
     };
 
+    // Truncate description to optimal length
+    const optimizedDescription = truncateDescription(description);
+
     // Set basic meta tags
-    setMetaTag("description", description);
+    setMetaTag("description", optimizedDescription);
+    setMetaTag("robots", robots);
+    setMetaTag("author", author);
+    setMetaTag("viewport", "width=device-width, initial-scale=1.0");
+    
     if (keywords) {
       setMetaTag("keywords", keywords);
     }
 
     // Set Open Graph tags
     setMetaTag("og:title", ogTitle || title, true);
-    setMetaTag("og:description", ogDescription || description, true);
+    setMetaTag("og:description", ogDescription || optimizedDescription, true);
     setMetaTag("og:type", "article", true);
     
     if (ogImage) {
@@ -67,7 +101,7 @@ export function SEOHead({
     // Set Twitter Card tags
     setMetaTag("twitter:card", "summary_large_image");
     setMetaTag("twitter:title", ogTitle || title);
-    setMetaTag("twitter:description", ogDescription || description);
+    setMetaTag("twitter:description", ogDescription || optimizedDescription);
     
     if (ogImage) {
       setMetaTag("twitter:image", ogImage);
@@ -86,7 +120,7 @@ export function SEOHead({
 
     // Set structured data
     if (structuredData) {
-      let script = document.querySelector('script[type="application/ld+json"]');
+      let script = document.querySelector('script[type="application/ld+json"]') as HTMLScriptElement;
       if (!script) {
         script = document.createElement("script");
         script.type = "application/ld+json";

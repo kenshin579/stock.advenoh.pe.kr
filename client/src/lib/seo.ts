@@ -1,58 +1,45 @@
 import { BlogPost } from '@shared/schema';
+import { generateArticleSchema, generateBlogSchema, generateBreadcrumbSchema, generateWebSiteSchema, combineSchemas } from './structured-data';
 
+// Legacy function for backward compatibility
 export function generateStructuredData(post: BlogPost, baseUrl: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.excerpt,
-    "image": post.featuredImage || `${baseUrl}/default-og-image.jpg`,
-    "author": {
-      "@type": "Person",
-      "name": "투자분석가"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "투자 인사이트 블로그",
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${baseUrl}/logo.png`
-      }
-    },
-    "datePublished": post.createdAt,
-    "dateModified": post.updatedAt,
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `${baseUrl}/blog/${post.slug}`
-    },
-    "keywords": post.tags?.join(', ') || '',
-    "articleSection": post.category,
-    "wordCount": post.content.split(/\s+/).length,
-    "inLanguage": "ko-KR"
-  };
+  return generateArticleSchema(post, baseUrl);
 }
 
+// Legacy function for backward compatibility  
 export function generateBlogStructuredData(baseUrl: string) {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Blog",
-    "name": "투자 인사이트 블로그",
-    "description": "국내외 주식, ETF, 채권, 펀드에 대한 전문적인 투자 정보와 분석",
-    "url": baseUrl,
-    "inLanguage": "ko-KR",
-    "author": {
-      "@type": "Person",
-      "name": "투자분석가"
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "투자 인사이트 블로그",
-      "logo": {
-        "@type": "ImageObject",
-        "url": `${baseUrl}/logo.png`
-      }
-    }
+  return generateBlogSchema(baseUrl);
+}
+
+// Enhanced function that combines multiple schemas for better SEO
+export function generateCombinedStructuredData(post: BlogPost, baseUrl: string, breadcrumbs?: Array<{name: string, url?: string}>) {
+  return [
+    generateArticleSchema(post, baseUrl),
+    generateWebSiteSchema(baseUrl),
+    ...(breadcrumbs ? [generateBreadcrumbSchema(breadcrumbs, baseUrl)] : [])
+  ];
+}
+
+// Helper function to generate breadcrumbs for blog posts
+export function generateBlogPostBreadcrumbs(post: BlogPost, baseUrl: string) {
+  return [
+    { name: '홈', url: baseUrl },
+    { name: getCategoryDisplayName(post.category), url: `${baseUrl}/?category=${post.category}` },
+    { name: post.title }
+  ];
+}
+
+// Helper function to get Korean category names
+function getCategoryDisplayName(category: string): string {
+  const categoryMap: Record<string, string> = {
+    'Stock': '주식',
+    'ETF': 'ETF',
+    'bonds': '채권',
+    'funds': '펀드',
+    'analysis': '분석'
   };
+  
+  return categoryMap[category] || category;
 }
 
 export function getBaseUrl(): string {

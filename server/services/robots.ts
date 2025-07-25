@@ -8,8 +8,14 @@ export function generateRobotsTxt(): string {
   return `User-agent: *
 Allow: /
 Disallow: /admin/
+Disallow: /api/
+Disallow: /_next/
+Crawl-delay: 1
 
 Sitemap: ${siteUrl}/sitemap.xml
+
+# Host
+Host: ${siteUrl}
 
 # Investment Insights Blog
 # Professional financial blog about stocks, ETFs, bonds, and funds`;
