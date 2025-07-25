@@ -84,6 +84,19 @@ The application is configured for Replit **Static** deployment:
 ## Recent Changes
 
 ### July 25, 2025
+- **Internal Link Structure Enhancement Complete**: Comprehensive internal linking system for improved navigation and SEO
+- **Related Posts System**: Implemented intelligent related post recommendations based on series (50pts), category (20pts), and tags (10pts per match)
+- **Breadcrumb Navigation**: Added hierarchical navigation showing Home > Category > Series > Post path for better user orientation
+- **Tag Cloud Implementation**: Created interactive tag cloud on homepage with 30 most popular tags, click-to-filter functionality
+- **Enhanced Series Navigation**: Upgraded series component with previous/next post navigation and optional full series listing
+- **Tag Filtering System**: Added client-side tag filtering with URL parameter support and appropriate empty states
+- **Static Data Generation**: Updated build process to include series metadata for 6 series across 90 posts
+- **Component Architecture**: Created 4 new reusable components (RelatedPosts, Breadcrumb, TagCloud, enhanced SeriesNavigation)
+- **SEO Enhancement Phase 2 Complete**: Advanced image SEO optimization implementation
+- **Image Utilities Enhancement**: Created contextual alt tag generation with investment-specific terminology
+- **Lazy Loading System**: Implemented advanced image lazy loading with WebP support and accessibility features
+- **Image Sitemap Generation**: Added `/image-sitemap.xml` endpoint with automatic image extraction from blog content
+- **robots.txt Image Integration**: Updated robots.txt to include image sitemap for enhanced search engine discovery
 - **SEO Enhancement Phase 1 Complete**: Comprehensive SEO improvements based on documentation analysis
 - **Meta Tag Optimization**: Added robots, author, viewport meta tags with automatic description truncation (150-160 chars)
 - **robots.txt Enhancement**: Added crawl-delay, additional directory blocking (/api/, /_next/), and host information
@@ -92,11 +105,6 @@ The application is configured for Replit **Static** deployment:
 - **changefreq Optimization**: Updated sitemap frequencies (homepage: daily, admin: monthly, posts: weekly)
 - **SEO Component Enhancement**: Enhanced SEOHead component with intelligent description truncation and additional meta tags
 - **Author Information Update**: Changed author information from "투자분석가" to "Frank Oh" in both meta tags and structured data
-- **SEO Enhancement Phase 2 Complete**: Advanced image SEO optimization implementation
-- **Image Utilities Enhancement**: Created contextual alt tag generation with investment-specific terminology
-- **Lazy Loading System**: Implemented advanced image lazy loading with WebP support and accessibility features
-- **Image Sitemap Generation**: Added `/image-sitemap.xml` endpoint with automatic image extraction from blog content
-- **robots.txt Image Integration**: Updated robots.txt to include image sitemap for enhanced search engine discovery
 
 ### July 20, 2025
 - **SEO Domain Configuration**: Updated RSS, sitemap, and robots.txt generation to use production domain

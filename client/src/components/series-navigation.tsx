@@ -22,9 +22,11 @@ export function SeriesNavigation({
   showAllPosts = false 
 }: SeriesNavigationProps) {
   // Sort posts by date (newest first)
-  const sortedPosts = [...seriesPosts].sort((a, b) => 
-    new Date(b.date).getTime() - new Date(a.date).getTime()
-  );
+  const sortedPosts = Array.isArray(seriesPosts) 
+    ? [...seriesPosts].sort((a, b) => 
+        new Date(b.date).getTime() - new Date(a.date).getTime()
+      )
+    : [];
   
   const currentIndex = sortedPosts.findIndex(post => post.slug === currentPostSlug);
   const currentPost = sortedPosts[currentIndex];

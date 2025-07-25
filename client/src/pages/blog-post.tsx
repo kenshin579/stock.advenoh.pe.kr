@@ -52,6 +52,17 @@ export default function BlogPostPage() {
     },
   });
 
+  // Get series posts if current post belongs to a series
+  const seriesPosts = post?.series && allPosts 
+    ? allPosts
+        .filter(p => p.series === post.series)
+        .map(p => ({
+          title: p.title,
+          slug: p.slug,
+          date: p.date || p.createdAt
+        }))
+    : [];
+
   const likeMutation = useMutation({
     mutationFn: async (postId: number) => {
       const response = await apiRequest("POST", `/api/blog-posts/${postId}/like`, {});
@@ -239,9 +250,13 @@ export default function BlogPostPage() {
               </header>
 
               {/* Series Navigation */}
-              {post.series && (
+              {post.series && seriesPosts.length > 0 && (
                 <div className="mb-8">
-                  <SeriesNavigation seriesName={post.series} currentSlug={post.slug} />
+                  <SeriesNavigation 
+                    seriesName={post.series} 
+                    currentPostSlug={post.slug}
+                    seriesPosts={seriesPosts}
+                  />
                 </div>
               )}
 
