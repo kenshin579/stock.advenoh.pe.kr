@@ -6,16 +6,20 @@
 ### 1.1 Next.js 프로젝트 구조 생성
 
 ```bash
-# 기존 client 디렉토리를 백업
-mv client client_backup
+# 기존 client 디렉토리를 백업 (모든 기존 코드 보존)
+cp -r client client_backup
 
-# Next.js 프로젝트 초기화
-npx create-next-app@latest client --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"
+# 별도 디렉토리에 Next.js 프로젝트 초기화
+npx create-next-app@latest client_nextjs --typescript --tailwind --eslint --app --src-dir --import-alias "@/*"
 
-# 기존 컴포넌트 복사
-cp -r client_backup/src/components client/src/
-cp -r client_backup/src/lib client/src/
-cp -r client_backup/src/hooks client/src/
+# 기존 컴포넌트와 로직을 Next.js 호환으로 점진적 이동
+cp -r client_backup/src/components client_nextjs/src/
+cp -r client_backup/src/lib client_nextjs/src/
+cp -r client_backup/src/hooks client_nextjs/src/
+
+# 기존 contents와 assets 연결 (데이터 무손실)
+# contents/ 디렉토리는 그대로 유지
+# attached_assets/ → public/ 디렉토리로 이동
 ```
 
 ### 1.2 필수 패키지 설치
