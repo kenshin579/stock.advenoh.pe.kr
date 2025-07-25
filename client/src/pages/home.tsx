@@ -40,26 +40,55 @@ export default function Home() {
     updateFromURL();
     
     // Listen for popstate events to handle navigation
-    window.addEventListener('popstate', updateFromURL);
+    const handlePopState = () => updateFromURL();
+    window.addEventListener('popstate', handlePopState);
+    
+    // Also listen for URL changes via wouter
+    const handleLocationChange = () => {
+      // Small delay to ensure URL has been updated
+      setTimeout(updateFromURL, 10);
+    };
     
     return () => {
-      window.removeEventListener('popstate', updateFromURL);
+      window.removeEventListener('popstate', handlePopState);
     };
+  }, [location]);
+
+  // Additional effect to handle location changes more reliably
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const category = urlParams.get('category') || 'all';
+    const search = urlParams.get('search') || '';
+    const tags = urlParams.get('tags');
+    
+    // Only update if values have actually changed
+    if (category !== selectedCategory) {
+      setSelectedCategory(category);
+      setPage(1);
+    }
+    if (search !== searchTerm) {
+      setSearchTerm(search);
+      setPage(1);
+    }
+    if (tags !== (selectedTags[0] || '')) {
+      setSelectedTags(tags ? [tags] : []);
+      setPage(1);
+    }
   }, [location]);
 
   const { data: posts, isLoading, error } = useQuery<BlogPost[]>({
     queryKey: ['/api/blog-posts', { published: true, category: selectedCategory !== 'all' ? selectedCategory : undefined, search: searchTerm }],
     queryFn: async ({ queryKey }) => {
-      const [path, params] = queryKey;
+      const [path, params] = queryKey as [string, any];
       const searchParams = new URLSearchParams();
       
-      if (params.published) {
+      if (params?.published) {
         searchParams.append('published', 'true');
       }
-      if (params.category) {
+      if (params?.category) {
         searchParams.append('category', params.category);
       }
-      if (params.search) {
+      if (params?.search) {
         searchParams.append('search', params.search);
       }
       
@@ -85,8 +114,8 @@ export default function Home() {
 
   // Sort filtered posts by date in descending order (newest first)
   const sortedPosts = filteredPosts?.sort((a, b) => {
-    const dateA = new Date(a.createdAt || a.date || 0);
-    const dateB = new Date(b.createdAt || b.date || 0);
+    const dateA = new Date(a.createdAt || 0);
+    const dateB = new Date(b.createdAt || 0);
     return dateB.getTime() - dateA.getTime();
   }) || [];
 
@@ -204,7 +233,7 @@ export default function Home() {
         <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <TagCloud 
-              tags={extractTagsWithCounts(posts)}
+              tags={extractTagsWithCounts(posts.filter(post => post.tags).map(post => ({ ...post, tags: post.tags || [] })))}
               maxTags={30}
               showCount={true}
               size="md"
