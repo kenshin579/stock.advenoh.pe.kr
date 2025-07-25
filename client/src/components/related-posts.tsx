@@ -13,7 +13,9 @@ interface BlogPost {
   series?: string | null;
   featuredImage?: string | null;
   content?: string;
-  date: string;
+  date?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 interface RelatedPostsProps {
@@ -44,11 +46,19 @@ export function RelatedPosts({ currentPost, allPosts, maxPosts = 4 }: RelatedPos
     score += commonTags.length * 10;
     
     // Recency bonus (newer posts get slight preference)
-    const postDate = new Date(post.date);
-    const currentDate = new Date(currentPost.date);
-    const daysDiff = Math.abs((currentDate.getTime() - postDate.getTime()) / (1000 * 3600 * 24));
-    if (daysDiff < 30) score += 5;
-    if (daysDiff < 7) score += 3;
+    const postDateValue = post.date || post.createdAt;
+    const currentDateValue = currentPost.date || currentPost.createdAt;
+    
+    if (postDateValue && currentDateValue) {
+      const postDate = new Date(postDateValue);
+      const currentDate = new Date(currentDateValue);
+      
+      if (!isNaN(postDate.getTime()) && !isNaN(currentDate.getTime())) {
+        const daysDiff = Math.abs((currentDate.getTime() - postDate.getTime()) / (1000 * 3600 * 24));
+        if (daysDiff < 30) score += 5;
+        if (daysDiff < 7) score += 3;
+      }
+    }
     
     return score;
   };
@@ -63,6 +73,8 @@ export function RelatedPosts({ currentPost, allPosts, maxPosts = 4 }: RelatedPos
     .filter(post => post.relevanceScore > 0)
     .sort((a, b) => b.relevanceScore - a.relevanceScore)
     .slice(0, maxPosts);
+
+
 
   if (relatedPosts.length === 0) {
     return null;
@@ -135,7 +147,7 @@ export function RelatedPosts({ currentPost, allPosts, maxPosts = 4 }: RelatedPos
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                       <Calendar className="h-3 w-3" />
-                      {formatDateSafely(post.date)}
+                      {formatDateSafely(post.date || post.createdAt)}
                     </div>
                     
                     {post.tags && post.tags.length > 0 && (
@@ -157,12 +169,7 @@ export function RelatedPosts({ currentPost, allPosts, maxPosts = 4 }: RelatedPos
         })}
       </div>
       
-      {/* Show relevance context for debugging in development */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="mt-4 text-xs text-gray-400 dark:text-gray-500">
-          관련도: {relatedPosts.map(p => `${p.title.slice(0, 20)}... (${p.relevanceScore}점)`).join(', ')}
-        </div>
-      )}
+
     </div>
   );
 }
