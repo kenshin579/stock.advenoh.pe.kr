@@ -193,9 +193,9 @@ export function validateImageAccessibility(img: HTMLImageElement): {
 }
 
 // Get cover image for blog post
-export function getCoverImage(post?: { featuredImage?: string | null; category?: string; content?: string }): string {
-  // Use featured image if available
-  if (post?.featuredImage) {
+export function getCoverImage(post?: { featuredImage?: string | null; category?: string; content?: string; slug?: string }): string {
+  // Use featured image if available and not null
+  if (post?.featuredImage && post.featuredImage !== null) {
     return post.featuredImage;
   }
   
@@ -203,28 +203,18 @@ export function getCoverImage(post?: { featuredImage?: string | null; category?:
   if (post?.content) {
     const images = extractImagesFromMarkdown(post.content);
     if (images.length > 0) {
-      return images[0].src;
+      let imageSrc = images[0].src;
+      // Convert relative image paths to absolute paths if needed
+      if (!imageSrc.startsWith('http') && !imageSrc.startsWith('/')) {
+        // For contents directory images, construct the full path
+        if (post.category) {
+          imageSrc = `/contents/${post.category.toLowerCase()}/${post.slug || 'unknown'}/${imageSrc}`;
+        }
+      }
+      return imageSrc;
     }
   }
   
-  // Return category-specific default image or general default
-  if (post?.category) {
-    switch (post.category.toLowerCase()) {
-      case 'stock':
-        return '/attached_assets/profile.jpeg';
-      case 'etf':
-        return '/attached_assets/profile.jpeg';
-      case 'bonds':
-        return '/attached_assets/profile.jpeg';
-      case 'funds':
-        return '/attached_assets/profile.jpeg';
-      case 'weekly':
-        return '/attached_assets/profile.jpeg';
-      default:
-        return '/attached_assets/profile.jpeg';
-    }
-  }
-  
-  // Fallback to default investment image
+  // Always return default image for consistent display
   return '/attached_assets/profile.jpeg';
 }
