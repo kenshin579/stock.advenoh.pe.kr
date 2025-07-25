@@ -52,8 +52,9 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           onError={(e) => {
             // Fallback to default image if cover image fails to load
             const target = e.target as HTMLImageElement;
-            if (target.src !== '/attached_assets/profile.jpeg') {
-              target.src = '/attached_assets/profile.jpeg';
+            const defaultImageUrl = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
+            if (target.src !== defaultImageUrl) {
+              target.src = defaultImageUrl;
             }
           }}
         />

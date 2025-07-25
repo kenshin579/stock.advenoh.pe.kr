@@ -209,13 +209,14 @@ export function validateImageAccessibility(img: HTMLImageElement): {
 // Get cover image for blog post
 export function getCoverImage(post?: { featuredImage?: string | null; category?: string; content?: string; slug?: string }): string {
   // Use featured image if available and not null
-  if (post?.featuredImage && post.featuredImage !== null) {
+  if (post?.featuredImage && post.featuredImage !== null && post.featuredImage !== '') {
     return post.featuredImage;
   }
   
   // Extract first image from content if available
   if (post?.content && post.slug) {
     const images = extractImagesFromMarkdown(post.content);
+    
     if (images.length > 0) {
       let imageSrc = images[0].src;
       
@@ -227,13 +228,11 @@ export function getCoverImage(post?: { featuredImage?: string | null; category?:
         }
       }
       
-      // Validate the constructed path
-      if (imageSrc && imageSrc !== '/attached_assets/profile.jpeg') {
-        return imageSrc;
-      }
+      return imageSrc;
     }
   }
   
   // Always return default image for consistent display
-  return '/attached_assets/profile.jpeg';
+  // Use a reliable investment-themed stock chart image as default
+  return 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
 }
