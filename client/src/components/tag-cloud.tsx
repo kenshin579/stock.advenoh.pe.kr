@@ -75,6 +75,7 @@ export function TagCloud({
               ${getTagSize(tag.count)}
               ${getTagOpacity(tag.count)}
             `}
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             <span className="font-medium">{tag.name}</span>
             {showCount && (

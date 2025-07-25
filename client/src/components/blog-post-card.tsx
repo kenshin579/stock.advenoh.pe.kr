@@ -69,6 +69,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           <Link
             href={`/blog/${post.slug}`}
             className="hover:text-primary transition-colors"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           >
             {post.title}
           </Link>

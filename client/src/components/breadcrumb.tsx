@@ -14,7 +14,7 @@ interface BreadcrumbProps {
 export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
   return (
     <nav className={`flex items-center space-x-1 text-sm text-gray-500 dark:text-gray-400 ${className}`} aria-label="Breadcrumb">
-      <Link href="/" className="flex items-center hover:text-gray-700 dark:hover:text-gray-200 transition-colors">
+      <Link href="/" className="flex items-center hover:text-gray-700 dark:hover:text-gray-200 transition-colors" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
         <Home className="h-4 w-4" />
         <span className="sr-only">홈</span>
       </Link>
@@ -26,6 +26,7 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
             <Link 
               href={item.href} 
               className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
             >
               {item.label}
             </Link>

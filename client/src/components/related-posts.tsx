@@ -85,8 +85,13 @@ export function RelatedPosts({ currentPost, allPosts, maxPosts = 4 }: RelatedPos
             slug: post.slug
           });
 
+          const handleClick = () => {
+            // Scroll to top when clicking related post
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          };
+
           return (
-            <Link key={post.slug} href={`/blog/${post.slug}`}>
+            <Link key={post.slug} href={`/blog/${post.slug}`} onClick={handleClick}>
               <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
