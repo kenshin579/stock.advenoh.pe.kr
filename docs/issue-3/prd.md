@@ -17,6 +17,7 @@
 - 서버 사이드 렌더링 구현
 - 기존 Express.js 백엔드와의 통합
 - 정적 데이터 생성 시스템 개선
+- Replit Static 배포로 전환
 
 ## 2. 현재 시스템 분석
 
@@ -85,10 +86,17 @@
 ```
 
 #### 3.1.2 렌더링 전략
-- **홈페이지**: ISR (Incremental Static Regeneration) - 24시간 revalidate
-- **블로그 포스트**: SSG (Static Site Generation) + ISR
-- **시리즈 페이지**: SSG + ISR
-- **동적 콘텐츠**: SSR (Server-Side Rendering)
+- **홈페이지**: SSG (Static Site Generation)
+- **블로그 포스트**: SSG (Static Site Generation)
+- **시리즈 페이지**: SSG (Static Site Generation)
+- **API 데이터**: 빌드 타임에 정적 JSON 파일 생성
+
+#### 3.1.3 배포 전략
+- **배포 방식**: Replit Static 배포
+- **빌드 출력**: `next export`를 통한 정적 파일 생성
+- **API 데이터**: 빌드 타임에 모든 데이터를 정적 JSON으로 생성
+- **이미지 최적화**: Next.js Image 컴포넌트의 정적 최적화 활용
+- **성능**: CDN을 통한 빠른 로딩 및 글로벌 배포
 
 ### 3.2 컴포넌트 마이그레이션
 
@@ -168,15 +176,28 @@
 
 ### 4.3 Replit 환경 최적화
 
-#### 4.3.1 배포 설정
-- **빌드 명령어**: `npm run build`
-- **실행 명령어**: `npm run start`
+#### 4.3.1 Static 배포 설정
+- **배포 타입**: `deploymentTarget = "static"`
+- **빌드 명령어**: `npm run build && npm run export`
+- **퍼블릭 디렉토리**: `out/` (Next.js export 출력)
 - **개발 환경**: `npm run dev`
 
-#### 4.3.2 환경 변수
+#### 4.3.2 Next.js 설정
+```javascript
+// next.config.js
+module.exports = {
+  output: 'export',
+  trailingSlash: true,
+  images: {
+    unoptimized: true // Static 배포에서 필요
+  }
+}
+```
+
+#### 4.3.3 환경 변수
 - `NODE_ENV`: 환경 설정
-- `REPLIT_DOMAINS`: 도메인 설정
-- `DATABASE_URL`: 데이터베이스 연결 (필요시)
+- `NEXT_PUBLIC_SITE_URL`: 사이트 URL (SEO용)
+- 데이터베이스 연결 불필요 (정적 배포)
 
 ## 5. 마이그레이션 계획
 
@@ -203,11 +224,12 @@
 - 이미지 최적화 적용
 - 성능 테스트 및 최적화
 
-### 5.5 Phase 5: 테스트 및 배포 (1주)
-- 기능 테스트
-- SEO 테스트
-- Replit 배포 테스트
-- 성능 벤치마크
+### 5.5 Phase 5: Static 배포 설정 및 테스트 (1주)
+- Next.js export 설정 구성
+- 정적 파일 생성 테스트
+- Replit Static 배포 구성
+- SEO 및 성능 테스트
+- 기능 테스트 및 검증
 
 ## 6. 리스크 및 대응 방안
 
@@ -218,8 +240,9 @@
 
 ### 6.2 성능 리스크
 - **빌드 시간**: 90개 포스트 정적 생성 시간
-- **메모리 사용량**: Replit 환경 제약사항
+- **Static 배포 제약**: 서버 사이드 기능 제한
 - **번들 사이즈**: Next.js 기본 번들 사이즈 증가
+- **이미지 최적화**: Static 배포에서의 이미지 처리 제한
 
 ### 6.3 SEO 리스크
 - **URL 구조**: 기존 URL 유지 필요
@@ -246,6 +269,12 @@
 
 ## 8. 결론
 
-Next.js로의 전환은 현재 투자 블로그의 SEO 성능을 크게 향상시킬 것으로 예상됩니다. 특히 서버 사이드 렌더링을 통해 검색 엔진 크롤링 성능이 개선되고, Core Web Vitals 점수가 향상될 것입니다. 
+Next.js SSG(Static Site Generation)와 Replit Static 배포로의 전환은 현재 투자 블로그의 SEO 성능과 로딩 속도를 크게 향상시킬 것으로 예상됩니다. 
 
-약 6주간의 마이그레이션 기간을 통해 기존 기능을 유지하면서도 성능과 SEO를 크게 개선할 수 있을 것으로 판단됩니다.
+### 주요 개선 효과
+- **SEO 최적화**: 빌드 타임에 완전한 HTML과 메타 태그 생성
+- **성능 향상**: CDN을 통한 빠른 로딩 및 글로벌 배포
+- **비용 효율성**: Static 배포의 저렴한 운영 비용
+- **안정성**: 서버 의존성 없는 안정적인 서비스 제공
+
+약 6주간의 마이그레이션 기간을 통해 기존 기능을 유지하면서도 성능, SEO, 그리고 운영 효율성을 크게 개선할 수 있을 것으로 판단됩니다.
