@@ -8,6 +8,7 @@ import { BlogPostCard } from "@/components/blog-post-card";
 import { NewsletterSignup } from "@/components/newsletter-signup";
 import { Footer } from "@/components/footer";
 import { SEOHead } from "@/components/seo-head";
+import { TagCloud, extractTagsWithCounts } from "@/components/tag-cloud";
 import { Skeleton } from "@/components/ui/skeleton";
 import { BlogPost } from "@shared/schema";
 import { generateBlogStructuredData, getBaseUrl } from "@/lib/seo";
@@ -17,6 +18,7 @@ export default function Home() {
   const [location] = useLocation();
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [page, setPage] = useState(1);
   const [isLoadingMore, setIsLoadingMore] = useState(false);
   const postsPerPage = 9;
@@ -27,11 +29,11 @@ export default function Home() {
       const urlParams = new URLSearchParams(window.location.search);
       const category = urlParams.get('category') || 'all';
       const search = urlParams.get('search') || '';
-      
-
+      const tags = urlParams.get('tags');
       
       setSelectedCategory(category);
       setSearchTerm(search);
+      setSelectedTags(tags ? [tags] : []);
       setPage(1); // Reset page when filters change
     };
 
@@ -69,14 +71,20 @@ export default function Home() {
     },
   });
 
+  // Filter posts by tags on the client side
+  const filteredPosts = posts?.filter(post => {
+    if (selectedTags.length === 0) return true;
+    return selectedTags.some(tag => post.tags?.includes(tag));
+  }) || [];
+
   const handleCategoryChange = (category: string) => {
     setSelectedCategory(category);
     const url = category === 'all' ? '/' : `/?category=${category}`;
     window.history.pushState({}, '', url);
   };
 
-  // Sort posts by date in descending order (newest first)
-  const sortedPosts = posts?.sort((a, b) => {
+  // Sort filtered posts by date in descending order (newest first)
+  const sortedPosts = filteredPosts?.sort((a, b) => {
     const dateA = new Date(a.createdAt || a.date || 0);
     const dateB = new Date(b.createdAt || b.date || 0);
     return dateB.getTime() - dateA.getTime();
@@ -124,9 +132,11 @@ export default function Home() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center mb-12">
             <h2 className="text-3xl font-bold text-center">
-              {searchTerm ? `"${searchTerm}" 검색 결과` : '최신 투자 인사이트'}
+              {searchTerm ? `"${searchTerm}" 검색 결과` : 
+               selectedTags.length > 0 ? `"${selectedTags[0]}" 태그 글` : 
+               '최신 투자 인사이트'}
             </h2>
-            {searchTerm && (
+            {(searchTerm || selectedTags.length > 0) && (
               <p className="text-muted-foreground">
                 {sortedPosts?.length || 0}개의 글을 찾았습니다
               </p>
@@ -153,7 +163,9 @@ export default function Home() {
           ) : !sortedPosts || sortedPosts.length === 0 ? (
             <div className="text-center py-12">
               <p className="text-muted-foreground text-lg">
-                {searchTerm ? '검색 결과가 없습니다.' : '아직 게시된 글이 없습니다.'}
+                {searchTerm ? '검색 결과가 없습니다.' : 
+                 selectedTags.length > 0 ? '해당 태그의 글이 없습니다.' : 
+                 '아직 게시된 글이 없습니다.'}
               </p>
             </div>
           ) : (
@@ -186,6 +198,20 @@ export default function Home() {
           )}
         </div>
       </main>
+
+      {/* Tag Cloud Section */}
+      {posts && posts.length > 0 && (
+        <section className="py-16 bg-gray-50 dark:bg-gray-900/50">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <TagCloud 
+              tags={extractTagsWithCounts(posts)}
+              maxTags={30}
+              showCount={true}
+              size="md"
+            />
+          </div>
+        </section>
+      )}
 
       <NewsletterSignup />
       <Footer />

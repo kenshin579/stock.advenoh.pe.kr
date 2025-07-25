@@ -6,6 +6,8 @@ import { SEOHead } from "@/components/seo-head";
 import { MarkdownRenderer } from "@/components/markdown-renderer";
 import { TableOfContents } from "@/components/table-of-contents";
 import { SeriesNavigation } from "@/components/series-navigation";
+import { RelatedPosts } from "@/components/related-posts";
+import { Breadcrumb, generateBreadcrumbs } from "@/components/breadcrumb";
 import profileImage from "@assets/profile.jpeg";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -32,6 +34,19 @@ export default function BlogPostPage() {
       const response = await fetch(`${path}/${postSlug}`);
       if (!response.ok) {
         throw new Error('Post not found');
+      }
+      return response.json();
+    },
+  });
+
+  // Fetch all posts for related posts functionality
+  const { data: allPosts } = useQuery<BlogPost[]>({
+    queryKey: ['/api/blog-posts', { published: true }],
+    queryFn: async ({ queryKey }) => {
+      const [path] = queryKey;
+      const response = await fetch(`${path}?published=true`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch posts');
       }
       return response.json();
     },
@@ -163,6 +178,12 @@ export default function BlogPostPage() {
           {/* Main content */}
           <div className="lg:col-span-3">
             <article>
+              {/* Breadcrumb Navigation */}
+              <Breadcrumb 
+                items={generateBreadcrumbs('blog-post', post)}
+                className="mb-4"
+              />
+
               {/* Back button */}
               <Button
                 variant="ghost"
@@ -257,6 +278,15 @@ export default function BlogPostPage() {
                   </div>
                 </div>
               </footer>
+
+              {/* Related Posts */}
+              {allPosts && (
+                <RelatedPosts 
+                  currentPost={post}
+                  allPosts={allPosts}
+                  maxPosts={4}
+                />
+              )}
             </article>
           </div>
 
