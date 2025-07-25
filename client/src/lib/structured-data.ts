@@ -121,6 +121,103 @@ export function generateFAQSchema(faqs: Array<{question: string, answer: string}
   };
 }
 
+// HowTo Schema for investment guides and tutorials
+export function generateHowToSchema(post: BlogPost, baseUrl: string) {
+  // Extract steps from markdown content (simplified extraction)
+  const steps = extractHowToSteps(post.content);
+  
+  if (steps.length === 0) {
+    return null; // Not a how-to article
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": post.title,
+    "description": post.excerpt,
+    "image": post.featuredImage || `${baseUrl}/default-og-image.jpg`,
+    "totalTime": `PT${Math.max(5, Math.ceil(post.content.split(/\s+/).length / 200))}M`,
+    "estimatedCost": {
+      "@type": "MonetaryAmount",
+      "currency": "KRW",
+      "value": "0"
+    },
+    "step": steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      ...(step.image && { 
+        "image": {
+          "@type": "ImageObject",
+          "url": step.image
+        }
+      })
+    })),
+    "author": {
+      "@type": "Person",
+      "name": "Frank Oh"
+    },
+    "datePublished": post.createdAt,
+    "dateModified": post.updatedAt
+  };
+}
+
+// Review Schema for investment product reviews
+export function generateReviewSchema(post: BlogPost, baseUrl: string, rating?: number) {
+  if (!post.content.includes('리뷰') && !post.content.includes('평가') && !post.content.includes('분석')) {
+    return null; // Not a review article
+  }
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": "FinancialProduct",
+      "name": extractProductName(post.title),
+      "description": post.excerpt
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": rating || 4,
+      "bestRating": 5,
+      "worstRating": 1
+    },
+    "author": {
+      "@type": "Person",
+      "name": "Frank Oh"
+    },
+    "datePublished": post.createdAt,
+    "reviewBody": post.excerpt
+  };
+}
+
+// Series/Course Schema for educational content series
+export function generateCourseSchema(seriesName: string, posts: BlogPost[], baseUrl: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": seriesName,
+    "description": `${seriesName}에 대한 체계적인 학습 과정`,
+    "provider": {
+      "@type": "Organization",
+      "name": "투자 인사이트 블로그"
+    },
+    "hasCourseInstance": {
+      "@type": "CourseInstance",
+      "courseMode": "online",
+      "instructor": {
+        "@type": "Person",
+        "name": "Frank Oh"
+      }
+    },
+    "coursePrerequisites": "기본적인 투자 지식",
+    "teaches": posts.map(post => post.title),
+    "inLanguage": "ko-KR",
+    "url": `${baseUrl}/series/${encodeURIComponent(seriesName)}`
+  };
+}
+
 // Helper function to combine multiple schemas
 export function combineSchemas(...schemas: any[]) {
   return schemas.filter(Boolean);
