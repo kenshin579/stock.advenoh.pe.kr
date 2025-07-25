@@ -1,6 +1,6 @@
 ---
 title: "2024년 4분기 주요 이벤트"
-description: "2024년 4분기 주요 이벤트"
+description: "2024년 4분기(10-12월) 주요 경제 일정으로 미국 대선, 게임 이벤트(Brazil Game Show, Paris Game Week), 뷰티 박람회, SIAL Paris 식품전시회, 블랙프라이데이 등 게임/뷰티/식품 키워드와 금리인하 관련 이슈를 정리했습니다."
 date: 2024-06-30
 update: 2024-06-30
 category: Stock

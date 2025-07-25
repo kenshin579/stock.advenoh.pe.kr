@@ -1,6 +1,6 @@
 ---
 title: "투자 명언"
-description: "투자 명언"
+description: "워렌 버핏, 피터 린치, 존 록펠러 등 유명 투자가들의 투자 명언 모음입니다. 투자 철학과 지혜를 담은 인사이트를 제공합니다."
 date: 2024-08-24
 update: 2024-08-24
 category: Etc

@@ -1,6 +1,6 @@
 ---
 title: "만기매칭형 ETF란"
-description: "만기매칭형 ETF란"
+description: "만기매칭형 ETF의 개념과 특징을 설명합니다. 개별 채권과 일반 채권 ETF와의 차이점, 투자 방법과 장단점을 상세히 다룹니다."
 date: 2024-11-07
 update: 2024-11-07
 category: ETF

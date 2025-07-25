@@ -1,6 +1,6 @@
 ---
 title: "CPI와 PPI의 차이점"
-description: "CPI와 PPI의 차이점"
+description: "CPI(소비자물가지수)와 PPI(생산자물가지수)의 개념과 측정 대상, 주식시장에 미치는 영향(반비례 관계), TradingView에서 확인하는 방법(CPIAUCSL, PPIACO, KRCPI, KRPPI)을 상세히 분석합니다."
 date: 2023-02-19
 update: 2023-02-19
 category: Stock

@@ -1,6 +1,6 @@
 ---
 title: "주식/ETF 종목 매매 타이밍 전략 정리"
-description: "주식/ETF 종목 매매 타이밍 전략 정리"
+description: "주식과 ETF 매매 타이밍 전략을 정리했습니다. Bull과 Bear 투자 방식, 적립식 투자 등 다양한 매매 전략과 그 특징을 설명합니다."
 date: 2023-03-18
 update: 2023-03-18
 category: ETF

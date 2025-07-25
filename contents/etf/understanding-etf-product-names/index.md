@@ -1,6 +1,6 @@
 ---
 title: "ETF 상품명 이해하기"
-description: "ETF 상품명 이해하기"
+description: "ETF 상품명에 포함된 용어들을 설명합니다. 레버리지, 인버스, 액티브, 환헤지 등 ETF 이름에 나오는 핵심 용어들의 의미를 정리했습니다."
 date: 2023-01-24
 update: 2023-01-24
 category: ETF

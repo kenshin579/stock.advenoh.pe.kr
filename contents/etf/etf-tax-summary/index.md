@@ -1,6 +1,6 @@
 ---
 title: "ETF 세금 총정리"
-description: "ETF 세금 총정리"
+description: "ETF 투자시 발생하는 세금을 총정리했습니다. 국내외 ETF의 양도소득세, 배당소득세, 보유기간과세 등 세금 체계를 상세히 설명합니다."
 date: 2024-08-18
 update: 2024-08-18
 category: ETF

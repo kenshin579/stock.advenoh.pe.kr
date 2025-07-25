@@ -1,6 +1,6 @@
 ---
 title: "자산 운용사 약어 모음"
-description: "자산 운용사 약어 모음"
+description: "ETF 이름 앞에 붙는 자산운용사 브랜드명(TIGER, KODEX, KBSTAR 등)과 해당 운용사(미래에셋, 삼성, KB 등)를 매칭한 약어 모음집입니다."
 date: 2022-12-31
 update: 2022-12-31
 category: Etc

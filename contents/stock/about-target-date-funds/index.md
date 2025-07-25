@@ -1,6 +1,6 @@
 ---
 title: "TDF에 대해서 알아보자"
-description: "TDF에 대해서 알아보자"
+description: "TDF(타깃데이트펀드)의 개념, 자산배분 전략, 글라이드패스 구조와 은퇴 투자를 위한 장단점을 알아보고 연금저축 방법으로서의 활용성을 설명합니다."
 date: 2024-09-29
 update: 2024-09-29
 category: Stock

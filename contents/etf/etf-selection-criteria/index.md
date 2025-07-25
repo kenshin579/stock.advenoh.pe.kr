@@ -1,6 +1,6 @@
 ---
 title: "ETF 고르는 기준"
-description: "ETF 고르는 기준"
+description: "좋은 ETF를 선택하는 기준을 설명합니다. 순자산, 거래량, 수익률, 괴리율, 추적오차, 운용보수 등 ETF 투자 시 고려해야 할 요소들을 다룹니다."
 date: 2023-03-25
 update: 2023-03-25
 category: ETF

@@ -1,6 +1,6 @@
 ---
 title: "구글 Adsense 에 결제 추가하는 방법"
-description: "구글 Adsense 에 결제 추가하는 방법"
+description: "구글 애드센스에서 광고 수입을 지급받기 위한 결제 방법 설정 가이드입니다. 신한은행 계좌 정보 입력과 SWIFT 코드 설정 방법을 다룹니다."
 date: 2024-07-05
 update: 2024-07-05
 category: Etc

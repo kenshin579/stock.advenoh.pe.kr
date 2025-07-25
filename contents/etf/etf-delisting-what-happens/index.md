@@ -1,6 +1,6 @@
 ---
 title: "ETF 상장폐지가 되면 어떻게 되나?"
-description: "ETF 상장폐지가 되면 어떻게 되나?"
+description: "ETF 상장폐지 조건과 투자자에게 미치는 영향을 설명합니다. 주식 상장폐지와의 차이점과 상장폐지 시 대응 방법을 다룹니다."
 date: 2024-06-16
 update: 2024-07-05
 category: ETF
