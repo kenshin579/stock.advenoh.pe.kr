@@ -47,7 +47,7 @@ export function SEOHead({
   ogUrl,
   canonicalUrl,
   structuredData,
-  author = "투자분석가",
+  author = "Frank Oh",
   robots = "index, follow",
 }: SEOHeadProps) {
   useEffect(() => {

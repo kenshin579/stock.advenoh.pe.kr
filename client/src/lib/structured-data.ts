@@ -11,7 +11,7 @@ export function generateBlogSchema(baseUrl: string) {
     "inLanguage": "ko-KR",
     "author": {
       "@type": "Person",
-      "name": "투자분석가"
+      "name": "Frank Oh"
     },
     "publisher": {
       "@type": "Organization",
@@ -34,7 +34,7 @@ export function generateArticleSchema(post: BlogPost, baseUrl: string) {
     "image": post.featuredImage || `${baseUrl}/default-og-image.jpg`,
     "author": {
       "@type": "Person",
-      "name": "투자분석가"
+      "name": "Frank Oh"
     },
     "publisher": {
       "@type": "Organization",
