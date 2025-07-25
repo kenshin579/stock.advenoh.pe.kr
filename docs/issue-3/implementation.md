@@ -719,10 +719,10 @@ externalPort = 80
 
 ```bash
 # 사이트맵 확인
-curl https://your-domain/api/sitemap.xml
+curl https://your-domain/sitemap.xml
 
 # robots.txt 확인
-curl https://your-domain/api/robots.txt
+curl https://your-domain/robots.txt
 
 # 메타 태그 확인 (개별 페이지)
 curl -s https://your-domain/blog/post-slug | grep -i "<meta"
