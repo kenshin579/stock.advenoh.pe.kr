@@ -7,9 +7,9 @@ import { BlogPostCard } from '@/components/blog-post-card'
 import { Breadcrumb } from '@/components/breadcrumb'
 
 interface SeriesDetailPageProps {
-  params: {
+  params: Promise<{
     seriesName: string
-  }
+  }>
 }
 
 export async function generateStaticParams() {
@@ -28,7 +28,8 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: SeriesDetailPageProps): Promise<Metadata> {
-  const seriesName = decodeURIComponent(params.seriesName)
+  const { seriesName: rawSeriesName } = await params
+  const seriesName = decodeURIComponent(rawSeriesName)
   const posts = await getAllBlogPosts()
   const seriesPosts = posts.filter(post => post.series === seriesName)
   
@@ -43,7 +44,8 @@ export async function generateMetadata({ params }: SeriesDetailPageProps): Promi
 }
 
 export default async function SeriesDetailPage({ params }: SeriesDetailPageProps) {
-  const seriesName = decodeURIComponent(params.seriesName)
+  const { seriesName: rawSeriesName } = await params
+  const seriesName = decodeURIComponent(rawSeriesName)
   const posts = await getAllBlogPosts()
   const seriesPosts = posts.filter(post => post.series === seriesName)
   
