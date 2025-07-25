@@ -1,6 +1,6 @@
 ---
 title: "주식 대가들의 포트폴리오 확인하는 방법"
-description: "주식 대가들의 포트폴리오 확인하는 방법"
+description: "주식 대가들의 포트폴리오를 확인하는 방법으로 13info, HedgeFollow, Gurufocus, WhaleWisdom 등 다양한 온라인 사이트를 통해 워렌 버핏 등 투자 대가들의 13F 보고서 기반 포트폴리오 분석과 투자 움직임을 추적하는 방법을 상세히 안내합니다."
 date: 2024-08-17
 update: 2024-08-17
 category: Stock

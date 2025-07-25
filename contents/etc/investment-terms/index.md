@@ -1,6 +1,6 @@
 ---
 title: "투자 용어 (Investment Terms)"
-description: "투자 용어 (Investment Terms)"
+description: "투자 관련 용어를 정리한 사전입니다. 가치주, 공매도, 기술주 등 주식 투자에 필요한 핵심 용어들을 가나다 순으로 설명합니다."
 date: 2023-10-15
 update: 2024-08-13
 category: Etc

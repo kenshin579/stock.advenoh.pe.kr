@@ -1,6 +1,6 @@
 ---
 title: "연금저축이란?"
-description: "연금저축이란?"
+description: "연금저축의 장단점, 투자 가능한 상품(펀드, ETF, TDF, 현금), 투자 불가능한 상품, 그리고 효율적인 ETF 종목 선택 전략에 대해 알아봅니다."
 date: 2023-03-26
 update: 2023-03-26
 category: Stock

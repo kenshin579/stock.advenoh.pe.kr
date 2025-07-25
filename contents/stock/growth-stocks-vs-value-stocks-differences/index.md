@@ -1,6 +1,6 @@
 ---
 title: "성장주와 가치주의 차이점"
-description: "성장주와 가치주의 차이점"
+description: "성장주와 가치주의 개념과 차이점을 상세히 분석하고, 미국 ETF 기준으로 대형성장(VUG), 중형성장(IWP), 대형가치(VTV), 중형가치(VOE) ETF의 구성 종목과 특징을 비교하여 투자 전략을 제시합니다."
 date: 2023-08-15
 update: 2023-08-15
 category: Stock

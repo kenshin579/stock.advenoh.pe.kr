@@ -1,6 +1,6 @@
 ---
 title: "2024년 2분기 빌 아크만 포트폴리오"
-description: "2024년 2분기 빌 아크만 포트폴리오"
+description: "2024년 2분기 빌 아크만 포트폴리오 분석으로 새로 추가된 종목(BN.TO, NKE), 비중 감소 종목(GOOG, HLT, QSR, CP.TO), 섹터별 비중(Consumer Cyclical 54.2%, Technology 20%, Real Estate 14.7%)과 기술주 매각, 나이키 6년 만 재매수 전략을 분석합니다."
 date: 2024-10-03
 update: 2024-10-03
 category: Stock

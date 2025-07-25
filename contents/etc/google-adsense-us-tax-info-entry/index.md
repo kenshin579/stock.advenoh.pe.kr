@@ -1,6 +1,6 @@
 ---
 title: "구글 Adsense 미국 세금 정보 입력하는 방법"
-description: "구글 Adsense 미국 세금 정보 입력하는 방법"
+description: "구글 애드센스에서 미국 세금 정보를 입력하는 방법입니다. W-8BEN 양식 작성과 개인 계좌 설정을 단계별로 설명합니다."
 date: 2024-07-07
 update: 2024-07-07
 category: Etc
@@ -118,6 +118,3 @@ tags:
 - [구글 Google 애드센스 미국 세금 정보 제출하는 방법](https://orangeyoung-37.tistory.com/92)
 - [애드센스 미국 세금 정보 작성하자](https://moonnote.tistory.com/321)
 - [개인사업자 애드센스 미국 세금 정보 제출, 싱가포르 세금 정보, 판매 대금 지급 지연](https://dathru.com/애드센스-미국-세금-정보-제출-싱가포르-세금-정보/)
-
-
-

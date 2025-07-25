@@ -1,6 +1,6 @@
 ---
 title: "2024년 ETF 적립식 투자 연말 총정리"
-description: "2024년 ETF 적립식 투자 연말 총정리"
+description: "2024년 ETF 적립식 투자 성과를 계좌별로 정리한 연말 회고입니다. 연금저축, IRP, ISA 계좌의 포트폴리오 현황과 투자 전략을 분석합니다."
 date: 2025-01-08
 update: 2025-01-08
 category: ETF

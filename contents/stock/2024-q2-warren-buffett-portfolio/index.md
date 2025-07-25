@@ -1,6 +1,6 @@
 ---
 title: "2024년 2분기 워렌 버핏 포트폴리오"
-description: "2024년 2분기 워렌 버핏 포트폴리오"
+description: "2024년 2분기 워렌 버핏 포트폴리오 분석으로 새로 추가된 종목(Ulta Beauty, Heico), 애플 주식 49% 매도, 현금 보유량 증가(2,769억 달러), 섹터별 비중(Finance 38.7%, Technology 31.5%, Consumer Defense 13.7%)과 장기적 가치 투자 전략을 상세히 정리합니다."
 date: 2024-08-17
 update: 2024-08-17
 category: Stock

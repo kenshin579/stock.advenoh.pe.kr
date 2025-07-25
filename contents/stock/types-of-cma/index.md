@@ -1,6 +1,6 @@
 ---
 title: "CMA의 종류"
-description: "CMA의 종류"
+description: "CMA(종합자산관리계좌)의 종류와 특징을 상세히 설명하고, RP형(환매조건부채권), MMF형(머니마켓펀드), Wrap형(한국증권금융 예수금), CP형(발행어음형)의 차이점과 각 상품의 금리, 안전장치, 기간, 활용법을 비교 분석합니다."
 date: 2023-02-19
 update: 2023-02-19
 category: Stock

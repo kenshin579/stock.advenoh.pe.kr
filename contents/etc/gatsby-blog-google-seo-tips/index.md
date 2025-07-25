@@ -1,6 +1,6 @@
 ---
 title: "Gatsby 블로그 구글 검색에 더 많이 노출하는 방법"
-description: "Gatsby 블로그 구글 검색에 더 많이 노출하는 방법"
+description: "Gatsby 블로그의 검색 노출을 높이기 위한 SEO 최적화 방법입니다. sitemap.xml 생성, robots.txt 설정, 구글 Search Console 등록 등을 다룹니다."
 date: 2024-07-20
 update: 2024-07-20
 category: Etc

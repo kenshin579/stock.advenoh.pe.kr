@@ -1,6 +1,6 @@
 ---
 title: "나만의 ETF 적립식 투자"
-description: "나만의 ETF 적립식 투자"
+description: "개인적인 ETF 적립식 투자 전략과 계좌별 포트폴리오 구성을 공유합니다. 연금저축, IRP, ISA 계좌의 자동이체 설정과 투자 방법을 설명합니다."
 date: 2024-04-27
 update: 2024-04-27
 category: ETF

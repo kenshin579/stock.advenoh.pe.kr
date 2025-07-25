@@ -1,6 +1,6 @@
 ---
 title: "2024년 2분기 스탠리 드러켄밀러 포트폴리오"
-description: "2024년 2분기 스탠리 드러켄밀러 포트폴리오"
+description: "2024년 2분기 스탠리 드러켄밀러 포트폴리오 분석으로 새로 추가된 종목(리츠, 배당주), 추가 매수 종목(Coherent, Kinder Morgan), 기술주 비중 축소, 섹터별 비중(Technology 29.8%, Consumer Cyclical 10.8%, Healthcare 10.4%)과 금리인하 대비 투자 전략을 상세히 정리합니다."
 date: 2024-09-08
 update: 2024-09-08
 category: Stock

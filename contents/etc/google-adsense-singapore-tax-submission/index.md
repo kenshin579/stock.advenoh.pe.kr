@@ -1,6 +1,6 @@
 ---
 title: "구글 Adsense 싱가포르 세금 정보 제출방법"
-description: "구글 Adsense 싱가포르 세금 정보 제출방법"
+description: "구글 애드센스에서 싱가포르 세금 정보를 제출하는 방법입니다. 거주자증명서 첨부와 세금 면제 신청 과정을 단계별로 설명합니다."
 date: 2024-07-10
 update: 2024-07-10
 category: Etc
