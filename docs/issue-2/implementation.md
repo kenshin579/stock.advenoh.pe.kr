@@ -47,7 +47,7 @@
      "@type": "Article",
      "headline": "포스트 제목",
      "description": "포스트 설명",
-     "author": { "@type": "Person", "name": "작성자" },
+     "author": { "@type": "Person", "name": "Frank Oh" },
      "datePublished": "발행일",
      "dateModified": "수정일"
    }

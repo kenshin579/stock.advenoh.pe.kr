@@ -145,6 +145,12 @@
 - ✅ rss.xml 경로 변경 (`/api/rss.xml` → `/rss.xml`)
 - ✅ robots.txt 사이트맵 경로 업데이트
 - ✅ Footer 년도 동적 업데이트
+- ✅ SEO Head 컴포넌트 메타 태그 최적화 (description truncation, robots, author, viewport)
+- ✅ robots.txt 최적화 (crawl-delay, 추가 디렉토리 차단, Host 정보)
+- ✅ 사이트맵 우선순위 시스템 (최근 30일 포스트 0.9, 기존 포스트 0.8)
+- ✅ 구조화된 데이터 라이브러리 생성 (Blog, Article, Organization, Breadcrumb 스키마)
+- ✅ changefreq 최적화 (homepage: daily, admin: monthly, posts: weekly)
+- ✅ Author 정보 "Frank Oh"로 업데이트 (메타 태그 및 구조화된 데이터)
 
 ### 현재 진행 중인 작업
 - 🔄 없음

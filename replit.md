@@ -91,6 +91,7 @@ The application is configured for Replit **Static** deployment:
 - **Structured Data Library**: Created comprehensive structured data system with Blog, Article, Organization, Breadcrumb, and WebSite schemas
 - **changefreq Optimization**: Updated sitemap frequencies (homepage: daily, admin: monthly, posts: weekly)
 - **SEO Component Enhancement**: Enhanced SEOHead component with intelligent description truncation and additional meta tags
+- **Author Information Update**: Changed author information from "투자분석가" to "Frank Oh" in both meta tags and structured data
 
 ### July 20, 2025
 - **SEO Domain Configuration**: Updated RSS, sitemap, and robots.txt generation to use production domain
