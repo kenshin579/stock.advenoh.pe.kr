@@ -60,51 +60,51 @@
 ### 4.1 기술적 SEO 개선
 
 #### A. 메타 태그 최적화
-- [ ] 각 페이지별 고유한 title 태그
-- [ ] 메타 디스크립션 150-160자 최적화
-- [ ] Open Graph 태그 완성도 향상
-- [ ] Twitter Card 메타 태그 추가
+- 각 페이지별 고유한 title 태그
+- 메타 디스크립션 150-160자 최적화
+- Open Graph 태그 완성도 향상
+- Twitter Card 메타 태그 추가
 
 #### B. 구조화된 데이터 추가
-- [ ] Blog 스키마 구현
-- [ ] Article 스키마 구현
-- [ ] BreadcrumbList 스키마
-- [ ] Organization 스키마
+- Blog 스키마 구현
+- Article 스키마 구현
+- BreadcrumbList 스키마
+- Organization 스키마
 
 #### C. 사이트맵 최적화
-- [ ] 우선순위(priority) 값 재조정
-- [ ] changefreq 값 최적화
-- [ ] 이미지 사이트맵 추가
-- [ ] 사이트맵 인덱스 파일 구현
+- 우선순위(priority) 값 재조정
+- changefreq 값 최적화
+- 이미지 사이트맵 추가
+- 사이트맵 인덱스 파일 구현
 
 ### 4.2 콘텐츠 SEO 개선
 
 #### A. URL 구조 최적화
-- [ ] 의미있는 URL 슬러그 확인
-- [ ] 카테고리별 URL 구조 정리
-- [ ] 중복 URL 제거
+- 의미있는 URL 슬러그 확인
+- 카테고리별 URL 구조 정리
+- 중복 URL 제거
 
 #### B. 내부 링크 구조
-- [ ] 관련 포스트 링크 추가
-- [ ] 카테고리 간 연결 강화
-- [ ] 시리즈 포스트 연결 개선
+- 관련 포스트 링크 추가
+- 카테고리 간 연결 강화
+- 시리즈 포스트 연결 개선
 
 #### C. 이미지 SEO
-- [ ] alt 태그 최적화
-- [ ] 이미지 파일명 최적화
-- [ ] WebP 형식 지원
+- alt 태그 최적화
+- 이미지 파일명 최적화
+- WebP 형식 지원
 
 ### 4.3 성능 최적화
 
 #### A. Core Web Vitals 개선
-- [ ] LCP (Largest Contentful Paint) 최적화
-- [ ] FID (First Input Delay) 개선
-- [ ] CLS (Cumulative Layout Shift) 최소화
+- LCP (Largest Contentful Paint) 최적화
+- FID (First Input Delay) 개선
+- CLS (Cumulative Layout Shift) 최소화
 
 #### B. 로딩 속도 개선
-- [ ] 이미지 lazy loading
-- [ ] CSS/JS 번들 최적화
-- [ ] 캐싱 헤더 설정
+- 이미지 lazy loading
+- CSS/JS 번들 최적화
+- 캐싱 헤더 설정
 
 ## 5. 구현 우선순위
 
@@ -140,19 +140,7 @@
 - 사용자 만족도 증대
 - 브랜드 인지도 향상
 
-## 7. 기술 스택 고려사항
-
-### 현재 기술 스택 활용
-- React SEO Head 컴포넌트 확장
-- Express.js 서버 사이드 최적화
-- 정적 배포 시 SEO 요소 보장
-
-### 추가 도구 검토
-- Google Analytics 4 연동
-- Google Tag Manager 구현
-- Search Console API 활용
-
-## 8. 리스크 및 대응 방안
+## 7. 리스크 및 대응 방안
 
 ### 기술적 리스크
 - 정적 배포 시 SEO 기능 제한 → 빌드 타임 SEO 데이터 생성
@@ -162,7 +150,7 @@
 - 키워드 과최적화 → 자연스러운 키워드 배치
 - 중복 콘텐츠 → 고유성 확보
 
-## 9. 일정 및 리소스
+## 8. 일정 및 리소스
 
 ### 개발 일정
 - Phase 1: 2일
@@ -175,12 +163,17 @@
 - SEO 전문가 자문 (선택사항)
 - 콘텐츠 검토 시간
 
-## 10. 다음 단계
+## 9. 다음 단계
 
 1. **PRD 리뷰 및 승인**
 2. **Phase 1 구현 시작**
 3. **Google Search Console 모니터링 체계 구축**
 4. **정기적인 SEO 성과 리뷰 일정 수립**
+
+## 10. 참고 문서
+
+- 구현 세부사항: [docs/issue-2/implementation.md](./implementation.md)
+- 기술 스택 및 도구 고려사항은 구현 문서 참조
 
 ---
 
