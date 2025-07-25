@@ -2,6 +2,7 @@ import { Link } from 'wouter';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Calendar, Tag, ArrowRight } from 'lucide-react';
 import { getCoverImage } from '@/lib/image-utils';
+import { formatDateSafely } from '@/lib/date-utils';
 
 interface BlogPost {
   title: string;
@@ -134,7 +135,7 @@ export function RelatedPosts({ currentPost, allPosts, maxPosts = 4 }: RelatedPos
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                       <Calendar className="h-3 w-3" />
-                      {new Date(post.date).toLocaleDateString('ko-KR')}
+                      {formatDateSafely(post.date)}
                     </div>
                     
                     {post.tags && post.tags.length > 0 && (

@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { BlogPost } from "@shared/schema";
 import { getCoverImage } from "@/lib/image-utils";
+import { formatDateSafely, getBestDateFromPost } from "@/lib/date-utils";
 import profileImage from "@assets/profile.jpeg";
 
 interface BlogPostCardProps {
@@ -89,7 +90,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           </div>
           <div className="flex items-center space-x-2">
             <Calendar className="w-4 h-4" />
-            <span>{new Date(post.createdAt!).toLocaleDateString('ko-KR')}</span>
+            <span>{formatDateSafely(getBestDateFromPost(post))}</span>
           </div>
         </div>
 
