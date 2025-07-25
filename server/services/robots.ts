@@ -13,6 +13,7 @@ Disallow: /_next/
 Crawl-delay: 1
 
 Sitemap: ${siteUrl}/sitemap.xml
+Sitemap: ${siteUrl}/image-sitemap.xml
 
 # Host
 Host: ${siteUrl}

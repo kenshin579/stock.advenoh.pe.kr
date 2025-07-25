@@ -8,6 +8,7 @@ import { generateRssFeed } from "./services/rss";
 import { generateSitemap } from "./services/sitemap";
 import { generateRobotsTxt } from "./services/robots";
 import { importMarkdownFiles } from "./services/contentImporter";
+import { generateStaticImageSitemap } from "./services/image-sitemap";
 
 export async function registerRoutes(app: Express): Promise<Server> {
   // Clear existing blog posts and import markdown files on startup
@@ -91,7 +92,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       // Create series info array
       const series = Array.from(seriesMap.entries()).map(([seriesName, seriesPosts]) => {
-        const sortedPosts = seriesPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        const sortedPosts = seriesPosts.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
         return {
           name: seriesName,
           count: seriesPosts.length,
@@ -217,6 +218,21 @@ export async function registerRoutes(app: Express): Promise<Server> {
       res.send(sitemap);
     } catch (error) {
       res.status(500).json({ message: "Failed to generate sitemap" });
+    }
+  });
+
+  // Image sitemap
+  app.get("/image-sitemap.xml", async (req, res) => {
+    try {
+      const protocol = req.headers['x-forwarded-proto'] || 'https';
+      const host = req.headers.host;
+      const baseUrl = `${protocol}://${host}`;
+      
+      const imageSitemap = await generateStaticImageSitemap(baseUrl);
+      res.set('Content-Type', 'application/xml');
+      res.send(imageSitemap);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to generate image sitemap" });
     }
   });
 
