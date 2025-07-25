@@ -126,11 +126,25 @@ export function extractImagesFromMarkdown(content: string): Array<{
 }> {
   const images: Array<{ src: string; alt?: string; title?: string }> = [];
   
-  // Match ![alt](src "title") and ![alt](src) patterns
-  const imageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g;
+  // Handle complex nested patterns like ![![alt](img1)](img2)
+  // First, extract all image references from nested patterns
+  const nestedImageRegex = /!\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)/g;
   let match;
   
-  while ((match = imageRegex.exec(content)) !== null) {
+  while ((match = nestedImageRegex.exec(content)) !== null) {
+    // For nested patterns, use the first image (img1) as it's usually the actual content image
+    images.push({
+      src: match[2],
+      alt: match[1] || undefined
+    });
+  }
+  
+  // Match standard ![alt](src "title") and ![alt](src) patterns
+  // But skip content that's already been processed by nested regex
+  let processedContent = content.replace(nestedImageRegex, '');
+  const imageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g;
+  
+  while ((match = imageRegex.exec(processedContent)) !== null) {
     images.push({
       src: match[2],
       alt: match[1] || undefined,
@@ -200,18 +214,23 @@ export function getCoverImage(post?: { featuredImage?: string | null; category?:
   }
   
   // Extract first image from content if available
-  if (post?.content) {
+  if (post?.content && post.slug) {
     const images = extractImagesFromMarkdown(post.content);
     if (images.length > 0) {
       let imageSrc = images[0].src;
-      // Convert relative image paths to absolute paths if needed
+      
+      // Convert relative image paths to absolute paths
       if (!imageSrc.startsWith('http') && !imageSrc.startsWith('/')) {
         // For contents directory images, construct the full path
         if (post.category) {
-          imageSrc = `/contents/${post.category.toLowerCase()}/${post.slug || 'unknown'}/${imageSrc}`;
+          imageSrc = `/contents/${post.category.toLowerCase()}/${post.slug}/${imageSrc}`;
         }
       }
-      return imageSrc;
+      
+      // Validate the constructed path
+      if (imageSrc && imageSrc !== '/attached_assets/profile.jpeg') {
+        return imageSrc;
+      }
     }
   }
   
