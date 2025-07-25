@@ -95,15 +95,40 @@ function extractExcerpt(content: string): string {
 }
 
 function extractFirstImageFromMarkdown(content: string): string | null {
-  const imageRegex = /!\[.*?\]\((.*?)\)/;
-  const match = content.match(imageRegex);
-  
-  if (match && match[1]) {
-    const imageSrc = match[1].trim();
-    if (imageSrc.startsWith('http')) {
-      return imageSrc;
+  // Enhanced regex patterns to handle various markdown image formats
+  const patterns = [
+    // Complex nested patterns: ![![alt](img1)](img2)
+    /!\[!\[([^\]]*)\]\(([^)]+)\)\]\(([^)]+)\)/g,
+    // Standard markdown images: ![alt](image.png)
+    /!\[([^\]]*)\]\(([^)]+)\)/g,
+    // HTML img tags: <img src="..." alt="..." />
+    /<img[^>]+src=["']([^"']+)["'][^>]*>/gi
+  ];
+
+  for (const pattern of patterns) {
+    let match;
+    while ((match = pattern.exec(content)) !== null) {
+      let imageSrc = '';
+      
+      if (match.length === 4) {
+        // For nested patterns: ![![alt](img1)](img2) - use the outer image (img2)
+        imageSrc = match[3];
+      } else if (pattern.source.includes('img')) {
+        // For HTML img tags
+        imageSrc = match[1];
+      } else {
+        // For standard markdown images
+        imageSrc = match[2];
+      }
+      
+      if (imageSrc) {
+        imageSrc = imageSrc.trim();
+        // Skip data URLs, empty strings, or just anchors
+        if (imageSrc && !imageSrc.startsWith('data:') && !imageSrc.startsWith('#')) {
+          return imageSrc;
+        }
+      }
     }
-    return imageSrc;
   }
   
   return null;
