@@ -67,7 +67,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
   const formattedDate = formatDateSafely(bestDate);
 
   return (
-    <Card className="card-hover overflow-hidden bg-card text-card-foreground border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
+    <Card className="card-hover overflow-hidden bg-card text-card-foreground border border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="relative">
         <img
           src={coverImage}

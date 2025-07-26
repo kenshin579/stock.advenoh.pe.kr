@@ -196,7 +196,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
           </div>
         </footer>
-      </div>
       </article>
     </>
   )

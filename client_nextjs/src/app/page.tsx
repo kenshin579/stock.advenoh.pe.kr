@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { getAllBlogPosts, getAllCategories } from '@/lib/blog'
 import { Hero } from '@/components/hero'
 import { BlogPostCard } from '@/components/blog-post-card'
-import { CategoryFilter } from '@/components/category-filter'
+import { CategoryFilterClient } from '@/components/category-filter-client'
 import { generateStructuredData } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
@@ -14,8 +14,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const posts = await getAllBlogPosts()
   const categories = await getAllCategories()
-  const featuredPosts = posts.slice(0, 6)
-  const recentPosts = posts.slice(0, 10)
+  const recentPosts = posts.slice(0, 12)
 
   const structuredData = generateStructuredData('website', {
     name: '투자 인사이트',
@@ -32,33 +31,11 @@ export default async function HomePage() {
       
       <Hero />
       
-      {/* Featured Posts Section */}
-      <section className="container mx-auto px-4 py-8">
-        <div className="flex items-center justify-between mb-8">
-          <h2 className="text-3xl font-bold text-foreground">최신 포스트</h2>
-          <p className="text-muted-foreground">투자에 대한 깊이 있는 인사이트를 만나보세요</p>
-        </div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {recentPosts.map((post) => (
-            <BlogPostCard key={post.slug} post={post} />
-          ))}
-        </div>
-        
-        {posts.length > 10 && (
-          <div className="text-center mt-12">
-            <Link 
-              href="/blog" 
-              className="inline-flex items-center px-6 py-3 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors"
-            >
-              더 많은 포스트 보기
-              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        )}
-      </section>
+      {/* Category Filter Section */}
+      <CategoryFilterClient 
+        categories={categories} 
+        initialPosts={posts}
+      />
       
       {/* Newsletter Section */}
       <section className="bg-muted py-16">
