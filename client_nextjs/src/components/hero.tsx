@@ -24,7 +24,7 @@ export function Hero() {
   };
 
   return (
-    <section className="gradient-bg py-20">
+    <section className="bg-gradient-to-r from-blue-600 to-purple-700 py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
           투자 인사이트 블로그
@@ -40,13 +40,13 @@ export function Hero() {
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               onKeyPress={handleKeyPress}
-              className="w-full px-6 py-4 pr-12 text-lg border-0 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary shadow-lg"
+              className="w-full px-6 py-4 pr-12 text-lg border-0 rounded-lg bg-white dark:bg-gray-800 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 shadow-lg"
             />
             <Search className="absolute right-4 top-5 text-gray-400 text-lg" />
           </div>
           <Button
             onClick={handleSearch}
-            className="btn-primary px-8 py-4 text-lg shadow-lg"
+            className="bg-blue-600 text-white hover:bg-blue-700 px-8 py-4 text-lg shadow-lg rounded-lg font-medium transition-colors"
           >
             검색하기
           </Button>

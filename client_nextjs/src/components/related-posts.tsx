@@ -86,13 +86,8 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
         {relatedPosts.map((post) => {
           const coverImage = post.featuredImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
 
-          const handleClick = () => {
-            // Scroll to top when clicking related post
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-          };
-
           return (
-            <Link key={post.slug} href={`/blog/${post.slug}`} onClick={handleClick}>
+            <Link key={post.slug} href={`/blog/${post.slug}`}>
               <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
@@ -100,13 +95,7 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
                     alt={`${post.title} - ${(post as any).categories?.[0] || '투자'} 관련 이미지`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      const defaultImageUrl = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
-                      if (target.src !== defaultImageUrl) {
-                        target.src = defaultImageUrl;
-                      }
-                    }}
+
                   />
                 </div>
                 
