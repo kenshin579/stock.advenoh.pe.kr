@@ -1,3 +1,5 @@
+'use client'
+
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -40,7 +42,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       case "etf":
         return "bg-green-500 text-white";
       case "bonds":
-        return "bg-yellow-500 text-white";
+        return "bg-purple-500 text-white";
       case "funds":
         return "bg-orange-500 text-white";
       case "analysis":
@@ -58,70 +60,76 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     return category || "기타";
   };
 
+  // Default cover image for investment content
   const coverImage = post.featuredImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
 
+  const bestDate = getBestDateFromPost(post);
+  const formattedDate = formatDateSafely(bestDate);
+
   return (
-    <Card className="rounded-lg border bg-card text-card-foreground shadow-sm card-hover overflow-hidden">
+    <Card className="card-hover overflow-hidden bg-card text-card-foreground border border-gray-200 dark:border-gray-700 shadow-sm transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
       <div className="relative">
         <img
           src={coverImage}
-          alt={`${post.title} - ${(post as any).category || '투자'} 관련 이미지`}
+          alt={`${post.title} - ${post.categories?.[0] || 'investment'} 관련 이미지`}
           className="w-full h-48 object-cover bg-gray-100 dark:bg-gray-800"
           loading="lazy"
         />
         <div className="absolute top-4 left-4">
-          <Badge className={getCategoryColor((post as any).category || 'etc')}>
-            {getCategoryLabel((post as any).category || '기타')}
+          <Badge className={getCategoryColor(post.categories?.[0] || 'default')}>
+            {getCategoryLabel(post.categories?.[0] || 'General')}
           </Badge>
         </div>
       </div>
+      
       <CardContent className="p-6">
-        <h3 className="text-xl font-bold mb-3 text-card-foreground">
-          <Link
-            href={`/blog/${post.slug}`}
-            className="hover:text-primary transition-colors"
+        <CardTitle className="mb-3 text-lg font-semibold leading-tight">
+          <Link 
+            href={`/blog/${post.slug}`} 
+            className="hover:text-primary transition-colors duration-200 line-clamp-2"
           >
             {post.title}
           </Link>
-        </h3>
-        <p className="text-muted-foreground mb-4 line-clamp-3">
+        </CardTitle>
+        
+        <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
           {post.excerpt}
         </p>
         
-        {/* Author and date info */}
-        <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-          <div className="flex items-center space-x-2">
-            <Avatar className="w-6 h-6">
-              <AvatarImage src="/profile.jpeg" alt="Frank" />
-              <AvatarFallback>F</AvatarFallback>
-            </Avatar>
-            <span>Frank</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <Calendar className="w-4 h-4" />
-            <span>{formatDateSafely(getBestDateFromPost(post))}</span>
-          </div>
-        </div>
-
-        {/* Post stats and read more */}
-        <div className="flex items-center justify-between text-sm text-muted-foreground border-t pt-3">
-          <div className="flex items-center space-x-4">
+        <div className="flex items-center justify-between text-sm">
+          <div className="flex items-center space-x-4 text-muted-foreground">
             <div className="flex items-center space-x-1">
-              <Heart className="w-4 h-4" />
-              <span>{(post as any).likes || 0}</span>
+              <Calendar className="w-4 h-4" />
+              <span>{formattedDate}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Eye className="w-4 h-4" />
-              <span>{(post as any).views || 0}</span>
+              <span>{post.views || 0}</span>
             </div>
+            {post.likes && post.likes > 0 && (
+              <div className="flex items-center space-x-1">
+                <Heart className="w-4 h-4" />
+                <span>{post.likes}</span>
+              </div>
+            )}
           </div>
-          <Link 
-            href={`/blog/${post.slug}`}
-            className="text-primary hover:text-primary/80 transition-colors font-medium"
-          >
-            자세히 보기 →
-          </Link>
+          
+          <div className="flex items-center space-x-2">
+            <Avatar className="w-6 h-6">
+              <AvatarImage src="/profile.jpeg" alt="Frank Oh" />
+              <AvatarFallback>FO</AvatarFallback>
+            </Avatar>
+            <span className="text-xs text-muted-foreground">Frank</span>
+          </div>
         </div>
+        
+        {post.readingTime && (
+          <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+            <span className="text-xs text-muted-foreground">
+              📖 {post.readingTime}분 읽기
+            </span>
+          </div>
+        )}
       </CardContent>
     </Card>
   );
