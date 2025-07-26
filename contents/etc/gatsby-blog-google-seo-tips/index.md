@@ -70,8 +70,8 @@ plugins: [
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: '<https://finance.advenoh.pe.kr/>',
-        sitemap: '<https://finance.advenoh.pe.kr/sitemap.xml>',
+        host: '<https://stock.advenoh.pe.kr/>',
+        sitemap: '<https://stock.advenoh.pe.kr/sitemap.xml>',
         policy: [{ userAgent: '*', allow: '/' }],
       },
     }
