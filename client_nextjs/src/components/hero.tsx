@@ -13,7 +13,7 @@ export function Hero() {
   const handleSearch = () => {
     if (searchTerm.trim()) {
       const searchUrl = `/?search=${encodeURIComponent(searchTerm.trim())}`;
-      router.push(searchUrl);
+      window.location.href = searchUrl;
     }
   };
 
@@ -24,13 +24,12 @@ export function Hero() {
   };
 
   return (
-    <section className="relative hero-gradient py-20 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-600/10 to-purple-700/10"></div>
+    <section className="relative hero-gradient py-24 overflow-hidden">
       <div className="relative container mx-auto px-4 text-center">
-        <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+        <h1 className="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight">
           투자 인사이트 블로그
         </h1>
-        <p className="text-xl text-blue-100 mb-8 max-w-3xl mx-auto leading-relaxed">
+        <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
           국내외 주식, ETF, 채권, 펀드에 대한 전문적인 분석과 투자 인사이트를 제공합니다.
         </p>
         <div className="flex flex-col sm:flex-row justify-center items-center gap-4 max-w-2xl mx-auto">
@@ -47,7 +46,6 @@ export function Hero() {
           </div>
           <Button
             onClick={handleSearch}
-
             className="bg-white/20 backdrop-blur-sm text-white border border-white/30 hover:bg-white/30 px-8 py-4 text-lg shadow-xl rounded-lg font-medium transition-all duration-200 hover:scale-105"
           >
             검색하기

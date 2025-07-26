@@ -21,6 +21,8 @@ export interface BlogPost {
   readingTime: number
   series?: string
   seriesOrder?: number
+  views?: number
+  likes?: number
 }
 
 export async function getAllBlogPosts(): Promise<BlogPost[]> {

@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default async function HomePage() {
   const posts = await getAllBlogPosts()
   const categories = await getAllCategories()
-  const recentPosts = posts.slice(0, 12)
+  const featuredPosts = posts.slice(0, 6)
 
   const structuredData = generateStructuredData('website', {
     name: '투자 인사이트',
@@ -31,11 +31,40 @@ export default async function HomePage() {
       
       <Hero />
       
-      {/* Category Filter Section */}
-      <CategoryFilterClient 
-        categories={categories} 
-        initialPosts={posts}
-      />
+      {/* Navigation Tabs */}
+      <section className="bg-gray-50 dark:bg-gray-900">
+        <div className="container mx-auto px-4">
+          <div className="flex justify-center space-x-8 py-4">
+            <button className="px-6 py-3 text-white bg-blue-500 rounded-full font-medium text-sm">
+              일반
+            </button>
+            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
+              Stock
+            </button>
+            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
+              Weekly
+            </button>
+            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
+              ETF
+            </button>
+            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
+              Etc.
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Featured Posts Section */}
+      <section className="py-16 bg-white dark:bg-gray-950">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold mb-12 text-center">최신 투자 인사이트</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {featuredPosts.map((post) => (
+              <BlogPostCard key={post.slug} post={post} />
+            ))}
+          </div>
+        </div>
+      </section>
       
       {/* Newsletter Section */}
       <section className="bg-muted py-16">
