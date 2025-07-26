@@ -88,7 +88,7 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
 
           return (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <Card className="group hover:shadow-lg transition-all duration-300 cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
+              <Card className="group card-hover-effect cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
                     src={coverImage}
