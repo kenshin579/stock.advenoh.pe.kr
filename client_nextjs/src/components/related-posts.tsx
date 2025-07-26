@@ -6,9 +6,16 @@ import { BlogPost } from '@/lib/blog';
 
 interface RelatedPostsProps {
   posts: BlogPost[];
+  currentPost: BlogPost;
+  maxPosts?: number;
 }
 
-export function RelatedPosts({ posts }: RelatedPostsProps) {
+export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsProps) {
+  // Safety check
+  if (!currentPost || !posts) {
+    return null;
+  }
+
   // Calculate relevance score for each post
   const getRelevanceScore = (post: BlogPost): number => {
     let score = 0;
@@ -18,8 +25,10 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
       score += 50;
     }
     
-    // Same category
-    if (post.category === currentPost.category && post.slug !== currentPost.slug) {
+    // Same category (using categories array)
+    const postCategories = (post as any).categories || [];
+    const currentCategories = (currentPost as any).categories || [];
+    if (postCategories.some((cat: string) => currentCategories.includes(cat))) {
       score += 20;
     }
     
@@ -30,8 +39,8 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
     score += commonTags.length * 10;
     
     // Recency bonus (newer posts get slight preference)
-    const postDateValue = post.date || post.createdAt;
-    const currentDateValue = currentPost.date || currentPost.createdAt;
+    const postDateValue = post.date;
+    const currentDateValue = currentPost.date;
     
     if (postDateValue && currentDateValue) {
       const postDate = new Date(postDateValue);
@@ -48,7 +57,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
   };
 
   // Get related posts sorted by relevance
-  const relatedPosts = allPosts
+  const relatedPosts = posts
     .filter(post => post.slug !== currentPost.slug)
     .map(post => ({
       ...post,
@@ -75,12 +84,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {relatedPosts.map((post) => {
-          const coverImage = getCoverImage({
-            featuredImage: post.featuredImage,
-            category: post.category,
-            content: post.content,
-            slug: post.slug
-          });
+          const coverImage = post.featuredImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
 
           const handleClick = () => {
             // Scroll to top when clicking related post
@@ -93,7 +97,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
                     src={coverImage}
-                    alt={`${post.title} - ${post.category} 관련 이미지`}
+                    alt={`${post.title} - ${(post as any).categories?.[0] || '투자'} 관련 이미지`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
                     onError={(e) => {
@@ -109,7 +113,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
                     <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium">
-                      {post.category}
+                      {(post as any).categories?.[0] || '투자'}
                     </span>
                     {post.series && (
                       <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
@@ -131,7 +135,7 @@ export function RelatedPosts({ posts }: RelatedPostsProps) {
                   <div className="flex items-center justify-between">
                     <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
                       <Calendar className="h-3 w-3" />
-                      {formatDateSafely(post.date || post.createdAt)}
+                      {formatDateSafely(post.date)}
                     </div>
                     
                     {post.tags && post.tags.length > 0 && (

@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </span>
               ))}
             </div>
-            <RelatedPosts posts={relatedPosts} />
+            <RelatedPosts posts={relatedPosts} currentPost={post} />
           </div>
         </footer>
       </article>
