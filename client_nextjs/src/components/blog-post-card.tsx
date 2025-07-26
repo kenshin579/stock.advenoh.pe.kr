@@ -1,3 +1,5 @@
+'use client';
+
 import Link from "next/link";
 import { Calendar, Heart, Eye } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -12,6 +14,7 @@ interface BlogPostCardProps {
 
 export function BlogPostCard({ post }: BlogPostCardProps) {
   const getCategoryColor = (category: string) => {
+    if (!category) return "bg-gray-500 text-white";
     switch (category.toLowerCase()) {
       case "stock":
         return "bg-blue-500 text-white";
@@ -34,7 +37,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
 
   const getCategoryLabel = (category: string) => {
     // 마크다운 파일의 category 값을 그대로 사용
-    return category;
+    return category || "기타";
   };
 
   // Use featured image or default fallback
@@ -45,7 +48,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       <div className="relative">
         <img
           src={coverImage}
-          alt={`${post.title} - ${post.category} 관련 이미지`}
+          alt={`${post.title} - ${(post as any).category || '투자'} 관련 이미지`}
           className="w-full h-48 object-cover bg-gray-100 dark:bg-gray-800"
           loading="lazy"
           onError={(e) => {
@@ -58,8 +61,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           }}
         />
         <div className="absolute top-4 left-4">
-          <Badge className={getCategoryColor(post.category)}>
-            {getCategoryLabel(post.category)}
+          <Badge className={getCategoryColor((post as any).category || 'etc')}>
+            {getCategoryLabel((post as any).category || '기타')}
           </Badge>
         </div>
       </div>
@@ -80,7 +83,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
         <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
           <div className="flex items-center space-x-2">
             <Avatar className="w-6 h-6">
-              <AvatarImage src={profileImage} alt="Frank" />
+              <AvatarImage src="/profile.jpeg" alt="Frank" />
               <AvatarFallback>F</AvatarFallback>
             </Avatar>
             <span>Frank</span>
@@ -96,11 +99,11 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
           <div className="flex items-center space-x-4">
             <div className="flex items-center space-x-1">
               <Heart className="w-4 h-4" />
-              <span>{post.likes || 0}</span>
+              <span>{(post as any).likes || 0}</span>
             </div>
             <div className="flex items-center space-x-1">
               <Eye className="w-4 h-4" />
-              <span>{post.views || 0}</span>
+              <span>{(post as any).views || 0}</span>
             </div>
           </div>
           <Link

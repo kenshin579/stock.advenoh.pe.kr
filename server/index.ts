@@ -2,6 +2,9 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { setupVite, serveStatic, log } from "./vite";
 
+// Check if we should use Next.js instead of Vite
+const USE_NEXTJS = true; // Temporarily set to true to switch to Next.js
+
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +43,39 @@ app.use((req, res, next) => {
 });
 
 (async () => {
+  if (USE_NEXTJS) {
+    // Import and start Next.js development server
+    const { spawn } = await import('child_process');
+    const path = await import('path');
+    const { fileURLToPath } = await import('url');
+    
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    const projectRoot = path.resolve(__dirname, '..');
+    const nextjsPath = path.join(projectRoot, 'client_nextjs');
+    
+    console.log('🚀 Starting Next.js Development Server...');
+    console.log('📁 Next.js path:', nextjsPath);
+    
+    // Start Next.js development server
+    const nextProcess = spawn('npm', ['run', 'dev'], {
+      cwd: nextjsPath,
+      stdio: 'inherit',
+      shell: true,
+      env: {
+        ...process.env,
+        PORT: '5000'
+      }
+    });
+    
+    nextProcess.on('error', (error) => {
+      console.error('❌ Failed to start Next.js:', error);
+      process.exit(1);
+    });
+    
+    return; // Exit early for Next.js mode
+  }
+  
   const server = await registerRoutes(app);
 
   app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {

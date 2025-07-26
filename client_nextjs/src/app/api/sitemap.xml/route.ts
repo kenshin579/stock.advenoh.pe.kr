@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server'
 import { getAllBlogPosts } from '@/lib/blog'
 
+export const dynamic = 'force-static'
+
 export async function GET() {
   const posts = await getAllBlogPosts()
   const baseUrl = process.env.SITE_URL || 'https://stock.advenoh.pe.kr'

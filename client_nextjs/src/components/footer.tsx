@@ -1,6 +1,8 @@
-import { Link } from "wouter";
+'use client';
+
+import Link from "next/link";
 import { ChartLine, Twitter, Linkedin, Youtube, Instagram, ExternalLink } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
+import { useState, useEffect } from "react";
 
 interface Category {
   category: string;
@@ -8,10 +10,24 @@ interface Category {
 }
 
 export function Footer() {
-  const { data: categories = [] } = useQuery<Category[]>({
-    queryKey: ['/api/categories'],
-    staleTime: 5 * 60 * 1000, // 5 minutes
-  });
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    // Fetch categories on client side
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch('/api/categories');
+        if (response.ok) {
+          const data = await response.json();
+          setCategories(data);
+        }
+      } catch (error) {
+        console.error('Failed to fetch categories:', error);
+      }
+    };
+
+    fetchCategories();
+  }, []);
   return (
     <footer className="bg-gray-900 text-white py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
