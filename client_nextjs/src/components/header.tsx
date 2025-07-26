@@ -81,20 +81,8 @@ export function Header() {
             >
               <span className="sr-only">다크 모드 토글</span>
               <div className="relative w-5 h-5 overflow-hidden flex items-center justify-center">
-                <Sun
-                  className={`absolute w-5 h-5 text-yellow-500 transition-all duration-300 transform ${
-                    theme === "dark" 
-                      ? "translate-y-8 rotate-90 opacity-0" 
-                      : "translate-y-0 rotate-0 opacity-100"
-                  }`}
-                />
-                <Moon
-                  className={`absolute w-5 h-5 text-blue-600 transition-all duration-300 transform ${
-                    theme === "dark" 
-                      ? "translate-y-0 rotate-0 opacity-100" 
-                      : "-translate-y-8 -rotate-90 opacity-0"
-                  }`}
-                />
+                <Sun className="absolute w-5 h-5 text-yellow-500 transition-all duration-300 rotate-0 scale-100 dark:-rotate-90 dark:scale-0" />
+                <Moon className="absolute w-5 h-5 text-blue-600 transition-all duration-300 rotate-90 scale-0 dark:rotate-0 dark:scale-100" />
               </div>
             </Button>
 

@@ -104,7 +104,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
 
         <div className="flex flex-col lg:flex-row gap-8">
           <div className="lg:w-3/4">
-            <MarkdownRenderer content={post.content} />
+            <div className="markdown-content prose prose-gray dark:prose-invert max-w-none">
+              <MarkdownRenderer content={post.content} />
+            </div>
           </div>
           
           <aside className="lg:w-1/4">
