@@ -31,7 +31,7 @@ export function generateArticleSchema(post: BlogPost, baseUrl: string) {
     "@type": "BlogPosting",
     "headline": post.title,
     "description": post.excerpt,
-    "image": post.featuredImage || `${baseUrl}/default-og-image.jpg`,
+    "image": post.featuredImage || `${baseUrl}/api/og-image?title=${encodeURIComponent(post.title)}`,
     "author": {
       "@type": "Person",
       "name": "Frank Oh"
@@ -140,4 +140,241 @@ export function generateStructuredData(type: 'website' | 'blog' | 'article', dat
     default:
       return generateWebSiteSchema(baseUrl)
   }
+}
+
+// JSON-LD 스키마 검증 인터페이스
+export interface SchemaValidationResult {
+  isValid: boolean;
+  errors: string[];
+  warnings: string[];
+  suggestions: string[];
+}
+
+// JSON-LD 스키마 검증 클래스
+class SchemaValidator {
+  private static instance: SchemaValidator;
+
+  private constructor() {}
+
+  static getInstance(): SchemaValidator {
+    if (!SchemaValidator.instance) {
+      SchemaValidator.instance = new SchemaValidator();
+    }
+    return SchemaValidator.instance;
+  }
+
+  // 스키마 유효성 검사
+  validateSchema(schema: unknown): SchemaValidationResult {
+    const errors: string[] = [];
+    const warnings: string[] = [];
+    const suggestions: string[] = [];
+
+    if (!schema || typeof schema !== 'object') {
+      errors.push('Schema must be a valid object');
+      return { isValid: false, errors, warnings, suggestions };
+    }
+
+    const schemaObj = schema as Record<string, unknown>;
+
+    // 필수 필드 검사
+    if (!schemaObj['@context']) {
+      errors.push('Missing @context field');
+    } else if (schemaObj['@context'] !== 'https://schema.org') {
+      warnings.push('@context should be "https://schema.org"');
+    }
+
+    if (!schemaObj['@type']) {
+      errors.push('Missing @type field');
+    }
+
+    // 타입별 검증
+    const type = schemaObj['@type'] as string;
+    switch (type) {
+      case 'BlogPosting':
+        this.validateBlogPostingSchema(schemaObj, errors, warnings, suggestions);
+        break;
+      case 'Blog':
+        this.validateBlogSchema(schemaObj, errors, warnings, suggestions);
+        break;
+      case 'WebSite':
+        this.validateWebSiteSchema(schemaObj, errors, warnings, suggestions);
+        break;
+      case 'Organization':
+        this.validateOrganizationSchema(schemaObj, errors, warnings, suggestions);
+        break;
+      case 'BreadcrumbList':
+        this.validateBreadcrumbSchema(schemaObj, errors, warnings, suggestions);
+        break;
+      default:
+        warnings.push(`Unknown schema type: ${type}`);
+    }
+
+    return {
+      isValid: errors.length === 0,
+      errors,
+      warnings,
+      suggestions,
+    };
+  }
+
+  // BlogPosting 스키마 검증
+  private validateBlogPostingSchema(
+    schema: Record<string, unknown>,
+    errors: string[],
+    warnings: string[],
+    suggestions: string[]
+  ): void {
+    const requiredFields = ['headline', 'description', 'author', 'datePublished'];
+    
+    for (const field of requiredFields) {
+      if (!schema[field]) {
+        errors.push(`Missing required field: ${field}`);
+      }
+    }
+
+    if (schema.headline && typeof schema.headline === 'string' && schema.headline.length > 110) {
+      warnings.push('Headline is too long (max 110 characters recommended)');
+    }
+
+    if (schema.description && typeof schema.description === 'string' && schema.description.length > 160) {
+      warnings.push('Description is too long (max 160 characters recommended)');
+    }
+
+    if (schema.image && typeof schema.image === 'string') {
+      if (!this.isValidUrl(schema.image)) {
+        warnings.push('Image URL may not be valid');
+      }
+    } else {
+      suggestions.push('Consider adding an image for better SEO');
+    }
+  }
+
+  // Blog 스키마 검증
+  private validateBlogSchema(
+    schema: Record<string, unknown>,
+    errors: string[],
+    warnings: string[],
+    suggestions: string[]
+  ): void {
+    const requiredFields = ['name', 'description', 'url'];
+    
+    for (const field of requiredFields) {
+      if (!schema[field]) {
+        errors.push(`Missing required field: ${field}`);
+      }
+    }
+
+    if (schema.url && typeof schema.url === 'string' && !this.isValidUrl(schema.url)) {
+      warnings.push('Blog URL may not be valid');
+    }
+  }
+
+  // WebSite 스키마 검증
+  private validateWebSiteSchema(
+    schema: Record<string, unknown>,
+    errors: string[],
+    warnings: string[],
+    suggestions: string[]
+  ): void {
+    const requiredFields = ['name', 'url'];
+    
+    for (const field of requiredFields) {
+      if (!schema[field]) {
+        errors.push(`Missing required field: ${field}`);
+      }
+    }
+
+    if (schema.url && typeof schema.url === 'string' && !this.isValidUrl(schema.url)) {
+      warnings.push('Website URL may not be valid');
+    }
+  }
+
+  // Organization 스키마 검증
+  private validateOrganizationSchema(
+    schema: Record<string, unknown>,
+    errors: string[],
+    warnings: string[],
+    suggestions: string[]
+  ): void {
+    const requiredFields = ['name', 'url'];
+    
+    for (const field of requiredFields) {
+      if (!schema[field]) {
+        errors.push(`Missing required field: ${field}`);
+      }
+    }
+
+    if (schema.logo && typeof schema.logo === 'object') {
+      const logo = schema.logo as Record<string, unknown>;
+      if (!logo.url || typeof logo.url !== 'string') {
+        warnings.push('Logo should have a valid URL');
+      }
+    }
+  }
+
+  // BreadcrumbList 스키마 검증
+  private validateBreadcrumbSchema(
+    schema: Record<string, unknown>,
+    errors: string[],
+    warnings: string[],
+    suggestions: string[]
+  ): void {
+    if (!schema.itemListElement || !Array.isArray(schema.itemListElement)) {
+      errors.push('BreadcrumbList must have itemListElement array');
+      return;
+    }
+
+    const items = schema.itemListElement as Array<Record<string, unknown>>;
+    
+    if (items.length === 0) {
+      warnings.push('BreadcrumbList should have at least one item');
+    }
+
+    items.forEach((item, index) => {
+      if (!item.name) {
+        errors.push(`Breadcrumb item ${index + 1} missing name`);
+      }
+      if (!item.position || typeof item.position !== 'number') {
+        warnings.push(`Breadcrumb item ${index + 1} should have position`);
+      }
+    });
+  }
+
+  // URL 유효성 검사
+  private isValidUrl(url: string): boolean {
+    try {
+      new URL(url);
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  // Google Rich Results 테스트 URL 생성
+  generateTestUrl(schema: unknown): string {
+    const baseUrl = 'https://search.google.com/test/rich-results';
+    const schemaJson = JSON.stringify(schema);
+    const encodedSchema = encodeURIComponent(schemaJson);
+    
+    return `${baseUrl}?url=${encodeURIComponent(this.getCurrentUrl())}&schema=${encodedSchema}`;
+  }
+
+  // 현재 URL 가져오기
+  private getCurrentUrl(): string {
+    if (typeof window !== 'undefined') {
+      return window.location.href;
+    }
+    return 'https://stock.advenoh.pe.kr';
+  }
+}
+
+// 편의 함수들
+export const schemaValidator = SchemaValidator.getInstance();
+
+export function validateSchema(schema: unknown): SchemaValidationResult {
+  return schemaValidator.validateSchema(schema);
+}
+
+export function generateSchemaTestUrl(schema: unknown): string {
+  return schemaValidator.generateTestUrl(schema);
 }
