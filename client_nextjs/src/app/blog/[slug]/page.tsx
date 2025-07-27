@@ -16,6 +16,9 @@ interface BlogPostPageProps {
   }>
 }
 
+// ISR 설정: 1시간마다 재생성
+export const revalidate = 3600
+
 export async function generateStaticParams() {
   const posts = await getAllBlogPosts()
   return posts.map((post) => ({

@@ -1,11 +1,26 @@
 import { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Noto_Sans_KR } from 'next/font/google'
 import './globals.css'
 import { Header } from '@/components/header'
 import { Footer } from '@/components/footer'
 import { ThemeProvider } from '@/components/theme-provider'
+import { initPerformanceMonitoring } from '@/lib/performance'
 
-const inter = Inter({ subsets: ['latin'] })
+// 폰트 최적화 설정
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+  preload: true,
+})
+
+const notoSansKR = Noto_Sans_KR({
+  subsets: ['latin'],
+  weight: ['400', '500', '600', '700'],
+  display: 'swap',
+  variable: '--font-noto-sans-kr',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   title: {
@@ -33,8 +48,8 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="ko">
-      <body className={inter.className}>
+    <html lang="ko" className={`${inter.variable} ${notoSansKR.variable}`}>
+      <body className={`${inter.className} ${notoSansKR.className} font-sans antialiased`}>
         <ThemeProvider>
           <div className="min-h-screen flex flex-col">
             <Header />
@@ -44,6 +59,17 @@ export default function RootLayout({
             <Footer />
           </div>
         </ThemeProvider>
+        
+        {/* 성능 모니터링 초기화 */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if (typeof window !== 'undefined') {
+                ${initPerformanceMonitoring.toString()}();
+              }
+            `,
+          }}
+        />
       </body>
     </html>
   )
