@@ -26,8 +26,8 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
     }
     
     // Same category (using categories array)
-    const postCategories = (post as any).categories || [];
-    const currentCategories = (currentPost as any).categories || [];
+    const postCategories = (post as BlogPost & { categories?: string[] }).categories || [];
+    const currentCategories = (currentPost as BlogPost & { categories?: string[] }).categories || [];
     if (postCategories.some((cat: string) => currentCategories.includes(cat))) {
       score += 20;
     }
@@ -92,7 +92,7 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
                 <div className="aspect-video overflow-hidden rounded-t-lg">
                   <img
                     src={coverImage}
-                    alt={`${post.title} - ${(post as any).categories?.[0] || '투자'} 관련 이미지`}
+                    alt={`${post.title} - ${(post as BlogPost & { categories?: string[] }).categories?.[0] || '투자'} 관련 이미지`}
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     loading="lazy"
 
@@ -102,7 +102,7 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
                 <CardHeader className="pb-2">
                   <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
                     <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium">
-                      {(post as any).categories?.[0] || '투자'}
+                      {(post as BlogPost & { categories?: string[] }).categories?.[0] || '투자'}
                     </span>
                     {post.series && (
                       <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">

@@ -43,7 +43,7 @@ export function Header() {
               const isActive = item.href === "/" ? pathname === "/" : pathname.includes(item.href);
               
               return (
-                <Link
+                <a
                   key={item.href}
                   href={item.href}
                   className={`text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
@@ -51,7 +51,7 @@ export function Header() {
                   }`}
                 >
                   {item.label}
-                </Link>
+                </a>
               );
             })}
           </div>
@@ -110,7 +110,7 @@ export function Header() {
                 const isActive = item.href === "/" ? pathname === "/" : pathname.includes(item.href);
                 
                 return (
-                  <Link
+                  <a
                     key={item.href}
                     href={item.href}
                     className={`block px-3 py-2 text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors ${
@@ -119,7 +119,7 @@ export function Header() {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     {item.label}
-                  </Link>
+                  </a>
                 );
               })}
               {/* Mobile search removed for now */}

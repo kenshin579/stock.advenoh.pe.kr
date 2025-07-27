@@ -109,7 +109,9 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
               {children}
             </blockquote>
           ),
-          code: ({ inline, children, className, ...props }) => {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          code: (props: any) => {
+            const { inline, children, className, ...rest } = props;
             const match = /language-(\w+)/.exec(className || '');
             const language = match ? match[1] : '';
             
@@ -119,7 +121,7 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
                 language={language}
                 PreTag="div"
                 className="mb-4 rounded-lg"
-                {...props}
+                {...rest}
               >
                 {String(children).replace(/\n$/, '')}
               </SyntaxHighlighter>

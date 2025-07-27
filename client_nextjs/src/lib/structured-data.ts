@@ -122,12 +122,12 @@ export function generateFAQSchema(faqs: Array<{question: string, answer: string}
 }
 
 // Helper function to combine multiple schemas
-export function combineSchemas(...schemas: any[]) {
+export function combineSchemas(...schemas: unknown[]) {
   return schemas.filter(Boolean);
 }
 
 // Main generateStructuredData function
-export function generateStructuredData(type: 'website' | 'blog' | 'article', data: any) {
+export function generateStructuredData(type: 'website' | 'blog' | 'article', data?: unknown) {
   const baseUrl = process.env.SITE_URL || 'https://stock.advenoh.pe.kr'
   
   switch (type) {
@@ -136,7 +136,7 @@ export function generateStructuredData(type: 'website' | 'blog' | 'article', dat
     case 'blog':
       return generateBlogSchema(baseUrl)
     case 'article':
-      return generateArticleSchema(data, baseUrl)
+      return generateArticleSchema(data as BlogPost, baseUrl)
     default:
       return generateWebSiteSchema(baseUrl)
   }

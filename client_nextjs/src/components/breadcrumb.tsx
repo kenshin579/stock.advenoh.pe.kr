@@ -23,12 +23,12 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
         <div key={index} className="flex items-center">
           <ChevronRight className="h-4 w-4 mx-1 text-gray-400 dark:text-gray-500" />
           {item.href && index < items.length - 1 ? (
-            <Link 
+            <a 
               href={item.href} 
               className="hover:text-gray-700 dark:hover:text-gray-200 transition-colors"
             >
               {item.label}
-            </Link>
+            </a>
           ) : (
             <span className={index === items.length - 1 ? 'text-gray-900 dark:text-white font-medium' : ''}>
               {item.label}
@@ -41,7 +41,7 @@ export function Breadcrumb({ items, className = '' }: BreadcrumbProps) {
 }
 
 // Helper function to generate breadcrumb items for different page types
-export function generateBreadcrumbs(pageType: string, data?: any): BreadcrumbItem[] {
+export function generateBreadcrumbs(pageType: string, data?: Record<string, string>): BreadcrumbItem[] {
   switch (pageType) {
     case 'blog-list':
       return [

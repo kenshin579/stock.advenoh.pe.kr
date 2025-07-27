@@ -18,7 +18,8 @@ export function SearchBar({ className = "", placeholder = "검색..." }: SearchB
   const handleSearch = () => {
     if (searchTerm.trim()) {
       const searchUrl = `/?search=${encodeURIComponent(searchTerm.trim())}`;
-      router.push(searchUrl);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      router.push(searchUrl as any);
     }
   };
 

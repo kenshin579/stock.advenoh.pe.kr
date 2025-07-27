@@ -42,16 +42,21 @@ async function fetchStaticData(path: string, params?: URLSearchParams) {
             const series = params.get('series');
             
             if (category && category !== 'all') {
-              posts = posts.filter((post: any) => post.category === category);
+              posts = posts.filter((post: { category: string }) => post.category === category);
             }
             
             if (series) {
-              posts = posts.filter((post: any) => post.series === series);
+              posts = posts.filter((post: { series?: string }) => post.series === series);
             }
             
             if (search) {
               const searchLower = search.toLowerCase();
-              posts = posts.filter((post: any) => 
+              posts = posts.filter((post: { 
+                title: string; 
+                content: string; 
+                excerpt?: string; 
+                tags?: string[] 
+              }) => 
                 post.title.toLowerCase().includes(searchLower) ||
                 post.content.toLowerCase().includes(searchLower) ||
                 (post.excerpt && post.excerpt.toLowerCase().includes(searchLower)) ||

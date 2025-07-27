@@ -37,8 +37,8 @@ export async function getRelatedPosts(slug: string, categories: string[]): Promi
       
       return { ...post, score }
     })
-    .filter((post: any) => post.score > 0)
-    .sort((a: any, b: any) => b.score - a.score)
+    .filter((post: { score: number }) => post.score > 0)
+    .sort((a: { score: number }, b: { score: number }) => b.score - a.score)
     .slice(0, 3)
   
   return relatedPosts.map(({ score, ...post }) => post)

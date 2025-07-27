@@ -101,7 +101,7 @@ export function getOptimizedImageProps(
     quality = 85
   } = options;
   
-  const props: Record<string, any> = {
+  const props: Record<string, string> = {
     src,
     alt,
     loading: enableLazyLoading ? 'lazy' : 'eager',
@@ -141,7 +141,7 @@ export function extractImagesFromMarkdown(content: string): Array<{
   
   // Match standard ![alt](src "title") and ![alt](src) patterns
   // But skip content that's already been processed by nested regex
-  let processedContent = content.replace(nestedImageRegex, '');
+  const processedContent = content.replace(nestedImageRegex, '');
   const imageRegex = /!\[([^\]]*)\]\(([^)\s]+)(?:\s+"([^"]*)")?\)/g;
   
   while ((match = imageRegex.exec(processedContent)) !== null) {
@@ -155,7 +155,7 @@ export function extractImagesFromMarkdown(content: string): Array<{
   // Also match HTML img tags
   const htmlImageRegex = /<img[^>]+src=["']([^"']+)["'][^>]*(?:alt=["']([^"']*)["'])?[^>]*>/gi;
   
-  while ((match = htmlImageRegex.exec(content)) !== null) {
+  while ((match = htmlImageRegex.exec(processedContent)) !== null) {
     images.push({
       src: match[1],
       alt: match[2] || undefined
