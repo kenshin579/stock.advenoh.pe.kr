@@ -1,13 +1,15 @@
-import { NextResponse } from 'next/server'
 import { getAllCategoriesServer } from '@/lib/blog-server'
+import { handleApiErrorWithPerformance } from '@/lib/error-handling'
 
 export const dynamic = 'force-static'
 
 export async function GET() {
-  try {
-    const categories = await getAllCategoriesServer()
-    return NextResponse.json(categories)
-  } catch (error) {
-    return NextResponse.json({ error: 'Failed to fetch categories' }, { status: 500 })
-  }
+  return handleApiErrorWithPerformance(
+    async () => {
+      const categories = await getAllCategoriesServer()
+      return categories
+    },
+    'getAllCategories',
+    '카테고리를 불러오는데 실패했습니다.'
+  )
 }
