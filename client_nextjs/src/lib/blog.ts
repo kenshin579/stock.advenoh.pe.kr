@@ -1,5 +1,5 @@
 // Re-export types and functions from appropriate modules
-export type { BlogPost } from './blog-server'
+export type { BlogPost } from '@/types/blog'
 
 // For server components, import from blog-server
 export {
@@ -10,7 +10,7 @@ export {
 } from './blog-server'
 
 // Utility function to get related posts
-export async function getRelatedPosts(slug: string, categories: string[]): Promise<import('./blog-server').BlogPost[]> {
+export async function getRelatedPosts(slug: string, categories: string[]): Promise<import('@/types/blog').BlogPost[]> {
   const { getAllBlogPostsServer } = await import('./blog-server')
   const allPosts = await getAllBlogPostsServer()
   const currentPost = allPosts.find(post => post.slug === slug)
@@ -45,7 +45,7 @@ export async function getRelatedPosts(slug: string, categories: string[]): Promi
 }
 
 // Simple wrapper for getBlogPostBySlug
-export async function getBlogPost(slug: string): Promise<import('./blog-server').BlogPost | null> {
+export async function getBlogPost(slug: string): Promise<import('@/types/blog').BlogPost | null> {
   const { getBlogPostBySlugServer } = await import('./blog-server')
   return getBlogPostBySlugServer(slug)
 }

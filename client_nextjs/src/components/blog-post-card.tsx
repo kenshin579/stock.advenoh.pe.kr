@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Calendar, Heart, Eye } from "lucide-react";
 import { BlogPost } from "@/lib/blog";
+import { OptimizedImage } from "@/components/image";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -69,11 +70,12 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
   return (
     <Card className="card-hover overflow-hidden bg-card text-card-foreground border border-gray-200 dark:border-gray-700 shadow-sm">
       <div className="relative">
-        <img
+        <OptimizedImage
           src={coverImage}
           alt={`${post.title} - ${post.categories?.[0] || 'investment'} 관련 이미지`}
-          className="w-full h-48 object-cover bg-gray-100 dark:bg-gray-800"
-          loading="lazy"
+          width={400}
+          height={300}
+          className="w-full h-48 object-cover"
         />
         <div className="absolute top-4 left-4">
           <Badge className={getCategoryColor(post.categories?.[0] || 'default')}>

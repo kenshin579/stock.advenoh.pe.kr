@@ -2,6 +2,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism';
+import { MarkdownImage } from './markdown-image';
 
 interface MarkdownRendererProps {
   content: string;
@@ -142,87 +143,15 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
             </a>
           ),
           img: ({ src, alt, title }) => {
-            // Handle relative URLs and ensure proper image loading
             if (!src) return null;
-            
-            let imageSrc = src;
-            
-            // If it's a relative path and we have a slug, construct the full path
-            if (!src.startsWith('/') && !src.startsWith('http') && slug) {
-              // Use category to determine the correct directory
-              let categoryDir = 'stock'; // default
-              if (category) {
-                switch (category.toLowerCase()) {
-                  case 'etf':
-                    categoryDir = 'etf';
-                    break;
-                  case 'weekly':
-                    categoryDir = 'weekly';
-                    break;
-                  case 'etc':
-                    categoryDir = 'etc';
-                    break;
-                  case 'stock':
-                  default:
-                    categoryDir = 'stock';
-                    break;
-                }
-              }
-              
-              imageSrc = `/contents/${categoryDir}/${slug}/${src}`;
-            } else if (!src.startsWith('/') && !src.startsWith('http')) {
-              imageSrc = `/contents/${src}`;
-            }
-            
             return (
-              <span className="block mb-4 text-center">
-                <img
-                  src={imageSrc}
-                  alt={alt || ''}
-                  title={title}
-                  className="max-w-full h-auto rounded-lg shadow-md border border-border/20 inline-block"
-                  loading="lazy"
-                  onError={(e) => {
-                    // Handle image loading errors gracefully
-                    const target = e.target as HTMLImageElement;
-                    
-                    // Try alternative paths if the first one fails
-                    if (slug && !src.startsWith('/') && !src.startsWith('http')) {
-                      const currentSrc = target.src;
-                      
-                      // Build alternative paths, prioritizing other categories
-                      const categories = ['stock', 'etf', 'weekly', 'etc'];
-                      const currentCategory = category?.toLowerCase() || 'stock';
-                      const otherCategories = categories.filter(cat => cat !== currentCategory);
-                      
-                      const alternatives = [
-                        ...otherCategories.map(cat => `/contents/${cat}/${slug}/${src}`),
-                        `/contents/${src}`,
-                      ];
-                      
-                      for (const altPath of alternatives) {
-                        const fullAltPath = new URL(altPath, window.location.origin).href;
-                        if (currentSrc !== fullAltPath) {
-                          target.src = altPath;
-                          return;
-                        }
-                      }
-                    }
-                    
-                    // If all alternatives fail, show error message
-                    target.style.display = 'none';
-                    const errorDiv = document.createElement('div');
-                    errorDiv.className = 'flex items-center justify-center h-32 bg-muted rounded-lg border border-border/20 text-muted-foreground text-sm';
-                    errorDiv.innerHTML = `
-                      <div class="text-center">
-                        <div>이미지를 불러올 수 없습니다</div>
-                        ${alt ? `<div class="text-xs mt-1 opacity-60">${alt}</div>` : ''}
-                      </div>
-                    `;
-                    target.parentNode?.appendChild(errorDiv);
-                  }}
-                />
-              </span>
+              <MarkdownImage
+                src={src}
+                alt={alt}
+                title={title}
+                slug={slug}
+                category={category}
+              />
             );
           },
           table: ({ children }) => (

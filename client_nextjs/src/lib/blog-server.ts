@@ -8,23 +8,7 @@ import remarkHtml from 'remark-html'
 
 const postsDirectory = path.join(process.cwd(), 'contents')
 
-export interface BlogPost {
-  slug: string
-  title: string
-  excerpt: string
-  content: string
-  date: string
-  formattedDate: string
-  author: string
-  categories: string[]
-  tags: string[]
-  featuredImage?: string
-  readingTime: number
-  series?: string
-  seriesOrder?: number
-  views?: number
-  likes?: number
-}
+import { BlogPost } from '@/types/blog';
 
 // Server-only function for file system access
 export async function getAllBlogPostsServer(): Promise<BlogPost[]> {
