@@ -24,7 +24,7 @@ export function Hero() {
   };
 
   return (
-    <section className="relative hero-gradient py-20 overflow-hidden">
+    <section className="relative gradient-bg py-20 overflow-hidden">
       <div className="relative container mx-auto px-4 text-center">
         <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
           투자 인사이트 블로그
