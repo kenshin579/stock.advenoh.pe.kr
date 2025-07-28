@@ -5,6 +5,7 @@ import { Hero } from '@/components/hero'
 import { BlogPostCard } from '@/components/blog-post-card'
 import { CategoryFilterClient } from '@/components/category-filter-client'
 import { TagCloudSection } from '@/components/tag-cloud-section'
+import { LoadMoreButton } from '@/components/load-more-button'
 import { generateStructuredData } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
@@ -116,21 +117,13 @@ export default async function HomePage({
                 ))}
               </div>
 
-              {hasMore && (
-                <div className="text-center mt-12">
-                  <Link
-                    href={`/?${new URLSearchParams({
-                      ...(selectedCategory !== 'all' && { category: selectedCategory }),
-                      ...(searchTerm && { search: searchTerm }),
-                      ...(selectedTags.length > 0 && { tags: selectedTags[0] }),
-                      page: (currentPage + 1).toString()
-                    }).toString()}`}
-                    className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-200 font-medium shadow-md hover:shadow-lg"
-                  >
-                    더 보기
-                  </Link>
-                </div>
-              )}
+              <LoadMoreButton
+                currentPage={currentPage}
+                hasMore={hasMore}
+                selectedCategory={selectedCategory}
+                searchTerm={searchTerm}
+                selectedTags={selectedTags}
+              />
             </>
           )}
         </div>
