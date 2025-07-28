@@ -7,6 +7,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Calendar, Heart, Eye } from "lucide-react";
 import { BlogPost } from "@/lib/blog";
 import { OptimizedImage } from "@/components/image";
+import { getCoverImage } from "@/lib/image-utils";
 
 interface BlogPostCardProps {
   post: BlogPost;
@@ -61,8 +62,8 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
     return category || "기타";
   };
 
-  // Default cover image for investment content
-  const coverImage = post.featuredImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
+  // Use getCoverImage function for better image handling
+  const coverImage = getCoverImage(post);
 
   const bestDate = getBestDateFromPost(post);
   const formattedDate = formatDateSafely(bestDate);

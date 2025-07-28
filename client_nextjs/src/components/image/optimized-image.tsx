@@ -39,10 +39,30 @@ export function OptimizedImage({
   // 로딩 상태 관리
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
+  const [currentSrc, setCurrentSrc] = useState(src || '');
 
   // 기본 blur placeholder (SVG)
   // 작은 크기의 SVG를 base64로 인코딩하여 빠른 로딩
   const defaultBlurDataURL = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHZpZXdCb3g9IjAgMCA0MCA0MCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBmaWxsPSIjRjNGNEY2Ii8+CjxwYXRoIGQ9Ik0xMCAxMEgzMFYzMEgxMFYxMFoiIGZpbGw9IiNFNUU3RUIiLz4KPC9zdmc+';
+
+  // Fallback 이미지 URL
+  const fallbackImageUrl = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
+
+  const handleError = () => {
+    if (currentSrc !== fallbackImageUrl) {
+      setCurrentSrc(fallbackImageUrl);
+      setHasError(false);
+      setIsLoading(true);
+    } else {
+      setHasError(true);
+      setIsLoading(false);
+    }
+  };
+
+  const handleLoad = () => {
+    setIsLoading(false);
+    setHasError(false);
+  };
 
   // 에러 상태일 때 fallback UI 표시
   if (hasError) {
@@ -60,8 +80,8 @@ export function OptimizedImage({
     <div className={`relative overflow-hidden ${className}`}>
       {/* Next.js Image 컴포넌트 */}
       <Image
-        src={src}
-        alt={alt}
+        src={currentSrc}
+        alt={alt || ''}
         width={width}
         height={height}
         priority={priority}
@@ -69,8 +89,8 @@ export function OptimizedImage({
         sizes={sizes}
         placeholder={placeholder}
         blurDataURL={placeholder === 'blur' ? defaultBlurDataURL : ''}
-        onLoad={() => setIsLoading(false)}
-        onError={() => setHasError(true)}
+        onLoad={handleLoad}
+        onError={handleError}
         className={`
           duration-700 ease-in-out
           ${isLoading ? 'scale-110 blur-2xl grayscale' : 'scale-100 blur-0 grayscale-0'}

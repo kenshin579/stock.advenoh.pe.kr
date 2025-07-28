@@ -207,7 +207,7 @@ export function validateImageAccessibility(img: HTMLImageElement): {
 }
 
 // Get cover image for blog post
-export function getCoverImage(post?: { featuredImage?: string | null; category?: string; content?: string; slug?: string }): string {
+export function getCoverImage(post?: { featuredImage?: string | null; category?: string; content?: string; slug?: string; categories?: string[] }): string {
   // Use featured image if available and not null
   if (post?.featuredImage && post.featuredImage !== null && post.featuredImage !== '') {
     return post.featuredImage;
@@ -223,9 +223,8 @@ export function getCoverImage(post?: { featuredImage?: string | null; category?:
       // Convert relative image paths to absolute paths
       if (!imageSrc.startsWith('http') && !imageSrc.startsWith('/')) {
         // For contents directory images, construct the full path
-        if (post.category) {
-          imageSrc = `/contents/${post.category.toLowerCase()}/${post.slug}/${imageSrc}`;
-        }
+        const category = post.category || post.categories?.[0] || 'stock';
+        imageSrc = `/contents/${category.toLowerCase()}/${post.slug}/${imageSrc}`;
       }
       
       return imageSrc;

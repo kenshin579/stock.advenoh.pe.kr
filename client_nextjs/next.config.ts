@@ -1,4 +1,6 @@
 import type { NextConfig } from "next";
+import path from "path";
+import fs from "fs";
 
 const nextConfig: NextConfig = {
   // SSR을 위한 설정 (static export 제거)

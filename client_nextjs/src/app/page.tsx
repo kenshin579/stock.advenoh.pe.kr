@@ -4,6 +4,7 @@ import { getAllBlogPosts, getAllCategories } from '@/lib/blog'
 import { Hero } from '@/components/hero'
 import { BlogPostCard } from '@/components/blog-post-card'
 import { CategoryFilterClient } from '@/components/category-filter-client'
+import { TagCloudSection } from '@/components/tag-cloud-section'
 import { generateStructuredData } from '@/lib/structured-data'
 
 export const metadata: Metadata = {
@@ -11,10 +12,54 @@ export const metadata: Metadata = {
   description: '투자에 대한 깊이 있는 인사이트와 실전 경험을 공유하는 전문 금융 블로그입니다.',
 }
 
-export default async function HomePage() {
+export default async function HomePage({
+  searchParams,
+}: {
+  searchParams: Promise<{ category?: string; search?: string; tags?: string; page?: string }>
+}) {
   const posts = await getAllBlogPosts()
   const categories = await getAllCategories()
-  const featuredPosts = posts.slice(0, 6)
+  const params = await searchParams
+  
+  // 필터링 로직
+  const selectedCategory = params.category || 'all'
+  const searchTerm = params.search || ''
+  const selectedTags = params.tags ? [params.tags] : []
+  const currentPage = parseInt(params.page || '1')
+  const postsPerPage = 9
+
+  // 카테고리 필터링
+  let filteredPosts = posts
+  if (selectedCategory !== 'all') {
+    filteredPosts = posts.filter(post => post.categories.includes(selectedCategory))
+  }
+
+  // 검색 필터링
+  if (searchTerm) {
+    filteredPosts = filteredPosts.filter(post => 
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.content?.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  }
+
+  // 태그 필터링
+  if (selectedTags.length > 0) {
+    filteredPosts = filteredPosts.filter(post => 
+      selectedTags.some(tag => post.tags.includes(tag))
+    )
+  }
+
+  // 날짜순 정렬
+  const sortedPosts = filteredPosts.sort((a, b) => {
+    const dateA = new Date(a.date || 0)
+    const dateB = new Date(b.date || 0)
+    return dateB.getTime() - dateA.getTime()
+  })
+
+  // 페이지네이션
+  const paginatedPosts = sortedPosts.slice(0, currentPage * postsPerPage)
+  const hasMore = sortedPosts.length > currentPage * postsPerPage
 
   const structuredData = generateStructuredData('website', {
     name: '투자 인사이트',
@@ -31,61 +76,68 @@ export default async function HomePage() {
       
       <Hero />
       
-      {/* Navigation Tabs */}
-      <section className="bg-gray-50 dark:bg-gray-900">
-        <div className="container mx-auto px-4">
-          <div className="flex justify-center space-x-8 py-4">
-            <button className="px-6 py-3 text-white bg-blue-500 rounded-full font-medium text-sm">
-              일반
-            </button>
-            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
-              Stock
-            </button>
-            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
-              Weekly
-            </button>
-            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
-              ETF
-            </button>
-            <button className="px-6 py-3 text-gray-600 dark:text-gray-300 hover:text-blue-500 font-medium text-sm transition-colors">
-              Etc.
-            </button>
-          </div>
-        </div>
-      </section>
+      {/* Category Filter */}
+      <CategoryFilterClient 
+        categories={categories}
+        selectedCategory={selectedCategory}
+        searchTerm={searchTerm}
+        selectedTags={selectedTags}
+      />
 
-      {/* Featured Posts Section */}
-      <section className="py-16 bg-white dark:bg-gray-950">
-        <div className="container mx-auto px-4">
-          <h2 className="text-3xl font-bold mb-12 text-center">최신 투자 인사이트</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredPosts.map((post) => (
-              <BlogPostCard key={post.slug} post={post} />
-            ))}
+      {/* Main Content */}
+      <main className="py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center mb-12">
+            <h2 className="text-3xl font-bold text-center">
+              {searchTerm ? `"${searchTerm}" 검색 결과` : 
+               selectedTags.length > 0 ? `"${selectedTags[0]}" 태그 글` : 
+               '최신 투자 인사이트'}
+            </h2>
+            {(searchTerm || selectedTags.length > 0) && (
+              <p className="text-muted-foreground">
+                {sortedPosts.length}개의 글을 찾았습니다
+              </p>
+            )}
           </div>
+
+          {sortedPosts.length === 0 ? (
+            <div className="text-center py-12">
+              <p className="text-muted-foreground text-lg">
+                {searchTerm ? '검색 결과가 없습니다.' : 
+                 selectedTags.length > 0 ? '해당 태그의 글이 없습니다.' : 
+                 '아직 게시된 글이 없습니다.'}
+              </p>
+            </div>
+          ) : (
+            <>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {paginatedPosts.map((post) => (
+                  <BlogPostCard key={post.slug} post={post} />
+                ))}
+              </div>
+
+              {hasMore && (
+                <div className="text-center mt-12">
+                  <Link
+                    href={`/?${new URLSearchParams({
+                      ...(selectedCategory !== 'all' && { category: selectedCategory }),
+                      ...(searchTerm && { search: searchTerm }),
+                      ...(selectedTags.length > 0 && { tags: selectedTags[0] }),
+                      page: (currentPage + 1).toString()
+                    }).toString()}`}
+                    className="px-8 py-3 bg-primary text-primary-foreground rounded-lg hover:bg-primary/90 transition-all duration-200 font-medium shadow-md hover:shadow-lg"
+                  >
+                    더 보기
+                  </Link>
+                </div>
+              )}
+            </>
+          )}
         </div>
-      </section>
-      
-      {/* Newsletter Section */}
-      <section className="bg-muted py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h3 className="text-2xl font-bold mb-4">투자 인사이트 뉴스레터</h3>
-          <p className="text-muted-foreground mb-8 max-w-2xl mx-auto">
-            매주 엄선된 투자 정보와 시장 분석을 이메일로 받아보세요. 
-            전문가의 시각으로 바라본 투자 인사이트를 놓치지 마세요.
-          </p>
-          <div className="max-w-md mx-auto flex gap-2">
-            <input
-              type="email"
-              placeholder="이메일 주소를 입력하세요"
-              className="flex-1 px-4 py-2 rounded-lg border border-input bg-background"
-            />
-            <button className="px-6 py-2 bg-primary text-primary-foreground rounded-lg font-medium hover:bg-primary/90 transition-colors">
-              구독하기
-            </button>
-          </div>
-        </div>
-      </section>
+      </main>
+
+      {/* Tag Cloud Section */}
+      <TagCloudSection posts={posts} />
     </div>
   )
 }

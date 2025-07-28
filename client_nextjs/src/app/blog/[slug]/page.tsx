@@ -147,17 +147,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <aside className="lg:w-1/4">
               <div className="sticky top-8 space-y-6">
                 <TableOfContents content={post.content} />
-                
-                {/* Share buttons could go here */}
-                <div className="bg-muted p-4 rounded-lg">
-                  <h3 className="font-semibold mb-2">이 글이 도움이 되셨나요?</h3>
-                  <p className="text-sm text-muted-foreground mb-3">
-                    더 많은 투자 인사이트를 받아보세요
-                  </p>
-                  <button className="w-full bg-primary text-primary-foreground px-4 py-2 rounded text-sm font-medium hover:bg-primary/90 transition-colors">
-                    뉴스레터 구독하기
-                  </button>
-                </div>
               </div>
             </aside>
           </div>

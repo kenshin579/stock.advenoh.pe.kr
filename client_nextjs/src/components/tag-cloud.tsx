@@ -1,4 +1,6 @@
-import { Link } from 'wouter';
+'use client'
+
+import Link from 'next/link';
 import { Tag } from 'lucide-react';
 
 interface TagCloudProps {
@@ -98,14 +100,12 @@ export function extractTagsWithCounts(posts: Array<{ tags?: string[] }>): Array<
     if (post.tags && Array.isArray(post.tags)) {
       post.tags.forEach(tag => {
         if (typeof tag === 'string' && tag.trim()) {
-          const normalizedTag = tag.trim();
+          const normalizedTag = tag.trim().toLowerCase();
           tagCounts.set(normalizedTag, (tagCounts.get(normalizedTag) || 0) + 1);
         }
       });
     }
   });
   
-  return Array.from(tagCounts.entries())
-    .map(([name, count]) => ({ name, count }))
-    .filter(tag => tag.count > 0);
+  return Array.from(tagCounts.entries()).map(([name, count]) => ({ name, count }));
 }

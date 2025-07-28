@@ -1,5 +1,7 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
+import path from "path";
+import { fileURLToPath } from "url";
 
 // Next.js development server launcher
 const USE_NEXTJS = true;
@@ -8,8 +10,13 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Get current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..');
+
 // Serve attached_assets as static files
-app.use('/attached_assets', express.static('attached_assets'));
+app.use('/attached_assets', express.static(path.join(projectRoot, 'attached_assets')));
 
 app.use((req, res, next) => {
   const start = Date.now();
