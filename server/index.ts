@@ -2,9 +2,11 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import path from "path";
 import { fileURLToPath } from "url";
+import next from "next";
 
-// Next.js development server launcher
-const USE_NEXTJS = true;
+const dev = process.env.NODE_ENV !== 'production';
+const nextApp = next({ dev });
+const nextHandler = nextApp.getRequestHandler();
 
 const app = express();
 app.use(express.json());
@@ -17,6 +19,15 @@ const projectRoot = path.resolve(__dirname, '..');
 
 // Serve attached_assets as static files
 app.use('/attached_assets', express.static(path.join(projectRoot, 'attached_assets')));
+
+// Serve static files from public directory
+app.use('/contents', express.static(path.join(projectRoot, 'public', 'contents'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.png') || path.endsWith('.jpg') || path.endsWith('.jpeg') || path.endsWith('.gif') || path.endsWith('.svg')) {
+      res.set('Cache-Control', 'public, max-age=31536000'); // 1 year cache
+    }
+  }
+}));
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -49,56 +60,36 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  if (USE_NEXTJS) {
-    // Import and start Next.js development server
-    const { spawn } = await import('child_process');
-    const path = await import('path');
-    const { fileURLToPath } = await import('url');
+  try {
+    // Prepare Next.js
+    await nextApp.prepare();
     
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    const projectRoot = path.resolve(__dirname, '..');
-    const nextjsPath = path.join(projectRoot, 'client_nextjs');
+    // Register API routes
+    await registerRoutes(app);
     
-    console.log('🚀 Starting Next.js Development Server...');
-    console.log('📁 Next.js path:', nextjsPath);
-    
-    // Start Next.js development server
-    const nextProcess = spawn('npm', ['run', 'dev'], {
-      cwd: nextjsPath,
-      stdio: 'inherit',
-      shell: true,
-      env: {
-        ...process.env,
-        PORT: '3001'
-      }
+    // Handle all other requests with Next.js
+    app.all('*', (req, res) => {
+      return nextHandler(req, res);
     });
-    
-    nextProcess.on('error', (error) => {
-      console.error('❌ Failed to start Next.js:', error);
-      process.exit(1);
+
+    app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+      const status = err.status || err.statusCode || 500;
+      const message = err.message || "Internal Server Error";
+
+      res.status(status).json({ message });
+      throw err;
     });
-    
-    return; // Exit early for Next.js mode
+
+    const port = parseInt(process.env.PORT || '3000', 10);
+    app.listen({
+      port,
+      host: "localhost",
+    }, () => {
+      console.log(`🚀 Server ready on http://localhost:${port}`);
+      console.log(`📱 Next.js ${dev ? 'development' : 'production'} mode`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
   }
-  
-  // Fallback for non-Next.js mode (not used currently)
-  const server = await registerRoutes(app);
-
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  const port = parseInt(process.env.PORT || '3001', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    console.log(`serving on port ${port}`);
-  });
 })();
