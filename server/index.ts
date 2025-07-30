@@ -1,16 +1,33 @@
 import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
-import { setupVite, serveStatic, log } from "./vite";
+import path from "path";
+import { fileURLToPath } from "url";
+import next from "next";
 
-// Check if we should use Next.js instead of Vite
-const USE_NEXTJS = true; // Temporarily set to true to switch to Next.js
+const dev = process.env.NODE_ENV !== 'production';
+const nextApp = next({ dev });
+const nextHandler = nextApp.getRequestHandler();
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+// Get current directory
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const projectRoot = path.resolve(__dirname, '..');
+
 // Serve attached_assets as static files
-app.use('/attached_assets', express.static('attached_assets'));
+app.use('/attached_assets', express.static(path.join(projectRoot, 'attached_assets')));
+
+// Serve static files from public directory
+app.use('/contents', express.static(path.join(projectRoot, 'public', 'contents'), {
+  setHeaders: (res, path) => {
+    if (path.endsWith('.png') || path.endsWith('.jpg') || path.endsWith('.jpeg') || path.endsWith('.gif') || path.endsWith('.svg')) {
+      res.set('Cache-Control', 'public, max-age=31536000'); // 1 year cache
+    }
+  }
+}));
 
 app.use((req, res, next) => {
   const start = Date.now();
@@ -35,7 +52,7 @@ app.use((req, res, next) => {
         logLine = logLine.slice(0, 79) + "…";
       }
 
-      log(logLine);
+      console.log(logLine);
     }
   });
 
@@ -43,68 +60,36 @@ app.use((req, res, next) => {
 });
 
 (async () => {
-  if (USE_NEXTJS) {
-    // Import and start Next.js development server
-    const { spawn } = await import('child_process');
-    const path = await import('path');
-    const { fileURLToPath } = await import('url');
+  try {
+    // Prepare Next.js
+    await nextApp.prepare();
     
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    const projectRoot = path.resolve(__dirname, '..');
-    const nextjsPath = path.join(projectRoot, 'client_nextjs');
+    // Register API routes
+    await registerRoutes(app);
     
-    console.log('🚀 Starting Next.js Development Server...');
-    console.log('📁 Next.js path:', nextjsPath);
-    
-    // Start Next.js development server
-    const nextProcess = spawn('npm', ['run', 'dev'], {
-      cwd: nextjsPath,
-      stdio: 'inherit',
-      shell: true,
-      env: {
-        ...process.env,
-        PORT: '5000'
-      }
+    // Handle all other requests with Next.js
+    app.all('*', (req, res) => {
+      return nextHandler(req, res);
     });
-    
-    nextProcess.on('error', (error) => {
-      console.error('❌ Failed to start Next.js:', error);
-      process.exit(1);
+
+    app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+      const status = err.status || err.statusCode || 500;
+      const message = err.message || "Internal Server Error";
+
+      res.status(status).json({ message });
+      throw err;
     });
-    
-    return; // Exit early for Next.js mode
+
+    const port = parseInt(process.env.PORT || '3000', 10);
+    app.listen({
+      port,
+      host: "localhost",
+    }, () => {
+      console.log(`🚀 Server ready on http://localhost:${port}`);
+      console.log(`📱 Next.js ${dev ? 'development' : 'production'} mode`);
+    });
+  } catch (error) {
+    console.error('❌ Failed to start server:', error);
+    process.exit(1);
   }
-  
-  const server = await registerRoutes(app);
-
-  app.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
-    const status = err.status || err.statusCode || 500;
-    const message = err.message || "Internal Server Error";
-
-    res.status(status).json({ message });
-    throw err;
-  });
-
-  // importantly only setup vite in development and after
-  // setting up all the other routes so the catch-all route
-  // doesn't interfere with the other routes
-  if (app.get("env") === "development") {
-    await setupVite(app, server);
-  } else {
-    serveStatic(app);
-  }
-
-  // ALWAYS serve the app on the port specified in the environment variable PORT
-  // Other ports are firewalled. Default to 5000 if not specified.
-  // this serves both the API and the client.
-  // It is the only port that is not firewalled.
-  const port = parseInt(process.env.PORT || '5000', 10);
-  server.listen({
-    port,
-    host: "0.0.0.0",
-    reusePort: true,
-  }, () => {
-    log(`serving on port ${port}`);
-  });
 })();

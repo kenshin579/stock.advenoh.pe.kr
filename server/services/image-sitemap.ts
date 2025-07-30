@@ -1,5 +1,5 @@
 // Image sitemap generation service
-import { extractImagesFromMarkdown } from '../../client_nextjs/src/lib/image-utils';
+import { extractImagesFromMarkdown } from '../utils/image-utils';
 
 interface ImageInfo {
   loc: string;

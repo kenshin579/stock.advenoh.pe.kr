@@ -1,6 +1,0 @@
-{
-  "name": "nextjs-dev",
-  "command": "cd client_nextjs && npm run dev",
-  "port": 3000,
-  "environment": "development"
-}
