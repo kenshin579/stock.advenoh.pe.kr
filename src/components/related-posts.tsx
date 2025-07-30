@@ -1,8 +1,11 @@
 import Link from 'next/link';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Calendar, Tag, ArrowRight } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar';
+import { Calendar, Tag, ArrowRight, Eye, Heart } from 'lucide-react';
 import { formatDateSafely } from '@/lib/date-utils';
 import { BlogPost } from '@/lib/blog';
+import { getCoverImage } from '@/lib/image-utils';
 
 interface RelatedPostsProps {
   posts: BlogPost[];
@@ -67,11 +70,34 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
     .sort((a, b) => b.relevanceScore - a.relevanceScore)
     .slice(0, maxPosts);
 
-
-
   if (relatedPosts.length === 0) {
     return null;
   }
+
+  const getCategoryColor = (category: string) => {
+    switch (category?.toLowerCase()) {
+      case "stock":
+        return "bg-blue-500 text-white";
+      case "etf":
+        return "bg-green-500 text-white";
+      case "bonds":
+        return "bg-purple-500 text-white";
+      case "funds":
+        return "bg-orange-500 text-white";
+      case "analysis":
+        return "bg-red-500 text-white";
+      case "etc":
+        return "bg-gray-500 text-white";
+      case "weekly":
+        return "bg-indigo-500 text-white";
+      default:
+        return "bg-slate-500 text-white";
+    }
+  };
+
+  const getCategoryLabel = (category: string) => {
+    return category || "기타";
+  };
 
   return (
     <div className="mt-12 border-t pt-8">
@@ -84,69 +110,81 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         {relatedPosts.map((post) => {
-          const coverImage = post.featuredImage || 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
+          let coverImage = getCoverImage(post);
+          
+          // 이미지 경로가 유효하지 않거나 빈 문자열인 경우 기본 이미지 사용
+          if (!coverImage || coverImage === '' || coverImage === 'undefined') {
+            coverImage = 'https://images.unsplash.com/photo-1590283603385-17ffb3a7f29f?w=400&h=300&fit=crop&auto=format';
+          }
 
           return (
             <Link key={post.slug} href={`/blog/${post.slug}`}>
-              <Card className="group card-hover-effect cursor-pointer border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600">
-                <div className="aspect-video overflow-hidden rounded-t-lg">
+              <Card className="card-hover overflow-hidden bg-card text-card-foreground border border-gray-200 dark:border-gray-700 shadow-sm">
+                <div className="relative">
                   <img
                     src={coverImage}
                     alt={`${post.title} - ${(post as BlogPost & { categories?: string[] }).categories?.[0] || '투자'} 관련 이미지`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    className="w-full h-48 object-cover"
                     loading="lazy"
-
                   />
+                  <div className="absolute top-4 left-4">
+                    <Badge className={getCategoryColor((post as BlogPost & { categories?: string[] }).categories?.[0] || 'default')}>
+                      {getCategoryLabel((post as BlogPost & { categories?: string[] }).categories?.[0] || 'General')}
+                    </Badge>
+                  </div>
                 </div>
                 
-                <CardHeader className="pb-2">
-                  <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
-                    <span className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded-full text-xs font-medium">
-                      {(post as BlogPost & { categories?: string[] }).categories?.[0] || '투자'}
+                <CardContent className="p-6">
+                  <CardTitle className="mb-3 text-lg font-semibold leading-tight">
+                    <span className="hover:text-primary transition-colors duration-200 line-clamp-2">
+                      {post.title}
                     </span>
-                    {post.series && (
-                      <span className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 px-2 py-1 rounded-full text-xs font-medium">
-                        시리즈
-                      </span>
-                    )}
-                  </div>
-                  
-                  <CardTitle className="text-lg group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors line-clamp-2">
-                    {post.title}
                   </CardTitle>
-                </CardHeader>
-                
-                <CardContent className="pt-0">
-                  <p className="text-gray-600 dark:text-gray-300 text-sm line-clamp-2 mb-3">
+                  
+                  <p className="text-muted-foreground mb-4 text-sm leading-relaxed line-clamp-3">
                     {post.excerpt}
                   </p>
                   
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-                      <Calendar className="h-3 w-3" />
-                      {formatDateSafely(post.date)}
+                  <div className="flex items-center justify-between text-sm">
+                    <div className="flex items-center space-x-4 text-muted-foreground">
+                      <div className="flex items-center space-x-1">
+                        <Calendar className="w-4 h-4" />
+                        <span>{formatDateSafely(post.date)}</span>
+                      </div>
+                      <div className="flex items-center space-x-1">
+                        <Eye className="w-4 h-4" />
+                        <span>{post.views || 0}</span>
+                      </div>
+                      {post.likes && post.likes > 0 && (
+                        <div className="flex items-center space-x-1">
+                          <Heart className="w-4 h-4" />
+                          <span>{post.likes}</span>
+                        </div>
+                      )}
                     </div>
                     
-                    {post.tags && post.tags.length > 0 && (
-                      <div className="flex items-center gap-1 text-xs text-gray-500 dark:text-gray-400">
-                        <Tag className="h-3 w-3" />
-                        <span className="truncate max-w-20">
-                          {post.tags[0]}
-                        </span>
-                        {post.tags.length > 1 && (
-                          <span>+{post.tags.length - 1}</span>
-                        )}
-                      </div>
-                    )}
+                    <div className="flex items-center space-x-2">
+                      <Avatar className="w-6 h-6">
+                        <AvatarImage src="/profile.jpeg" alt="Frank Oh" />
+                        <AvatarFallback>FO</AvatarFallback>
+                      </Avatar>
+                      <span className="text-xs text-muted-foreground">Frank</span>
+                    </div>
                   </div>
+                  
+                  {post.readingTime && (
+                    <div className="mt-3 pt-3 border-t border-gray-200 dark:border-gray-700">
+                      <span className="text-xs text-muted-foreground">
+                        📖 {post.readingTime}분 읽기
+                      </span>
+                    </div>
+                  )}
                 </CardContent>
               </Card>
             </Link>
           );
         })}
       </div>
-      
-
     </div>
   );
 }

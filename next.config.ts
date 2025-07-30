@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   // SSR을 위한 설정 (static export 제거)
   // output: 'export', // 주석 처리
   
-  trailingSlash: true,
+  trailingSlash: false,
   images: {
     unoptimized: true,
     domains: ['stock.advenoh.pe.kr'],
