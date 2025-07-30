@@ -154,45 +154,45 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               </div>
             </aside>
           </div>
-        </div>
 
-        <footer className="mt-12 border-t border-border pt-8">
-          {post.tags && post.tags.length > 0 && (
-            <div className="mb-8">
-              <h3 className="text-lg font-semibold mb-4">태그</h3>
-              <div className="flex flex-wrap gap-2">
-                {post.tags.map((tag) => (
-                  <span
-                    key={tag}
-                    className="bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground px-3 py-1 rounded-full text-sm transition-colors cursor-pointer"
-                  >
-                    #{tag}
-                  </span>
-                ))}
+          <footer className="mt-12 border-t border-border pt-8">
+            {post.tags && post.tags.length > 0 && (
+              <div className="mb-8">
+                <h3 className="text-lg font-semibold mb-4">태그</h3>
+                <div className="flex flex-wrap gap-2">
+                  {post.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground px-3 py-1 rounded-full text-sm transition-colors cursor-pointer"
+                    >
+                      #{tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+            
+            <RelatedPosts posts={relatedPosts} currentPost={post} />
+            
+            {/* Author bio */}
+            <div className="mt-8 p-6 bg-muted rounded-lg">
+              <div className="flex items-start space-x-4">
+                <Avatar className="w-16 h-16">
+                  <AvatarImage src="/profile.jpeg" alt="Frank Oh" />
+                  <AvatarFallback>FO</AvatarFallback>
+                </Avatar>
+                <div>
+                  <h3 className="font-semibold text-lg mb-2">Frank Oh</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">
+                    투자 분석가로서 국내외 주식, ETF, 채권, 펀드에 대한 깊이 있는 분석과 
+                    실전 투자 경험을 바탕으로 한 인사이트를 공유합니다. 
+                    데이터 기반의 객관적 분석을 통해 투자자들에게 도움이 되는 정보를 전달하고자 합니다.
+                  </p>
+                </div>
               </div>
             </div>
-          )}
-          
-          <RelatedPosts posts={relatedPosts} currentPost={post} />
-          
-          {/* Author bio */}
-          <div className="mt-8 p-6 bg-muted rounded-lg">
-            <div className="flex items-start space-x-4">
-              <Avatar className="w-16 h-16">
-                <AvatarImage src="/profile.jpeg" alt="Frank Oh" />
-                <AvatarFallback>FO</AvatarFallback>
-              </Avatar>
-              <div>
-                <h3 className="font-semibold text-lg mb-2">Frank Oh</h3>
-                <p className="text-muted-foreground text-sm leading-relaxed">
-                  투자 분석가로서 국내외 주식, ETF, 채권, 펀드에 대한 깊이 있는 분석과 
-                  실전 투자 경험을 바탕으로 한 인사이트를 공유합니다. 
-                  데이터 기반의 객관적 분석을 통해 투자자들에게 도움이 되는 정보를 전달하고자 합니다.
-                </p>
-              </div>
-            </div>
-          </div>
-        </footer>
+          </footer>
+        </div>
       </article>
     </>
   )
