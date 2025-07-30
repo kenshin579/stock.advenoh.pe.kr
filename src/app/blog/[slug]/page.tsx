@@ -108,7 +108,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-6">
                 <div className="flex items-center space-x-2">
                   <Avatar className="w-8 h-8">
-                    <AvatarImage src="/images/profile.jpg" alt="Frank Oh" />
+                    <AvatarImage src="/profile.jpeg" alt="Frank Oh" />
                     <AvatarFallback>FO</AvatarFallback>
                   </Avatar>
                   <span className="font-medium">Frank Oh</span>
