@@ -100,7 +100,7 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
   };
 
   return (
-    <div className="mt-12 border-t pt-8">
+    <div className="mt-12 pt-8">
       <div className="flex items-center gap-2 mb-6">
         <ArrowRight className="h-5 w-5 text-blue-600 dark:text-blue-400" />
         <h2 className="text-2xl font-bold text-gray-900 dark:text-white">

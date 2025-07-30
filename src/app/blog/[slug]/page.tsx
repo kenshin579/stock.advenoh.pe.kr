@@ -85,6 +85,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
     const relatedPosts = await getRelatedPosts(post.slug, post.categories)
     const structuredData = generateStructuredData('article', post)
 
+    const getCategoryColor = (category: string) => {
+      switch (category?.toLowerCase()) {
+        case "stock":
+          return "bg-blue-500 text-white";
+        case "etf":
+          return "bg-green-500 text-white";
+        case "bonds":
+          return "bg-purple-500 text-white";
+        case "funds":
+          return "bg-orange-500 text-white";
+        case "analysis":
+          return "bg-red-500 text-white";
+        case "etc":
+          return "bg-gray-500 text-white";
+        case "weekly":
+          return "bg-indigo-500 text-white";
+        default:
+          return "bg-slate-500 text-white";
+      }
+    };
+
     return (
       <>
         <script
@@ -123,7 +144,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span>•</span>
                 <div className="flex flex-wrap gap-2">
                   {post.categories.map((category) => (
-                    <Badge key={category} variant="secondary" className="text-xs">
+                    <Badge key={category} className={getCategoryColor(category)}>
                       {category}
                     </Badge>
                   ))}
@@ -176,22 +197,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </div>
 
             <footer className="mt-12 border-t border-border pt-8">
-              {post.tags && post.tags.length > 0 && (
-                <div className="mb-8">
-                  <h3 className="text-lg font-semibold mb-4">태그</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="bg-muted text-muted-foreground hover:bg-primary hover:text-primary-foreground px-3 py-1 rounded-full text-sm transition-colors cursor-pointer"
-                      >
-                        #{tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              )}
-              
               <RelatedPosts posts={relatedPosts} currentPost={post} />
               
               {/* Author bio */}
