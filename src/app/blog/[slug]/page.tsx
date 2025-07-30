@@ -155,12 +155,6 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                   />
                 </div>
               )}
-              
-              {post.excerpt && (
-                <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-                  {post.excerpt}
-                </p>
-              )}
             </header>
 
             <div className="flex flex-col lg:flex-row gap-8">
