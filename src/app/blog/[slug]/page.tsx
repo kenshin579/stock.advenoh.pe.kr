@@ -158,7 +158,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             </header>
 
             <div className="flex flex-col lg:flex-row gap-8">
-              <div className="lg:w-3/4">
+              <div className="lg:w-3/4 order-2 lg:order-1">
                 <div className="markdown-content max-w-none">
                   <MarkdownRenderer 
                     content={post.content} 
@@ -168,7 +168,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 </div>
               </div>
               
-              <aside className="lg:w-1/4">
+              <aside className="lg:w-1/4 order-1 lg:order-2">
                 <div className="sticky top-8 space-y-6">
                   <TableOfContents content={post.content} />
                 </div>
