@@ -19,7 +19,13 @@ export default async function HomePage({
   searchParams: Promise<{ category?: string; search?: string; tags?: string; page?: string }>
 }) {
   const posts = await getAllBlogPosts()
-  const categories = await getAllCategories()
+  let categories = await getAllCategories()
+  
+  // Ensure categories is an array
+  if (!Array.isArray(categories)) {
+    console.error('getAllCategories returned non-array:', categories)
+    categories = []
+  }
   const params = await searchParams
   
   // 필터링 로직

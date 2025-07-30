@@ -10,7 +10,10 @@ interface Category {
 }
 
 export function Footer() {
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState<Category[] | null>(null);
+  
+  // Debug logging
+  console.log('Footer render - categories:', categories, 'type:', typeof categories, 'isArray:', Array.isArray(categories));
 
   useEffect(() => {
     // Fetch categories on client side
@@ -19,12 +22,21 @@ export function Footer() {
         const response = await fetch('/api/categories');
         if (response.ok) {
           const data = await response.json();
-          setCategories(data);
+          console.log('API response data:', data, 'type:', typeof data, 'isArray:', Array.isArray(data));
+          // Ensure data is an array before setting it
+          if (Array.isArray(data)) {
+            setCategories(data);
+          } else {
+            console.error('Categories API returned non-array data:', data);
+            setCategories([]);
+          }
         } else {
           console.error('Failed to fetch categories:', response.status);
+          setCategories([]);
         }
       } catch (error) {
         console.error('Failed to fetch categories:', error);
+        setCategories([]);
       }
     };
 
@@ -76,16 +88,36 @@ export function Footer() {
           <div>
             <h3 className="text-lg font-semibold mb-4">카테고리</h3>
             <ul className="space-y-2">
-              {categories.map(({ category, count }) => (
-                <li key={category}>
-                  <Link 
-                    href={`/?category=${category}`} 
-                    className="text-gray-400 hover:text-white transition-colors"
-                  >
-                    {category} ({count})
-                  </Link>
-                </li>
-              ))}
+              {(() => {
+                try {
+                  if (categories === null) {
+                    return <li className="text-gray-400">카테고리를 불러오는 중...</li>;
+                  }
+                  
+                  if (!Array.isArray(categories)) {
+                    console.error('Categories is not an array:', categories);
+                    return <li className="text-gray-400">카테고리를 불러오는 중...</li>;
+                  }
+                  
+                  if (categories.length === 0) {
+                    return <li className="text-gray-400">카테고리가 없습니다.</li>;
+                  }
+                  
+                  return categories.map(({ category, count }) => (
+                    <li key={category}>
+                      <Link 
+                        href={`/?category=${category}`} 
+                        className="text-gray-400 hover:text-white transition-colors"
+                      >
+                        {category} ({count})
+                      </Link>
+                    </li>
+                  ));
+                } catch (error) {
+                  console.error('Error rendering categories:', error);
+                  return <li className="text-gray-400">카테고리를 불러오는 중...</li>;
+                }
+              })()}
             </ul>
           </div>
 

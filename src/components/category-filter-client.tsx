@@ -26,10 +26,10 @@ export function CategoryFilterClient({
   
   const allCategories = [
     { id: "all", label: "전체" },
-    ...categories.map(({ category }) => ({
+    ...(Array.isArray(categories) ? categories.map(({ category }) => ({
       id: category,
       label: category
-    }))
+    })) : [])
   ]
 
   const handleCategoryChange = (category: string) => {
