@@ -128,6 +128,21 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                     </Badge>
                   ))}
                 </div>
+                {post.tags && post.tags.length > 0 && (
+                  <>
+                    <span>•</span>
+                    <div className="flex flex-wrap gap-2">
+                      {post.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="bg-muted text-muted-foreground px-3 py-1 rounded-full text-sm"
+                        >
+                          #{tag}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
               </div>
               
               {post.featuredImage && (
