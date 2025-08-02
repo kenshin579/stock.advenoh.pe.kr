@@ -2,7 +2,14 @@ const nextConfig = {
   // SSR을 위한 설정 (static export 제거)
   // output: 'export', // 주석 처리
   
+  // Production optimization
+  reactStrictMode: true,
+  swcMinify: true,
+  
   trailingSlash: false,
+  
+  // Output configuration for deployment
+  distDir: '.next',
   images: {
     unoptimized: true,
     domains: ['stock.advenoh.pe.kr'],

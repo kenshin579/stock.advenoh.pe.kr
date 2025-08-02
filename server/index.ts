@@ -80,7 +80,7 @@ app.use((req, res, next) => {
       throw err;
     });
 
-    const port = parseInt(process.env.PORT || '3000', 10);
+    const port = parseInt(process.env.PORT || '5000', 10);
     app.listen(port, "0.0.0.0", () => {
       console.log(`🚀 Server ready on http://0.0.0.0:${port}`);
       console.log(`📱 Next.js ${dev ? 'development' : 'production'} mode`);
