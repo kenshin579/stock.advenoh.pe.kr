@@ -6,10 +6,10 @@
   "scripts": {
     "dev": "NODE_ENV=development tsx server/index.ts",
     "dev:nextjs": "next dev",
-    "build": "npm run build:nextjs",
+    "build": "npm run build:prod",
     "build:nextjs": "next build",
     "build:server": "esbuild server/index.ts --bundle --platform=node --outfile=dist/index.js --format=esm",
-    "build:prod": "npm run build:nextjs",
+    "build:prod": "npm run build:prod",
     "start": "NODE_ENV=production tsx server/index.ts",
     "start:nextjs": "next start -p $PORT",
     "start:prod": "NODE_ENV=production tsx server/index.ts",
