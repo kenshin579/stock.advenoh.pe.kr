@@ -71,15 +71,24 @@ The application uses three main tables:
 
 ## Deployment Strategy
 
-The application is configured for Replit **Static** deployment:
-- **Development**: `npm run dev` starts both frontend and backend
-- **Build**: `./build-static.sh` creates static frontend build
-- **Production**: Static files served directly (no server-side functionality)
-- **Database**: Not available in static deployment
-- **Deployment Type**: Static - serves only React frontend
-- **Configuration**: Both `replit.toml` and `.replit` contain deployment settings
-- **Build Output**: Files placed in both `dist/public/` and `dist/` for compatibility
-- **Limitations**: API endpoints, database features, and backend functionality not available
+The application is configured for Replit **Cloud Run** deployment:
+- **Development**: `npm run dev` starts Express server with Next.js SSR
+- **Build**: `npm run build:prod` creates optimized Next.js production build
+- **Production**: `npm run start:prod` runs Express server with SSR in production mode
+- **Database**: PostgreSQL available via Neon serverless connection
+- **Deployment Type**: Server-side - Full-stack with Express backend + Next.js SSR frontend
+- **Configuration**: `replit.toml` contains production deployment settings
+- **Build Output**: Next.js `.next` directory with server-side rendering capabilities
+- **Features**: Full API endpoints, database functionality, and SSR with caching
+
+### Production Configuration Fixed (August 2, 2025)
+- ✅ **replit.toml**: Updated with production commands (`npm run build:prod`, `npm run start:prod`)
+- ✅ **Build Process**: Next.js production build working correctly (108 static pages generated)
+- ✅ **Production Server**: Express + Next.js SSR server tested and functional
+- ✅ **Environment**: Production environment variables set (`NODE_ENV=production`, `PORT=5000`)
+- ✅ **Deployment Script**: Created `deploy.sh` for consistent production deployment
+- ⚠️ **Known Issue**: `.replit` file contains development commands but cannot be modified directly
+- 📋 **Solution**: `replit.toml` configuration takes precedence during deployment
 
 ## Project Status: Next.js Migration (80% Complete) - TESTING PHASE
 
