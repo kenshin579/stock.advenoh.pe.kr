@@ -1,7 +1,8 @@
 [deployment]
 deploymentTarget = "cloudrun"
-run = "npm run dev"
-build = ["npm", "run", "build"]
+build = ["npm", "run", "build:prod"]
+run = "npm run start:prod"
+
 
 [[ports]]
 localPort = 3000

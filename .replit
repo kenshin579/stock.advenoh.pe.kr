@@ -1,5 +1,5 @@
 modules = ["nodejs-20", "web", "postgresql-16"]
-run = "npm run start:prod"
+run = "npm run dev"
 entrypoint = "server/index.ts"
 hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 
@@ -7,9 +7,9 @@ hidden = [".config", ".git", "generated-icon.png", "node_modules", "dist"]
 channel = "stable-23_11"
 
 [deployment]
-deploymentTarget = "autoscale"
-build = ["npm", "run", "build:prod"]
-run = ["sh", "-c", "npm run start:prod"]
+deploymentTarget = "cloudrun"
+build = ["npm", "run", "build"]
+run = ["sh", "-c", "npm run dev"]
 
 [[ports]]
 localPort = 5000
@@ -17,7 +17,6 @@ externalPort = 80
 
 [env]
 PORT = "5000"
-NODE_ENV = "production"
 
 [workflows]
 runButton = "Project"
@@ -39,18 +38,3 @@ author = "agent"
 task = "shell.exec"
 args = "npm run dev"
 waitForPort = 5000
-
-[packager]
-language = "nodejs"
-
-[packager.features]
-packageSearch = true
-guessImports = true
-
-[languages]
-[languages.javascript]
-pattern = "**/*.{js,jsx,ts,tsx}"
-syntax = "javascript"
-
-[languages.javascript.languageServer]
-start = [ "typescript-language-server", "--stdio" ]
