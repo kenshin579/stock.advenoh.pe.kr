@@ -110,13 +110,13 @@ To test the Next.js implementation:
 
 ## Recent Changes
 
-### August 2, 2025 - Deployment Configuration Fixes
-- **Production Deployment Fix**: Resolved deployment failure due to development mode configuration
-- **Port Configuration**: Updated replit.toml to use port 5000 (matching .replit configuration) for consistency
-- **Next.js Optimization**: Added reactStrictMode and swcMinify for production builds
-- **Server Configuration**: Updated default port fallback from 3000 to 5000 in server/index.ts
-- **Build Configuration**: Ensured build:prod script uses proper Next.js build process
-- **Deployment Settings**: Updated replit.toml with proper production environment variables (NODE_ENV=production)
+### August 2, 2025 - Production Deployment Configuration Fixes
+- **Security Fix**: Resolved Cloud Run deployment blocking due to "dev" command in run configuration
+- **Configuration Files**: Updated replit.toml with production commands (build:prod, start:prod) and NODE_ENV=production
+- **Next.js Configuration**: Removed deprecated `swcMinify` option to eliminate build warnings
+- **Production Scripts**: Verified npm run build:prod and start:prod work correctly for deployment
+- **Port Configuration**: Maintained consistent port 5000 configuration across .replit and replit.toml
+- **Cloud Run Compatibility**: Ensured deployment target uses only production-safe commands
 
 ### January 25, 2025 - Next.js Migration Phase 2 Complete
 - **Complete Architecture Migration**: Successfully migrated from Vite+React+Wouter to Next.js 15 with App Router

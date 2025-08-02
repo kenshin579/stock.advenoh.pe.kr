@@ -4,7 +4,6 @@ const nextConfig = {
   
   // Production optimization
   reactStrictMode: true,
-  swcMinify: true,
   
   trailingSlash: false,
   
