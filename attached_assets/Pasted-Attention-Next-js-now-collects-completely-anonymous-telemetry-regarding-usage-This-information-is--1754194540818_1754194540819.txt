@@ -1,0 +1,58 @@
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+   ▲ Next.js 15.4.4
+   - Experiments (use with caution):
+     · optimizePackageImports
+
+   Creating an optimized production build ...
+Failed to compile.
+
+src/app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module 'tailwindcss'
+Require stack:
+- /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack/config/index.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack-config.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack/plugins/next-trace-entrypoints-plugin.js
+- /home/runner/workspace/node_modules/next/dist/build/collect-build-traces.js
+- /home/runner/workspace/node_modules/next/dist/build/index.js
+- /home/runner/workspace/node_modules/next/dist/cli/next-build.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at /home/runner/workspace/node_modules/next/dist/server/require-hook.js:57:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:53:32)
+    at /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:185:56
+    at Array.map (<anonymous>)
+    at getPostCssPlugins (/home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:185:47)
+    at async /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/index.js:125:36
+
+src/app/layout.tsx
+An error occurred in `next/font`.
+
+Error: Cannot find module 'tailwindcss'
+Require stack:
+- /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/index.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack/config/index.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack-config.js
+- /home/runner/workspace/node_modules/next/dist/build/webpack/plugins/next-trace-entrypoints-plugin.js
+- /home/runner/workspace/node_modules/next/dist/build/collect-build-traces.js
+- /home/runner/workspace/node_modules/next/dist/build/index.js
+- /home/runner/workspace/node_modules/next/dist/cli/next-build.js
+    at Module._resolveFilename (node:internal/modules/cjs/loader:1212:15)
+    at /home/runner/workspace/node_modules/next/dist/server/require-hook.js:57:36
+    at Function.resolve (node:internal/modules/helpers:193:19)
+    at loadPlugin (/home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:53:32)
+    at /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:185:56
+    at Array.map (<anonymous>)
+    at getPostCssPlugins (/home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/plugins.js:185:47)
+    at async /home/runner/workspace/node_modules/next/dist/build/webpack/config/blocks/css/index.js:125:36
+
+
+> Build failed because of webpack errors
