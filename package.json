@@ -101,7 +101,6 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@lhci/cli": "^0.15.1",
-    "@tailwindcss/typography": "^0.5.16",
     "@types/connect-pg-simple": "^7.0.3",
     "@types/express": "4.17.21",
     "@types/express-session": "^1.18.0",
@@ -116,8 +115,6 @@
     "esbuild": "^0.25.0",
     "eslint": "^9",
     "eslint-config-next": "15.4.4",
-    "postcss": "^8.4.47",
-    "tailwindcss": "^3.4.17",
     "tsx": "^4.19.1"
   },
   "optionalDependencies": {
