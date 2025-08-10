@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  verification: {
+    naver: '1e8908d89d0bff3a013d83b763543f37049a907f',
+  },
   metadataBase: new URL(process.env.SITE_URL || 'https://stock.advenoh.pe.kr')
 }
 
