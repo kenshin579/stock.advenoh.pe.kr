@@ -90,6 +90,19 @@ export default function RootLayout({
         <meta name="naver-site-verification" content="1e8908d89d0bff3a013d83b763543f37049a907f" />
         <link rel="icon" href="/favicon.ico" />
         {generateMetaTags(siteMetadata)}
+        
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-9LNH27K1YS"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-9LNH27K1YS');
+            `
+          }}
+        />
       </head>
       <body className={`${inter.className} ${notoSansKR.className} font-sans antialiased`}>
         <ThemeProvider>
