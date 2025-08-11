@@ -88,6 +88,7 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="naver-site-verification" content="1e8908d89d0bff3a013d83b763543f37049a907f" />
+        <meta name="msvalidate.01" content="6B5D48FAB4AC7D1E78A51352B904624B" />
         <link rel="icon" href="/favicon.ico" />
         {generateMetaTags(siteMetadata)}
         
