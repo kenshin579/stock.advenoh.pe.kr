@@ -5,7 +5,7 @@
 
 # 설정
 HOST="stock.advenoh.pe.kr"
-KEY="ab058714f6014e9aa4d13197ad1e8833"
+KEY="6f4a19b722d44eeda34ff148f71822c9"
 KEY_LOCATION="https://stock.advenoh.pe.kr/6f4a19b722d44eeda34ff148f71822c9"
 API_URL="https://api.indexnow.org/IndexNow"
 CONTENTS_DIR="contents"
@@ -14,23 +14,37 @@ RETRY_DELAY=5
 
 # 기본값
 DRY_RUN=false
+ACTION="register"  # register 또는 check
 
 # 도움말 함수
 show_help() {
     echo "Usage: $0 [OPTIONS]"
     echo ""
     echo "Options:"
+    echo "  --register       블로그 페이지를 IndexNow API에 등록 (기본값)"
+    echo "  --check          등록된 페이지들이 인덱싱되었는지 확인"
     echo "  -d, --dry-run    실제 API 호출 없이 URL 목록만 출력"
     echo "  -h, --help       이 도움말 메시지 출력"
     echo ""
     echo "Examples:"
-    echo "  $0               실제 API 호출로 URL 등록"
-    echo "  $0 --dry-run     URL 목록만 확인 (API 호출 안함)"
+    echo "  $0               블로그 페이지 등록 (기본 동작)"
+    echo "  $0 --register    블로그 페이지 등록"
+    echo "  $0 --check       등록된 페이지 인덱싱 상태 확인"
+    echo "  $0 --register --dry-run    등록할 URL 목록만 확인"
+    echo "  $0 --check --dry-run       확인할 URL 목록만 확인"
 }
 
 # 명령행 인수 파싱
 while [[ $# -gt 0 ]]; do
     case $1 in
+        --register)
+            ACTION="register"
+            shift
+            ;;
+        --check)
+            ACTION="check"
+            shift
+            ;;
         -d|--dry-run)
             DRY_RUN=true
             shift
@@ -67,7 +81,7 @@ call_indexnow_api() {
         
         # dry-run 모드일 때는 curl 명령어를 echo로 출력
         if [ "$DRY_RUN" = true ]; then
-            echo "curl --silent --show-error --location \"$API_URL\" \\"
+            echo "curl --silent --show-error --location --request POST \"$API_URL\" \\"
             echo "    --header 'Content-Type: application/json; charset=utf-8' \\"
             echo "    --data '{"
             echo "        \"host\": \"$HOST\","
@@ -80,7 +94,7 @@ call_indexnow_api() {
         fi
         
         # API 호출
-        response=$(curl --silent --show-error --location "$API_URL" \
+        response=$(curl --silent --show-error --location --request POST "$API_URL" \
             --header 'Content-Type: application/json; charset=utf-8' \
             --data "{
                 \"host\": \"$HOST\",
@@ -94,8 +108,8 @@ call_indexnow_api() {
         http_code=$(echo "$response" | tail -n1 | sed -e 's/.*HTTPSTATUS://')
         response_body=$(echo "$response" | sed '$d')
         
-        if [ "$http_code" -eq 200 ]; then
-            log "API 호출 성공"
+        if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+            log "API 호출 성공 (HTTP $http_code)"
             log "응답: $response_body"
             return 0
         else
@@ -113,12 +127,74 @@ call_indexnow_api() {
     return 1
 }
 
+# 페이지 인덱싱 상태 확인 함수
+check_registered_pages() {
+    local temp_urls="$1"
+    local success_count=0
+    local total_count=0
+    
+    log "등록된 페이지들의 인덱싱 상태 확인 중..."
+    
+    while read -r url; do
+        if [ -z "$url" ]; then
+            continue
+        fi
+        
+        total_count=$((total_count + 1))
+        log "확인 중: $url"
+        
+        # dry-run 모드일 때는 curl 명령어를 echo로 출력
+        if [ "$DRY_RUN" = true ]; then
+            echo "curl --silent --location --request GET \"https://www.bing.com/indexnow?url=$url&key=$KEY\" \\"
+            echo "    --write-out \"HTTPSTATUS:%{http_code}\""
+            continue
+        fi
+        
+        # Bing IndexNow 확인 API 호출
+        response=$(curl --silent --location --request GET "https://www.bing.com/indexnow?url=$url&key=$KEY" \
+            --write-out "HTTPSTATUS:%{http_code}")
+        
+        # HTTP 상태 코드 추출
+        http_code=$(echo "$response" | tail -n1 | sed -e 's/.*HTTPSTATUS://')
+        response_body=$(echo "$response" | sed '$d')
+        
+        if [ "$http_code" -ge 200 ] && [ "$http_code" -lt 300 ]; then
+            log "✓ 인덱싱 확인됨: $url (HTTP $http_code)"
+            success_count=$((success_count + 1))
+        else
+            log "✗ 인덱싱 미확인: $url (HTTP $http_code)"
+            if [ -n "$response_body" ]; then
+                log "응답: $response_body"
+            fi
+        fi
+        
+        # API 호출 간격 조절 (과도한 요청 방지)
+        sleep 1
+    done < "$temp_urls"
+    
+    if [ "$DRY_RUN" = true ]; then
+        log "DRY-RUN 완료: 총 $total_count개 URL의 curl 명령어 출력"
+    else
+        log "인덱싱 상태 확인 완료: $success_count/$total_count 페이지가 인덱싱됨"
+    fi
+    
+    return 0
+}
+
 # 메인 실행 함수
 main() {
-    if [ "$DRY_RUN" = true ]; then
-        log "DRY-RUN 모드: 실제 API 호출 없이 URL 목록만 확인"
-    else
-        log "IndexNow 등록 시작"
+    if [ "$ACTION" = "register" ]; then
+        if [ "$DRY_RUN" = true ]; then
+            log "DRY-RUN 모드: 실제 API 호출 없이 등록할 URL 목록만 확인"
+        else
+            log "IndexNow 등록 시작"
+        fi
+    elif [ "$ACTION" = "check" ]; then
+        if [ "$DRY_RUN" = true ]; then
+            log "DRY-RUN 모드: 실제 API 호출 없이 확인할 URL 목록만 확인"
+        else
+            log "인덱싱 상태 확인 시작"
+        fi
     fi
     
     # contents 폴더 존재 확인
@@ -165,9 +241,33 @@ main() {
     log "발견된 URL 목록:"
     cat "$temp_urls" | nl
     
-    if [ "$DRY_RUN" = true ]; then
-        log "DRY-RUN 모드: curl 명령어 출력 및 URL 목록 확인"
-        # URL 목록을 JSON 배열로 변환 (dry-run에서도 필요)
+    # ACTION에 따른 처리
+    if [ "$ACTION" = "register" ]; then
+        if [ "$DRY_RUN" = true ]; then
+            log "DRY-RUN 모드: curl 명령어 출력 및 URL 목록 확인"
+            # URL 목록을 JSON 배열로 변환 (dry-run에서도 필요)
+            url_list_json=$(cat "$temp_urls" | jq -R -s -c 'split("\n")[:-1]')
+            
+            if [ $? -ne 0 ]; then
+                error_log "URL 목록을 JSON으로 변환하는데 실패했습니다"
+                rm -f "$temp_urls"
+                exit 1
+            fi
+            
+            # dry-run 모드에서도 API 호출 함수 호출 (실제 호출은 안함)
+            log "curl 명령어 출력:"
+            if call_indexnow_api "$url_list_json"; then
+                log "DRY-RUN 완료: 실제 API 호출 없이 curl 명령어와 URL 목록 확인"
+                rm -f "$temp_urls"
+                exit 0
+            else
+                error_log "DRY-RUN 중 오류 발생"
+                rm -f "$temp_urls"
+                exit 1
+            fi
+        fi
+        
+        # URL 목록을 JSON 배열로 변환
         url_list_json=$(cat "$temp_urls" | jq -R -s -c 'split("\n")[:-1]')
         
         if [ $? -ne 0 ]; then
@@ -176,40 +276,28 @@ main() {
             exit 1
         fi
         
-        # 임시 파일 삭제
-        rm -f "$temp_urls"
-        
-        # dry-run 모드에서도 API 호출 함수 호출 (실제 호출은 안함)
-        log "curl 명령어 출력:"
+        # API 호출
+        log "IndexNow API 호출 중..."
         if call_indexnow_api "$url_list_json"; then
-            log "DRY-RUN 완료: 실제 API 호출 없이 curl 명령어와 URL 목록 확인"
+            log "IndexNow 등록 완료"
+            rm -f "$temp_urls"
             exit 0
         else
-            error_log "DRY-RUN 중 오류 발생"
+            error_log "IndexNow 등록 실패"
+            rm -f "$temp_urls"
             exit 1
         fi
-    fi
-    
-    # URL 목록을 JSON 배열로 변환
-    url_list_json=$(cat "$temp_urls" | jq -R -s -c 'split("\n")[:-1]')
-    
-    if [ $? -ne 0 ]; then
-        error_log "URL 목록을 JSON으로 변환하는데 실패했습니다"
-        rm -f "$temp_urls"
-        exit 1
-    fi
-    
-    # 임시 파일 삭제
-    rm -f "$temp_urls"
-    
-    # API 호출
-    log "IndexNow API 호출 중..."
-    if call_indexnow_api "$url_list_json"; then
-        log "IndexNow 등록 완료"
-        exit 0
-    else
-        error_log "IndexNow 등록 실패"
-        exit 1
+        
+    elif [ "$ACTION" = "check" ]; then
+        # 페이지 인덱싱 상태 확인
+        if check_registered_pages "$temp_urls"; then
+            rm -f "$temp_urls"
+            exit 0
+        else
+            error_log "인덱싱 상태 확인 실패"
+            rm -f "$temp_urls"
+            exit 1
+        fi
     fi
 }
 
