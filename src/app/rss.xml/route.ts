@@ -10,8 +10,8 @@ export async function GET() {
   const rssItems = posts.map(post => `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${baseUrl}/blog/${post.slug}</link>
-      <guid>${baseUrl}/blog/${post.slug}</guid>
+      <link>${baseUrl}/${post.categories?.[0]?.toLowerCase() || 'etc'}/${post.slug}</link>
+      <guid>${baseUrl}/${post.categories?.[0]?.toLowerCase() || 'etc'}/${post.slug}</guid>
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.date).toUTCString()}</pubDate>
       ${post.categories?.map(category => `<category><![CDATA[${category}]]></category>`).join('') || ''}

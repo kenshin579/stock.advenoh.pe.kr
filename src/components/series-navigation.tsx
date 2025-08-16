@@ -71,7 +71,7 @@ export function SeriesNavigation({
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         {/* Previous Post */}
         {previousPost ? (
-          <Link href={`/blog/${previousPost.slug}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <Link href={`/${(previousPost as any).categories?.[0]?.toLowerCase() || 'etc'}/${previousPost.slug}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <Card className="group hover:shadow-md transition-all duration-200 cursor-pointer border-dashed hover:border-solid hover:border-blue-300 dark:hover:border-blue-600">
               <CardContent className="p-4">
                 <div className="flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -102,7 +102,7 @@ export function SeriesNavigation({
 
         {/* Next Post */}
         {nextPost ? (
-          <Link href={`/blog/${nextPost.slug}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <Link href={`/${(nextPost as any).categories?.[0]?.toLowerCase() || 'etc'}/${nextPost.slug}`} onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
             <Card className="group hover:shadow-md transition-all duration-200 cursor-pointer border-dashed hover:border-solid hover:border-blue-300 dark:hover:border-blue-600">
               <CardContent className="p-4">
                 <div className="flex items-center justify-end gap-2 text-sm text-gray-500 dark:text-gray-400 mb-2">
@@ -166,7 +166,7 @@ export function SeriesNavigation({
                     </span>
                   ) : (
                     <Link 
-                      href={`/blog/${post.slug}`}
+                      href={`/${((post as any).categories?.[0] || 'etc').toLowerCase()}/${post.slug}`}
                       className="font-medium text-gray-900 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors flex-1"
                       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     >

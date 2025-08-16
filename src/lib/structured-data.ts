@@ -48,7 +48,7 @@ export function generateArticleSchema(post: BlogPost, baseUrl: string) {
     "dateModified": post.date,
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `${baseUrl}/blog/${post.slug}`
+      "@id": `${baseUrl}/${post.categories?.[0]?.toLowerCase() || 'etc'}/${post.slug}`
     },
     "keywords": post.tags?.join(', ') || '',
     "articleSection": post.categories.join(', '),

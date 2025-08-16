@@ -118,7 +118,7 @@ export function RelatedPosts({ posts, currentPost, maxPosts = 4 }: RelatedPostsP
           }
 
           return (
-            <Link key={post.slug} href={`/blog/${post.slug}`}>
+            <Link key={post.slug} href={`/${((post as BlogPost & { categories?: string[] }).categories?.[0] || 'etc').toLowerCase()}/${post.slug}`}>
               <Card className="card-hover overflow-hidden bg-card text-card-foreground border border-gray-200 dark:border-gray-700 shadow-sm">
                 <div className="relative">
                   <img

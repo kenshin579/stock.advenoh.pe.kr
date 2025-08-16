@@ -10,8 +10,9 @@ import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Calendar } from 'lucide-react'
 
-interface BlogPostPageProps {
+interface CategorySlugPageProps {
   params: Promise<{
+    category: string
     slug: string
   }>
 }
@@ -23,6 +24,7 @@ export async function generateStaticParams() {
   try {
     const posts = await getAllBlogPosts()
     return posts.map((post) => ({
+      category: (post.categories[0] || 'etc').toLowerCase(), // 첫 번째 카테고리를 소문자로 변환
       slug: post.slug,
     }))
   } catch (error) {
@@ -31,7 +33,7 @@ export async function generateStaticParams() {
   }
 }
 
-export async function generateMetadata({ params }: BlogPostPageProps): Promise<Metadata> {
+export async function generateMetadata({ params }: CategorySlugPageProps): Promise<Metadata> {
   try {
     const { slug } = await params
     const post = await getBlogPost(slug)
@@ -73,12 +75,17 @@ export async function generateMetadata({ params }: BlogPostPageProps): Promise<M
   }
 }
 
-export default async function BlogPostPage({ params }: BlogPostPageProps) {
+export default async function CategorySlugPage({ params }: CategorySlugPageProps) {
   try {
-    const { slug } = await params
+    const { category, slug } = await params
     const post = await getBlogPost(slug)
     
     if (!post) {
+      notFound()
+    }
+
+    // 카테고리가 일치하지 않으면 404 (소문자로 비교)
+    if (!post.categories.map(c => c.toLowerCase()).includes(category.toLowerCase())) {
       notFound()
     }
 
@@ -106,6 +113,27 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
       }
     };
 
+    const getCategoryLabel = (category: string) => {
+      switch (category?.toLowerCase()) {
+        case "stock":
+          return "주식";
+        case "etf":
+          return "ETF";
+        case "bonds":
+          return "채권";
+        case "funds":
+          return "펀드";
+        case "analysis":
+          return "분석";
+        case "etc":
+          return "기타";
+        case "weekly":
+          return "주간 리포트";
+        default:
+          return category;
+      }
+    };
+
     return (
       <>
         <script
@@ -118,8 +146,8 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
             <Breadcrumb
               items={[
                 { label: '홈', href: '/' },
-                { label: '블로그', href: '/blog' },
-                { label: post.title, href: `/blog/${post.slug}` }
+                { label: getCategoryLabel(category), href: `/?category=${category}` },
+                { label: post.title, href: `/${category}/${post.slug}` }
               ]}
             />
             
@@ -143,9 +171,9 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
                 <span>📖 {post.readingTime}분 읽기</span>
                 <span>•</span>
                 <div className="flex flex-wrap gap-2">
-                  {post.categories.map((category) => (
-                    <Badge key={category} className={getCategoryColor(category)}>
-                      {category}
+                  {post.categories.map((postCategory) => (
+                    <Badge key={postCategory} className={getCategoryColor(postCategory)}>
+                      {getCategoryLabel(postCategory)}
                     </Badge>
                   ))}
                 </div>
@@ -232,10 +260,10 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
               요청하신 포스트를 불러오는 중 오류가 발생했습니다.
             </p>
             <a 
-              href="/blog" 
+              href="/" 
               className="inline-flex items-center px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/90"
             >
-              블로그 목록으로 돌아가기
+              홈으로 돌아가기
             </a>
           </div>
         </div>
