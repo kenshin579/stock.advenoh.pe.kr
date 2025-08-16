@@ -45,7 +45,7 @@ export function extractBlogPostImages(posts: Array<{
 
   posts.forEach(post => {
     const images: ImageInfo[] = [];
-    const pageUrl = `${baseUrl}/blog/${post.slug}`;
+    const pageUrl = `${baseUrl}/${(post.category || 'etc').toLowerCase()}/${post.slug}`;
 
     // Add featured image if exists
     if (post.featuredImage) {

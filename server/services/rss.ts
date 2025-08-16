@@ -10,8 +10,8 @@ export function generateRssFeed(posts: BlogPost[]): string {
   const rssItems = posts.map(post => `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${siteUrl}/blog/${post.slug}</link>
-      <guid>${siteUrl}/blog/${post.slug}</guid>
+      <link>${siteUrl}/${(post.category || 'etc').toLowerCase()}/${post.slug}</link>
+      <guid>${siteUrl}/${(post.category || 'etc').toLowerCase()}/${post.slug}</guid>
       <description><![CDATA[${post.excerpt}]]></description>
       <pubDate>${new Date(post.createdAt!).toUTCString()}</pubDate>
       <category>${post.category}</category>

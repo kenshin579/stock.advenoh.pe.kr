@@ -22,7 +22,7 @@ export function generateSitemap(posts: BlogPost[]): string {
     const isRecent = postDate > thirtyDaysAgo;
     
     return {
-      url: `${siteUrl}/blog/${post.slug}`,
+      url: `${siteUrl}/${(post.category || 'etc').toLowerCase()}/${post.slug}`,
       changefreq: 'weekly',
       priority: isRecent ? '0.9' : '0.8', // Higher priority for recent posts
       lastmod: new Date(post.updatedAt!).toISOString().split('T')[0]

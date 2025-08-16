@@ -88,7 +88,7 @@ export function BlogPostCard({ post }: BlogPostCardProps) {
       <CardContent className="p-6">
         <CardTitle className="mb-3 text-lg font-semibold leading-tight">
           <Link 
-            href={`/blog/${post.slug}`} 
+            href={`/${(post.categories?.[0] || 'etc').toLowerCase()}/${post.slug}`} 
             className="hover:text-primary transition-colors duration-200 line-clamp-2"
           >
             {post.title}

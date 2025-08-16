@@ -15,6 +15,7 @@ interface SeriesData {
     slug: string
     date: string
     excerpt: string
+    categories: string[]
   }>
 }
 
@@ -40,7 +41,8 @@ export default async function SeriesPage() {
         title: post.title,
         slug: post.slug,
         date: post.date,
-        excerpt: post.excerpt
+        excerpt: post.excerpt,
+        categories: post.categories
       })
     }
   })
@@ -92,7 +94,7 @@ export default async function SeriesPage() {
                   <div key={post.slug} className="border-l-2 border-primary pl-3">
                     <h3 className="font-medium text-sm">
                       <a 
-                        href={`/blog/${post.slug}`}
+                        href={`/${(post.categories[0] || 'etc').toLowerCase()}/${post.slug}`}
                         className="hover:text-primary"
                       >
                         {post.title}
