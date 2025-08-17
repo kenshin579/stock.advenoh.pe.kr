@@ -32,11 +32,11 @@ tags:
 
 ![TradingView - Indicators](image-20250817173540381.png)
 
-## 2.1 [RSI](https://www.tradingview.com/script/qSLcZSyw-RSI-Divergence-Indicator-strategy/) - 과매수와 과매도를 알려주는 대표 모멘텀 지표
+## 2.1 RSI - 과매수와 과매도를 알려주는 대표 모멘텀 지표
 
 ![RSI](image-20250817173557591.png)
 
-`RSI` (Relative Strength Index)는 차트 분석을 조금이라도 해본 사람이라면 한 번쯤은 들어봤을 지표입니다. 주가가 단기간에 과도하게 오르거나 내렸는지를 `0~100` 사이 값으로 보여주며, 일반적으로 `70` 이상이면 과매수, `30` 이하이면 과매도로 해석합니다.
+[RSI](https://www.tradingview.com/script/qSLcZSyw-RSI-Divergence-Indicator-strategy/) (Relative Strength Index)는 차트 분석을 조금이라도 해본 사람이라면 한 번쯤은 들어봤을 지표입니다. 주가가 단기간에 과도하게 오르거나 내렸는지를 `0~100` 사이 값으로 보여주며, 일반적으로 `70` 이상이면 과매수, `30` 이하이면 과매도로 해석합니다.
 
 배당주나 우량주 투자자에게는 `RSI` 가 큰 의미가 없을 수도 있지만, **단기 매매자나 스윙 트레이더**에게는 매우 중요한 지표입니다. 단순히 숫자만 보는 것이 아니라, `RSI` 가 과매도 구간에서 반등을 시작하는지, 혹은 과매수 구간에서 하락 반전이 나타나는지를 관찰하면 매수·매도 타이밍을 잡는 데 도움이 됩니다.
 
@@ -46,11 +46,11 @@ tags:
   - `70` 이상 → 과매수 (조정 가능성)
   - `30` 이하 → 과매도 (반등 가능성)
 
-## **2.2 [MACD](https://www.tradingview.com/support/solutions/43000502344/) – 추세 전환을 읽는 나침반**
+## 2.2 MACD – 추세 전환을 읽는 나침반
 
 ![MACD](image-20250817173608766.png)
 
-`MACD` (Moving Average Convergence Divergence)는 이동평균선을 응용한 추세 지표로, 단기선과 장기선의 관계를 통해 **추세의 강도와 전환 시점**을 보여줍니다. `MACD` 선이 시그널선을 상향 돌파하면 매수, 하향 돌파하면 매도 신호로 보는 경우가 많습니다.
+[MACD](https://www.tradingview.com/support/solutions/43000502344/) (Moving Average Convergence Divergence)는 이동평균선을 응용한 추세 지표로, 단기선과 장기선의 관계를 통해 **추세의 강도와 전환 시점**을 보여줍니다. `MACD` 선이 시그널선을 상향 돌파하면 매수, 하향 돌파하면 매도 신호로 보는 경우가 많습니다.
 
 `MACD` 는 아래 세가지 요소로 이루어져 있다.
 
@@ -76,11 +76,11 @@ tags:
     - 추세가 하락 전환되는 신호
 - **장점 :** 추세 전환 시점을 미리 포착 가능
 
-## **2.3 [Auto Trendline](https://www.tradingview.com/script/xYaiqwD8-Auto-Trendline-Indicator-based-on-fractals/) – 차트를 깔끔하게 정리해주는 자동 추세선**
+## 2.3 Auto Trendline – 차트를 깔끔하게 정리해주는 자동 추세선
 
 ![Auto Trendline](image-20250817173622540.png)
 
-많은 트레이더들이 차트에 추세선을 직접 긋지만, 기준에 따라 조금씩 차이가 나곤 합니다. Auto Trendline Indicator는 이 과정을 자동화해 주요 고점과 저점을 연결한 **상승, 하락 추세선**을 그려줍니다.
+많은 트레이더들이 차트에 추세선을 직접 긋지만, 기준에 따라 조금씩 차이가 나곤 합니다. [Auto Trendline](https://www.tradingview.com/script/xYaiqwD8-Auto-Trendline-Indicator-based-on-fractals/) Indicator는 이 과정을 자동화해 주요 고점과 저점을 연결한 **상승, 하락 추세선**을 그려줍니다.
 
 특히 초보자에게 유용한 이유는, 지지와 저항 구간을 직관적으로 확인할 수 있다는 점입니다. 이 구간이 뚫리면 큰 추세 전환이 나오겠구나라는 시각적 힌트를 주기 때문에, 다른 지표와 조합할 때 큰 힘을 발휘합니다.
 
@@ -89,11 +89,11 @@ tags:
   - 상승 추세선·하락 추세선을 자동으로 표시해 지지/저항 파악
 - 장점: 손으로 일일이 추세선 긋는 수고를 덜어줌
 
-## **2.4 [Zig Zag](https://www.tradingview.com/script/uvXdNmXg/) (Auto Horizontal Lines) – 복잡한 차트를 단순하게**
+## 2.4 Zig Zag (Auto Horizontal Lines) – 복잡한 차트를 단순하게
 
 ![Zig Zag](image-20250817173635651.png)
 
-[TradingView 공식 문서](https://kr.tradingview.com/support/solutions/43000591664/)나 [Market Structure ZigZag](https://www.tradingview.com/script/NXgQEbZi-Market-Structure-ZigZag-Break-of-Structure-Order-Blocks/) 지표를 보면 알 수 있듯, Zig Zag은 가격의 미세한 변동은 제거하고 큰 흐름만 보여줍니다.
+[TradingView 공식 문서](https://kr.tradingview.com/support/solutions/43000591664/)나 [Market Structure ZigZag](https://www.tradingview.com/script/NXgQEbZi-Market-Structure-ZigZag-Break-of-Structure-Order-Blocks/) 지표를 보면 알 수 있듯, [Zig Zag](https://www.tradingview.com/script/uvXdNmXg/)은 가격의 미세한 변동은 제거하고 큰 흐름만 보여줍니다.
 
 실제 차트를 보다 보면 너무 많은 노이즈 때문에 방향성을 파악하기 어려울 때가 많습니다. 이때 Zig Zag은 변곡점을 기준으로 단순화해, 현재 시장이 상승 추세인지 하락 추세인지를 명확하게 보여줍니다. 또한 자동으로 수평 지지도 표시해주고 있어 저항선도 빠르게 파악할 수 있다.
 
@@ -103,11 +103,11 @@ tags:
   - 박스권(지지/저항 구간) 자동 표시
 - 장점: 복잡한 차트를 단순하게 정리해줌
 
-## **2.5 [UT Bot Alerts](https://www.tradingview.com/script/n8ss8BID-UT-Bot-Alerts/) – 자동 매매 신호**
+## 2.5 UT Bot Alerts – 자동 매매 신호
 
 ![UT Bot Alerts](image-20250817173649351.png)
 
-UT Bot Alerts는 트레이더들 사이에서 입소문이 많이 난 지표 중 하나입니다. 차트에 **Buy / Sell** 신호를 직접 띄워주기 때문에 초보자도 직관적으로 매매 타이밍을 잡을 수 있습니다.
+[UT Bot Alerts](https://www.tradingview.com/script/n8ss8BID-UT-Bot-Alerts/)는 트레이더들 사이에서 입소문이 많이 난 지표 중 하나입니다. 차트에 **Buy / Sell** 신호를 직접 띄워주기 때문에 초보자도 직관적으로 매매 타이밍을 잡을 수 있습니다.
 
 물론 “신호 뜨면 무조건 따라 산다”는 식으로 접근하면 위험합니다. 하지만 `RSI`나 `MACD` 같은 전통적인 지표와 함께 보면 **추가적인 확신을 주는 보조 신호**로 매우 유용합니다.
 
@@ -119,15 +119,15 @@ UT Bot Alerts는 트레이더들 사이에서 입소문이 많이 난 지표 중
 
 - 장점: 초보자도 쉽게 이해 가능
 
-### **2.6 [MSB-OB](https://www.tradingview.com/script/DkE7UniD/) – 시장 구조와 오더 블록**
+## 2.6 MSB-OB – 시장 구조와 오더 블록
 
 ![MSB-OB](image-20250817173704007.png)
 
-MSB-OB 지표는 조금 더 전문적인 개념을 다룹니다. `MOS`(Market of Structure)와 `OB`(Order Block)을 시각화하여, 주식 세력이 매수, 매도를 집중적으로 한 흔적을 보여줍니다.
+[MSB-OB](https://www.tradingview.com/script/DkE7UniD/) 지표는 조금 더 전문적인 개념을 다룹니다. `MSB`(Market Structure Break)와 `OB`(Order Block)을 시각화하여, 주식 세력이 매수, 매도를 집중적으로 한 흔적을 보여줍니다.
 
 스마트머니 개념을 공부해본 분들이라면 이 지표가 얼마나 강력한지 알 수 있습니다. 단순히 추세만 보는 것이 아니라, **어디서 큰 손이 개입했는지**를 파악할 수 있기 때문에, 추세 전환 지점을 예측하는 데 도움이 됩니다.
 
-- 의미: 시장 구조 전환(`MOS`: Market of Structure)과 오더 블록(Order Block)을 표시
+- 의미: 시장 구조 전환 `MSB`과 `OB`을 표시
 - 활용법
   - 주요 매물대·기관 매수/매도 흔적 파악
   - 추세 전환 구간에서 진입/청산 타이밍 포착
