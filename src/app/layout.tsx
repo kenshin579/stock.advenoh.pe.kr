@@ -104,6 +104,13 @@ export default function RootLayout({
             `
           }}
         />
+        
+        {/* Google AdSense */}
+        <script 
+          async 
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8868959494983515"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className={`${inter.className} ${notoSansKR.className} font-sans antialiased`}>
         <ThemeProvider>
