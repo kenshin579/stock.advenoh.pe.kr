@@ -207,8 +207,11 @@ npm run build
 ### 성능 모니터링
 
 - **Core Web Vitals**: 실시간 측정
+- **Google Analytics**: 페이지뷰, 사용자 행동 추적
+  - 실시간 사용자 모니터링
+  - 인기 콘텐츠 분석
+  - 트래픽 소스 추적
 - **에러 추적**: 자동 에러 로깅
-- **사용자 행동**: 페이지 뷰, 인터랙션 분석
 
 ### 로그 확인
 
@@ -226,7 +229,9 @@ npm run start
 
 1. **자동 배포**: Git push 시 자동 배포
 2. **수동 배포**: Replit 대시보드에서 배포 버튼 클릭
-3. **환경 변수**: Replit Secrets에서 설정
+3. **환경 변수**: Replit Secrets에서 다음 변수들 설정
+   - `DATABASE_URL`: PostgreSQL 연결 URL
+   - `SITE_URL`: 배포된 사이트 URL
 
 ### 배포 확인
 
@@ -235,6 +240,7 @@ npm run start
 - [ ] 이미지 및 정적 자산 로드
 - [ ] API 응답 정상
 - [ ] SEO 메타데이터 확인
+- [ ] Google Analytics 작동 확인 (개발자 도구에서 gtag 함수 및 네트워크 요청 확인 - G-9LNH27K1YS)
 - [ ] 성능 지표 측정
 
 ## 🐛 문제 해결
