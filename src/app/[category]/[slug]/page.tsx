@@ -8,7 +8,7 @@ import { RelatedPosts } from '@/components/related-posts'
 import { Breadcrumb } from '@/components/breadcrumb'
 import { Avatar, AvatarImage, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
-import { Calendar } from 'lucide-react'
+import { Calendar, ArrowLeft } from 'lucide-react'
 
 interface CategorySlugPageProps {
   params: Promise<{
@@ -231,13 +231,18 @@ export default async function CategorySlugPage({ params }: CategorySlugPageProps
                       const isCurrent = sp.slug === post.slug;
                       return (
                         <li key={sp.slug} className="truncate">
-                          {isCurrent ? (
-                            <span className="font-medium text-foreground">{sp.title}</span>
-                          ) : (
-                            <a href={href} className="text-primary hover:underline">
-                              {sp.title}
-                            </a>
-                          )}
+                          <div className="flex items-center gap-2">
+                            {isCurrent ? (
+                              <span className="font-medium text-foreground">{sp.title}</span>
+                            ) : (
+                              <a href={href} className="text-primary hover:underline">
+                                {sp.title}
+                              </a>
+                            )}
+                            {isCurrent && (
+                              <ArrowLeft className="w-4 h-4 text-muted-foreground flex-shrink-0" />
+                            )}
+                          </div>
                         </li>
                       );
                     })}
