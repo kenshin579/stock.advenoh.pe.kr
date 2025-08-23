@@ -92,6 +92,18 @@ export default async function CategorySlugPage({ params }: CategorySlugPageProps
     const relatedPosts = await getRelatedPosts(post.slug, post.categories)
     const structuredData = generateStructuredData('article', post)
 
+    // Prepare series posts once (no inline await in JSX)
+    let seriesPosts: Awaited<ReturnType<typeof getAllBlogPosts>> = []
+    if (post.series) {
+      const allPosts = await getAllBlogPosts()
+      seriesPosts = allPosts
+        .filter(p => p.series === post.series)
+        .sort((a, b) => {
+          if (a.seriesOrder && b.seriesOrder) return a.seriesOrder - b.seriesOrder
+          return new Date(a.date).getTime() - new Date(b.date).getTime()
+        })
+    }
+
     const getCategoryColor = (category: string) => {
       switch (category?.toLowerCase()) {
         case "stock":
@@ -205,6 +217,34 @@ export default async function CategorySlugPage({ params }: CategorySlugPageProps
                 </div>
               )}
             </header>
+
+            {/* Series list for same series */}
+            {post.series && seriesPosts.length > 0 && (
+              <div className="mb-8">
+                <div className="rounded-lg border border-border bg-muted/40">
+                  <div className="px-4 py-3 border-b border-border/60 text-sm font-semibold text-foreground">
+                    SERIES: {post.series} <span className="text-muted-foreground">({seriesPosts.length})</span>
+                  </div>
+                  <ul className="p-4 space-y-2 text-sm">
+                    {seriesPosts.map((sp) => {
+                      const href = `/${(sp.categories[0] || 'etc').toLowerCase()}/${sp.slug}`;
+                      const isCurrent = sp.slug === post.slug;
+                      return (
+                        <li key={sp.slug} className="truncate">
+                          {isCurrent ? (
+                            <span className="font-medium text-foreground">{sp.title}</span>
+                          ) : (
+                            <a href={href} className="text-primary hover:underline">
+                              {sp.title}
+                            </a>
+                          )}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
+              </div>
+            )}
 
             <div className="flex flex-col lg:flex-row gap-8">
               <div className="lg:w-3/4 order-2 lg:order-1">
