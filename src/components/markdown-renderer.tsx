@@ -13,6 +13,8 @@ interface MarkdownRendererProps {
 }
 
 export function MarkdownRenderer({ content, className = "", slug, category }: MarkdownRendererProps) {
+  // Helper to strip Markdown links like [text](url) -> text
+  const stripMarkdownLinks = (input: string) => input.replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1');
   return (
     <div className={`markdown-content ${className}`}>
       <ReactMarkdown
@@ -20,7 +22,8 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
         rehypePlugins={[rehypeRaw]}
         components={{
           h1: ({ children }) => {
-            const id = String(children)
+            const plain = stripMarkdownLinks(String(children));
+            const id = plain
               .toLowerCase()
               .replace(/[^\w\s가-힣]/g, '')
               .replace(/\s+/g, '-')
@@ -32,7 +35,8 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
             );
           },
           h2: ({ children }) => {
-            const id = String(children)
+            const plain = stripMarkdownLinks(String(children));
+            const id = plain
               .toLowerCase()
               .replace(/[^\w\s가-힣]/g, '')
               .replace(/\s+/g, '-')
@@ -44,7 +48,8 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
             );
           },
           h3: ({ children }) => {
-            const id = String(children)
+            const plain = stripMarkdownLinks(String(children));
+            const id = plain
               .toLowerCase()
               .replace(/[^\w\s가-힣]/g, '')
               .replace(/\s+/g, '-')
@@ -56,7 +61,8 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
             );
           },
           h4: ({ children }) => {
-            const id = String(children)
+            const plain = stripMarkdownLinks(String(children));
+            const id = plain
               .toLowerCase()
               .replace(/[^\w\s가-힣]/g, '')
               .replace(/\s+/g, '-')
@@ -68,7 +74,8 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
             );
           },
           h5: ({ children }) => {
-            const id = String(children)
+            const plain = stripMarkdownLinks(String(children));
+            const id = plain
               .toLowerCase()
               .replace(/[^\w\s가-힣]/g, '')
               .replace(/\s+/g, '-')
@@ -80,7 +87,8 @@ export function MarkdownRenderer({ content, className = "", slug, category }: Ma
             );
           },
           h6: ({ children }) => {
-            const id = String(children)
+            const plain = stripMarkdownLinks(String(children));
+            const id = plain
               .toLowerCase()
               .replace(/[^\w\s가-힣]/g, '')
               .replace(/\s+/g, '-')
