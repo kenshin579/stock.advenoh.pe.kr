@@ -15,6 +15,8 @@ interface TableOfContentsProps {
 }
 
 export function TableOfContents({ content, className = "" }: TableOfContentsProps) {
+  // Helper to strip Markdown links like [text](url) -> text
+  const stripMarkdownLinks = (input: string) => input.replace(/\[([^\]]+)\]\([^\)]+\)/g, '$1');
   const [tocItems, setTocItems] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>('');
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -27,14 +29,15 @@ export function TableOfContents({ content, className = "" }: TableOfContentsProp
 
     while ((match = headingRegex.exec(content)) !== null) {
       const level = match[1].length;
-      const text = match[2].trim();
-      const id = text
+      const rawText = match[2].trim();
+      const plainText = stripMarkdownLinks(rawText);
+      const id = plainText
         .toLowerCase()
         .replace(/[^\w\s가-힣]/g, '')
         .replace(/\s+/g, '-')
         .trim();
 
-      items.push({ id, text, level });
+      items.push({ id, text: plainText, level });
     }
 
     setTocItems(items);
