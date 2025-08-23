@@ -38,7 +38,10 @@ export default async function HomePage({
   // 카테고리 필터링
   let filteredPosts = posts
   if (selectedCategory !== 'all') {
-    filteredPosts = posts.filter(post => post.categories.includes(selectedCategory))
+    const selectedLower = selectedCategory.toLowerCase()
+    filteredPosts = posts.filter(post =>
+      post.categories.some(c => c.toLowerCase() === selectedLower)
+    )
   }
 
   // 검색 필터링
