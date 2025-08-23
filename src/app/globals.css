@@ -166,6 +166,11 @@
   .markdown-content code {
     @apply bg-muted text-muted-foreground px-2 py-1 rounded text-sm;
   }
+  /* Remove Tailwind Typography default backticks around inline code */
+  .markdown-content :not(pre) > code::before,
+  .markdown-content :not(pre) > code::after {
+    content: none;
+  }
   
   .markdown-content pre {
     @apply bg-muted p-4 rounded-lg overflow-x-auto;
