@@ -1,1 +1,1 @@
-.cursor/rules/git-commit-instructions.mdc
+../../.github/git-commit-instructions.md
