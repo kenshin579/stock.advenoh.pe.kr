@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronRight, List } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 
 interface TocItem {
   id: string;
@@ -115,7 +117,25 @@ export function TableOfContents({ content, className = "" }: TableOfContentsProp
                   paddingLeft: `${(item.level - 1) * 12 + 8}px` 
                 }}
               >
-                {item.text}
+                <ReactMarkdown
+                  remarkPlugins={[remarkGfm]}
+                  components={{
+                    p: ({ children }) => <span>{children}</span>,
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                    code: (props: any) => {
+                      const { inline, children, className, ...rest } = props;
+                      // Only treat as inline in TOC
+                      return (
+                        <code className="bg-muted text-muted-foreground px-1.5 py-0.5 rounded text-xs" {...rest}>
+                          {String(children).replace(/`/g, '')}
+                        </code>
+                      );
+                    },
+                    a: ({ children }) => <span>{children}</span>,
+                  }}
+                >
+                  {item.text}
+                </ReactMarkdown>
               </button>
             ))}
           </nav>
