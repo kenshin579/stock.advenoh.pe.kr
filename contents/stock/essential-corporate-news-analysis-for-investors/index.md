@@ -39,9 +39,7 @@ tags:
 
 > 분기 어닝 서프라이즈의 연속성
 
-분기 어능 서프라이즈의 경우에는 보통 연속적으로 터지는 경우가 많아서 첫 어닝 서프라이즈에 바로 들어가는게 좋다. 대부분 첫번째, 두번째에 강세를 이루지만 뒤로 갈수록 세번쨰부터는 시장에 별 반응을 얻지 못하기도 한다
-
-> 
+분기 어능 서프라이즈의 경우에는 보통 연속적으로 터지는 경우가 많아서 첫 어닝 서프라이즈에 바로 들어가는게 좋다. 대부분 첫번째, 두번째에 강세를 이루지만 뒤로 갈수록 세번쨰부터는 시장에 별 반응을 얻지 못하기도 한다.
 
 ## 2.2 시장 점유율 증가
 
@@ -80,21 +78,19 @@ tags:
 - [LS증권, KT&G 글로벌 진출 호재···주주환원 강화에 목표가 5.7% 상향](https://www.newsway.co.kr/news/view?ud=2025092409073173062)
 - [[N2 특징주\] 진매트릭스, 유럽 의료기기 인증·美 특허 호재에 '강세'…글로벌 진출 '속도' 전망](https://www.news2day.co.kr/article/20250919500129)
 - [HK이노엔 ‘케이캡’, 보퀘즈나 독점권 연장…미국 진출 '호재’](https://www.bloter.net/news/articleView.html?idxno=639050)
-- [**현대차 신규공장에 자금 확보까지…SK온, 북미서 '퀀텀점프' 시동**](https://www.yna.co.kr/view/AKR20250329028800003)
+- [현대차 신규공장에 자금 확보까지…SK온, 북미서 '퀀텀점프' 시동](https://www.yna.co.kr/view/AKR20250329028800003)
 
 ## 2.5 정부가 추진 하는 사업
 
 정부의 규제 발표가 기업에는 악재가 될 수 있지만, 반대로 정부가 추진하는 사업은 종종 강력한 호재로 작용한다. 신재생에너지 확대, 반도체 지원, 2차전지 산업 육성, SOC(사회간접자본) 투자 확대 같은 정책은 해당 산업의 기업들에 직접적인 수혜를 준다. 특히 정부 예산과 정책 방향이 집중되는 분야는 단기적으로 수급 기대감이 높아지고, 장기적으로도 성장 기반을 다지는 효과가 있어 투자자들의 관심이 몰린다. 따라서 정부 규제와 함께 추진 사업을 균형 있게 살펴보는 것이 투자 전략에서 중요하다.
 
 - [NAVER, 새 정부 AI 정책 수혜 기대와 기술적 우위 기반 실적 개선 기대에 주가 급등](https://www.hankyung.com/article/202509041959a)
-- [건설株, 정부 주택공급 확대 추진에 급등…동신건설 20%↑[핫스탁\]](https://www.newsis.com/view/NISX20250908_0003319417)
+- [건설株, 정부 주택공급 확대 추진에 급등…동신건설 20%↑](https://www.newsis.com/view/NISX20250908_0003319417)
 - [LG CNS, 2주 만에 주가 2배…대형 AI사업·정부인사 상승작용](https://zdnet.co.kr/view/?no=20250624163319)
 
 > **정권 교체와 투자 전략**
 
 새로운 정권이 들어서면 정부의 산업 정책, 규제 방향, 세금 제도가 달라지면서 시장의 수급과 기대치도 빠르게 바뀐다. 예를 들어 트럼프 정부의 감세와 에너지 산업 지원은 관련 업종 주가를 끌어올렸으며, 한국에서도 특정 후보의 공약에 따라 부동산·금융·신재생에너지 등 섹터가 민감하게 반응할 수 있다. 따라서 정권 교체 시기에는 단순히 기존 투자 포트폴리오를 유지하기보다는, 새 정부의 핵심 공약과 정책 기조를 분석해 선제적으로 투자 전략을 재편하는 것이 필요하다.
-
-> 
 
 # 3. 악재인 경우
 
@@ -127,7 +123,14 @@ tags:
 
 - [1분에 10명씩 소송 불어나는 SKT 급락…'유심 대란'에 관련주 상한가](https://www.msn.com/ko-kr/money/markets/1분에-10명씩-소송-불어나는-skt-급락-유심-대란-에-관련주-상한가/ar-AA1DJta1?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1)
 - ["'반독점 소송' 알파벳, 크롬 매각 시 주가 25% 폭락할 수도"](https://news.einfomax.co.kr/news/articleView.html?idxno=4358803)
-- [[TODAY테슬라\]머스크-SEC 소송 이슈 재점화…주가 2%↓](https://www.edaily.co.kr/News/Read?newsId=04306646642272240&mediaCodeNo=257)
+- [TODAY테슬라\]머스크-SEC 소송 이슈 재점화…주가 2%↓](https://www.edaily.co.kr/News/Read?newsId=04306646642272240&mediaCodeNo=257)
+
+## 3.5 유상증자 
+
+유상증자는 기업이 새로운 자금을 조달하기 위해 기존 주주나 시장에 신주를 발행하는 방식이다. 일반적으로 발행가가 시가보다 낮게 책정되기 때문에 단기적으로는 주가 희석(가치 하락) 우려로 악재로 작용하는 경우가 많다. 하지만 조달된 자금이 확실한 성장 동력(ex. 신사업, 설비 투자, 부채 상환)에 사용된다면 중장기적으로는 호재로 재평가될 수 있다. 따라서 유상증자 뉴스는 단순히 “악재”로만 보지 말고, 자금 사용 목적과 기업 재무구조 개선 여부를 함께 살펴보는 것이 중요하다.
+
+- [노을, 350억 주주배정 유상증자 소식에 주가 '뚝'[Why 바이오]](https://www.msn.com/ko-kr/news/other/%EB%85%B8%EC%9D%84-350%EC%96%B5-%EC%A3%BC%EC%A3%BC%EB%B0%B0%EC%A0%95-%EC%9C%A0%EC%83%81%EC%A6%9D%EC%9E%90-%EC%86%8C%EC%8B%9D%EC%97%90-%EC%A3%BC%EA%B0%80-%EB%9A%9D-why-%EB%B0%94%EC%9D%B4%EC%98%A4/ar-AA1NfiCx)
+- [삼성SDI, 2조원대 유상증자 발표하자…주가 2%대 약세](https://www.msn.com/ko-kr/money/markets/%EC%82%BC%EC%84%B1sdi-2%EC%A1%B0%EC%9B%90%EB%8C%80-%EC%9C%A0%EC%83%81%EC%A6%9D%EC%9E%90-%EB%B0%9C%ED%91%9C%ED%95%98%EC%9E%90-%EC%A3%BC%EA%B0%80-2-%EB%8C%80-%EC%95%BD%EC%84%B8/ar-AA1AT31s?apiversion=v2&noservercache=1&domshim=1&renderwebcomponents=1&wcseo=1&batchservertelemetry=1&noservertelemetry=1)
 
 # 4. 애매한 경우
 
@@ -136,21 +139,21 @@ tags:
 경영권 분쟁은 일반적으로 기업 내부 불확실성을 키우기 때문에 단기적으로는 악재로 인식된다. 대표이사와 지배주주 간의 갈등은 경영 공백이나 의사결정 지연으로 이어질 수 있어 주가에 부정적 영향을 주기 때문이다. 하지만 한국 증시에서는 특이하게도 이러한 분쟁이 매수세를 자극하며 오히려 호재로 작용하는 경우가 종종 있다. 이는 경영권을 노리는 세력이 지분을 더 확보하려는 움직임이 시장에 반영되면서, 투자자들이 주가 상승 기대감을 갖는 경우가 많기 때문이다.
 
 - [한미, 한달새 주가 40%↑...경영권 분쟁 구원투수들 '방긋’](https://www.dailypharm.com/Users/News/NewsView.html?ID=323205)
-- [[오늘의 주목주\] '미완의 경영권 분쟁' 고려아연 14% 상승, 코스닥 케어젠 14%대 올라](https://www.businesspost.co.kr/BP?command=article_view&num=411798)
+- [오늘의 주목주\] '미완의 경영권 분쟁' 고려아연 14% 상승, 코스닥 케어젠 14%대 올라](https://www.businesspost.co.kr/BP?command=article_view&num=411798)
 
 ## 4.2 제품 리콜 사고
 
 제품 리콜이나 사고 소식은 보통 단기적으로 기업의 이미지와 신뢰도에 타격을 주며 주가 하락을 불러온다. 하지만 자동차나 배터리 기업의 경우, 리콜 이슈는 이미 시장에서 ‘선반영’된 경우가 많아 실제 충격은 제한적이다. 오히려 일시적인 주가 조정 이후 매수 기회로 작용하기도 하며, 장기 투자자 입장에서는 기업의 본질적인 성장성과 펀더멘털이 유지되는지에 주목하는 것이 더 중요하다. 따라서 리콜 자체보다는 이후 대응 방식과 향후 기술적 보완 여부가 주가 흐름을 좌우하는 핵심 요인이 된다.
 
-- [[차이나 모빌리티\] LG와 1위 다툼 中 CATL, 배터리 리콜설에 주가 급락](https://biz.chosun.com/international/international_economy/2021/07/19/C7IW54PFNNGOJFEOOEKQM2HIYE/)
+- [차이나 모빌리티\] LG와 1위 다툼 中 CATL, 배터리 리콜설에 주가 급락](https://biz.chosun.com/international/international_economy/2021/07/19/C7IW54PFNNGOJFEOOEKQM2HIYE/)
 - [바슈롬, 백내장용 인공수정체 제품 자발적 리콜…주가↓](https://marketin.edaily.co.kr/News/ReadE?newsId=01200486642107912)
-- [[ISSUE\] LG 에너지솔루션, 폭발 논란 후 뒤늦은 리콜... 소비자 신뢰 추락”](https://www.jeonguknews.co.kr/news/articleView.html?idxno=71982)
+- [LG 에너지솔루션, 폭발 논란 후 뒤늦은 리콜... 소비자 신뢰 추락”](https://www.jeonguknews.co.kr/news/articleView.html?idxno=71982)
 
 ## 4.3 기술 개발 중단
 
 기술 개발 중단 뉴스는 일반적으로 투자자들에게 **악재**로 받아들여져 주가에 부정적인 영향을 주기 쉽다. 특히 바이오 기업처럼 신약이나 백신 개발을 핵심 가치로 삼는 회사의 경우, 연구 중단은 미래 성장성에 대한 기대를 꺾는 요인이 된다. 그러나 반대로 시장성이 부족하거나 성공 가능성이 낮은 프로젝트를 정리하는 경우에는 불필요한 연구개발비 지출을 줄여 **효율성을 높이는 효과**가 있다. 이런 상황에서는 오히려 기업의 재무 건전성을 강화해 장기적으로는 **호재**로 작용할 수 있다는 점도 함께 고려해야 한다.
 
-- [[美특징주\]스텔란티스, 전기 픽업트럭 개발 중단 소식에 주가 약세](https://www.msn.com/ko-kr/news/other/美특징주-스텔란티스-전기-픽업트럭-개발-중단-소식에-주가-약세/ar-AA1MrLK6?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1)
+- [스텔란티스, 전기 픽업트럭 개발 중단 소식에 주가 약세](https://www.msn.com/ko-kr/news/other/美특징주-스텔란티스-전기-픽업트럭-개발-중단-소식에-주가-약세/ar-AA1MrLK6?apiversion=v2&domshim=1&noservercache=1&noservertelemetry=1&batchservertelemetry=1&renderwebcomponents=1&wcseo=1)
 - ['中 물량 공세 줄어든다' 호재…공장까지 닫았는데 '신고점’](https://www.hankyung.com/article/202507036731i)
 - [상장 3개월된 오름테라퓨틱, 신약 개발 중단에 주가 급감](https://mdtoday.co.kr/news/view/1065599690875985)
 
@@ -179,7 +182,7 @@ M&A(인수합병)는 일반적으로 시장에서 **성장 기대감**을 불러
 
 # 5. 마무리
 
-기업 분석에서 호재와 악재, 그리고 애매한 이슈들은 언제나 반복적으로 발생한다. 중요한 것은 뉴스 자체보다 뉴스가 시장에 미치는 ‘심리’, ‘수급’, 그리고 '지속성'이다.
+기업 분석에서 호재와 악재, 그리고 애매한 이슈들은 언제나 반복적으로 발생한다. 중요한 것은 뉴스 자체보다 뉴스가 시장에 미치는 심리, 수급, 그리고 지속성이다.
 
 성장주든 가치주든, 실적, 점유율, 혁신, 규제, 경영권 등 핵심 이슈와 함께 당시 관련 뉴스를 꼼꼼히 분석해 타이밍에 따라 적극적으로 대처해야 한다.
 
@@ -189,3 +192,4 @@ M&A(인수합병)는 일반적으로 시장에서 **성장 기대감**을 불러
 
 - [유목민의 투자의 정석](https://ridibooks.com/books/606002505?_s=search&_q=투자의+정석&_rdt_sid=SearchBookListWithTab)
 - [어닝서프라이즈](https://www.notion.so/26d46a2166e38063a632f692f786ed83?pvs=21)
+- [유상증자는 주식에 어떤 영향을 주나](https://stock.advenoh.pe.kr/stock/how-does-rights-offering-affect-stocks)
